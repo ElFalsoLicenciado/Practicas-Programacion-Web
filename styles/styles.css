@@ -1,5 +1,11 @@
+/* Importacion de fuente Roboto*/
+@font-face {
+    font-family: RobotoFontFam;
+    src: url(/fonts/Roboto-VariableFont.ttf);
+}
+
 body {
-    background-color: darkgoldenrod;
+    background-color: rgb(63, 154, 87);
 }
 
 h1 {
@@ -7,5 +13,6 @@ h1 {
 }
 
 p {
+    font-family: RobotoFontFam;
     color: red
 }
