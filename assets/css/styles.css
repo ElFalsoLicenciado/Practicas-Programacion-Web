@@ -1,18 +1,40 @@
 /* Importacion de fuente Roboto*/
 @font-face {
-    font-family: RobotoFontFam;
-    src: url(/fonts/Roboto-VariableFont.ttf);
+    font-family: RobotoFont;
+    src: url(/assets/fonts/Roboto-VariableFont.ttf);
+}
+
+@font-face {
+    font-family: JosefinSansFont;
+    src: url(/assets/fonts/JosefinSans-VariableFont.ttf);
 }
 
 body {
-    background-color: rgb(63, 154, 87);
+    background-color: #d8ffe2;
+}
+
+/* Barra superior donde se encuentra el titulo y links */
+.topbar {
+    /* position: sticky; */
+    display: grid;
+    grid-template-columns: 33% 33% 33%;
+    top: 0;
+    z-index: 1000;
+    background: linear-gradient(90deg, #57c574, #42c7b5);
+    padding: 20px 24px;
+}
+
+.titulo-pagina {
+    font-family: RobotoFont;
+    color: rgb(120, 44, 45)
 }
 
 h1 {
-    color: navy
+    font-family: RobotoFont;
+    /* color: rgb(120, 44, 45) */
 }
 
 p {
-    font-family: RobotoFontFam;
-    color: red
+    font-family: JosefinSansFont;
+    color: rgb(74, 57, 138)
 }
