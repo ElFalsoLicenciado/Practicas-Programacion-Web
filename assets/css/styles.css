@@ -1,12 +1,12 @@
 /* Importacion de fuente Roboto*/
 @font-face {
     font-family: RobotoFont;
-    src: url(/assets/fonts/Roboto-VariableFont.ttf);
+    src: url(assets/fonts/Roboto-VariableFont.ttf);
 }
 
 @font-face {
     font-family: JosefinSansFont;
-    src: url(/assets/fonts/JosefinSans-VariableFont.ttf);
+    src: url(assets/fonts/JosefinSans-VariableFont.ttf);
 }
 
 body {
@@ -15,7 +15,7 @@ body {
 
 /* Barra superior donde se encuentra el titulo y links */
 .topbar {
-    /* position: sticky; */
+        /* position: sticky; */
     display: grid;                                              /* Se muestra en filas y columnas */
     align-items: center;                                        
     grid-template-columns: 25% 50% 25%;                         /* Ajusto el tamaño de cada una de las columnas y cuantas*/
