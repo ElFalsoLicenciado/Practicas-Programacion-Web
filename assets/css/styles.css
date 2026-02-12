@@ -27,7 +27,7 @@ body {
 
 .topbar-links-section {
     display: grid;
-    grid-template-columns: repeat(3, auto);
+    grid-template-columns: repeat(4, auto);
     align-items: center;
 }
 
