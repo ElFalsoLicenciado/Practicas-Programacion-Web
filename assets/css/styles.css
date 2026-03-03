@@ -1,13 +1,6 @@
 /* Importacion de fuente Roboto*/
-@font-face {
-    font-family: RobotoFont;
-    src: url(assets/fonts/Roboto-VariableFont.ttf);
-}
+@import url('https://fonts.googleapis.com/css2?family=Josefin+Sans:ital,wght@0,100..700;1,100..700&family=Roboto:ital,wght@0,100..900;1,100..900&display=swap');
 
-@font-face {
-    font-family: JosefinSansFont;
-    src: url(assets/fonts/JosefinSans-VariableFont.ttf);
-}
 
 body {
     background-color: #d8ffe2;
@@ -66,13 +59,13 @@ body {
 }
 
 h1 {
-    font-family: RobotoFont;
+    font-family: 'Roboto';
     /* color: rgb(120, 44, 45) */
     font-size: clamp(1.6rem, 5vw, 3rem);
 }
 
 p {
-    font-family: JosefinSansFont;
+    font-family: 'Josefin Sans';
     color: rgb(74, 57, 138);
     font-size: clamp(0.95rem, 2.5vw, 1.2rem);
 }
