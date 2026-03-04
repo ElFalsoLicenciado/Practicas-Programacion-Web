@@ -1,52 +1,94 @@
-/* Importacion de fuente Roboto*/
+/* Importacion de fuentes Roboto y Josefin Sans*/
 @import url('https://fonts.googleapis.com/css2?family=Josefin+Sans:ital,wght@0,100..700;1,100..700&family=Roboto:ital,wght@0,100..900;1,100..900&display=swap');
 
+
+/* Colores a usar
+   Color morena #782c2d
+
+
+*/
 
 body {
     background-color: #d8ffe2;
 }
 
 /* Barra superior donde se encuentra el titulo y links */
+/* ================= TOPBAR ================= */
+
 .topbar {
-        /* position: sticky; */
-    display: grid;                                              /* Se muestra en filas y columnas */
-    align-items: center;                                        
-    grid-template-columns: 25% 50% 25%;                         /* Ajusto el tamaño de cada una de las columnas y cuantas*/
+    display: grid;
+    grid-template-columns: 25% 50% 25%;
+    align-items: stretch;
+    background: linear-gradient(90deg, #57c574, #42c7b5);
+    padding: 0 24px;
+    position: sticky;
     top: 0;
-    z-index: 1000;                                              /* Controla que elemento esta encima sobre otro, 0 -> lo mas bajo. 100 -> mas alto */
-    background: linear-gradient(90deg, #57c574, #42c7b5);  /* Le ponemos un gradiante */
-    padding: 20px 24px;                                         /* Espacio interno entre el contenido y su elemento */
+    z-index: 1000;
 }
 
-.topbar-links-section {
-    display: grid;
-    grid-template-columns: repeat(4, auto);
+/* Logo */
+.topbar-logo {
+    display: flex;
     align-items: center;
 }
 
-.topbar-title {
-    font-family: 'Roboto';
-    color: rgb(120, 44, 45);
-    text-align: center;
-    font-size: clamp(1.4rem, 4vw, 2.4rem);                      /* Usamos clamp() que es una funcion responsiva de CSS para el tamaño, el orden es (minimo, ideal, maximo) */
-}
-
-.topbar-link:link ,.topbar-link:visited {                       /* Casos cuando el boton ya fue visitdo o se muestra el link*/
-    background-color: transparent;
-    font-family: 'Roboto';
-    font-size: clamp(0.65rem, 1.5vw, 1.0rem);
-    color: #394644;
-    padding: 10px 20px;
-    text-decoration: none;                                      /* Esto es para que no se muestre el texto subrayado */
-    display: inline-block;                                      /* Propiedad que le permite colocarse con otros elementos inline o inline-block y permite ajustar ancho, alto, margen y padding*/
-}
-
-.topbar-link:hover, .topbar-link:active {                       /* Casos cuando el mouse esta encima o se esta visitando el sitio */
-  background-color: rgba(0, 0, 0, 0.3);                       /*Transparencia para que el gradiente se pueda ver */
-  color: white;
-}
-
 .logo {
+    height: 60px;
+    width: auto;
+}
+
+/* Título */
+.topbar-title {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-family: 'Roboto';
+    color: #782c2d;
+    font-weight: 600;
+    font-size: clamp(1.4rem, 4vw, 2.4rem);
+    text-align: center;
+}
+
+/* Links */
+.topbar-links-section {
+    display: flex;
+    justify-content: flex-end;
+    height: 100%;
+}
+
+/* Botones */
+.topbar-link {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 0 20px;
+    height: 100%;
+    font-family: 'Josefin Sans';
+    font-size: clamp(0.95rem, 2.5vw, 1.2rem);
+    color: #394644;
+    text-decoration: none;
+    transition: 0.3s ease;
+}
+
+.topbar-link:hover {
+    background-color: rgba(0, 0, 0, 0.25);
+    color: white;
+}
+
+/* ================= MENÚ HAMBURGUESA ================= */
+
+.menu-toggle {
+    display: none;
+    font-size: 2rem;
+    cursor: pointer;
+    align-items: center;
+    justify-content: flex-end;
+}
+
+#logo-img {
+    border-radius: 50%;
+    border: 6px solid #782c2d;
+    margin-bottom: 10px;
     height: 70px;
     width: auto;
 }
