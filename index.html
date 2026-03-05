@@ -8,12 +8,11 @@
     <title>Página principal</title>
     
     <!-- Iconito bonito para el sitio web -->
-    <link rel="icon" type="image/x-icon" href="assets/img/favicon.ico">
+    <link rel="icon" type="image/x-icon" href="../assets/img/favicon.ico">
     
     <!-- Link para enlazar el CSS -->
     <!-- <link rel="stylesheet" href="https://raw.githack.com/ElFalsoLicenciado/Practicas-Programacion-Web/Practica2/assets/css/styles.css"> -->
     <link rel="stylesheet" href="assets/css/styles.css">
-    
     
     <!-- Metadatos de descripcion -->
     <meta name="description" content="Sitio de curso basico para que puedas aprender de manera facil y sencilla banda de guerra.">
@@ -26,38 +25,41 @@
     
 </head>
 <body>
-    <header class="topbar">
-        
-        <div class="topbar-logo">
-            <img src="/assets/img/Logo-TecNM.png" alt="Logo TECNM Morelia" class="logo">
+    <!-- BARRA SUPERIOR -->
+    <header class="header">
+        <div class="header-brand">
+            <div class="header-logo" onclick="document.location='index.html'">
+                <img src="/assets/img/bdg1.jpg" alt="Logo TECNM Morelia" class="logo-img">
+                <div class="header-title">BANDA DE GUERRA TECNM</div>
+            </div>
         </div>
         
-        <div class="topbar-title">
-            Banda de guerra TECNM
-        </div>
-        
-        <nav class="topbar-links-section" id="navMenu">
-            <a href="login.htm" class="topbar-link">Iniciar sesión</a>
-            <a href="selector.htm" class="topbar-link">Ver tablón</a>
-            <a href="login.htm" class="topbar-link">Acerca de</a>
+        <nav class="header-links" id="navMenu">
+            <a href="login.htm" class="header-link">Iniciar sesión</a>
+            <a href="mision.htm" class="header-link">Mision</a>
+            <a href="vision.htm" class="header-link">Vision</a>
+            <a href="about-us.htm" class="header-link">Acerca de nosotros</a>
         </nav>
-        
         <div class="menu-toggle" id="menuToggle">
             ☰
         </div>
-        
     </header>
+
+    <div id="index-title">
+        <h1 class="text-box">Página principal del sitio.</h1>
+    </div>
     
-    <h1>Página principal del sitio.</h1>
+
+    <div class="text-box">
+        <h1>Página principal del sitio.</h1>
+        
+        <p> dineros</p>
+    </div>
     
-    <p> dineros</p>
+    <footer>
+        <a href="caja.htm">Caja</a>
+    </footer>
     
 </body>
-
-<footer>
-    <a href="caja.htm">Caja</a>
-    <a href="corneta.htm">Corneta</a>
-    
-</footer>
 
 </html>

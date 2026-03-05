@@ -3,12 +3,12 @@
 
 <head>
     <meta charset="UTF-8">
-
+    
     <!-- Titulo de la ventana -->
     <title>Iniciar sesión</title>
     
     <!-- Iconito bonito para el sitio web -->
-    <link rel="icon" type="image/x-icon" href="assets/img/favicon.ico">
+    <link rel="icon" type="image/x-icon" href="../assets/img/favicon.ico">
     
     <!-- Link para enlazar el CSS -->
     <!-- <link rel="stylesheet" href="https://raw.githack.com/ElFalsoLicenciado/Practicas-Programacion-Web/Practica2/assets/css/styles.css"> -->
@@ -16,35 +16,31 @@
 </head>
 
 <body>
-    <div class="topbar">
-        <div>
-            <img src="assets/img/bdg1.jpg" alt="Logo BDG" id="logo-img">
-        </div>
-        <div>
-            <h1 class="topbar-title">Curso Basico de Banda de Guerra</h1>
-        </div>
-        <div class="topbar-links-section">
-            <div>
-                <a href="index.html" class="topbar-link">Inicio</a>
-            </div>
-            <div>
-                <a href="mision.htm" class="topbar-link">Mision</a>
-            </div>
-            <div>
-                <a href="vision.htm" class="topbar-link">Vision</a>
-            </div>
-            <div>
-                <a href="about-us.htm" class="topbar-link">Acerca de</a>
+    <!-- BARRA SUPERIOR -->
+    <header class="header">
+        <div class="header-brand">
+            <div class="header-logo" onclick="document.location='index.html'">
+                <img src="/assets/img/bdg1.jpg" alt="Logo TECNM Morelia" class="logo-img">
+                <div class="header-title">BANDA DE GUERRA TECNM</div>
             </div>
         </div>
-    </div>
-
+        
+        <nav class="header-links" id="navMenu">
+            <a href="login.htm" class="header-link">Iniciar sesión</a>
+            <a href="mision.htm" class="header-link">Mision</a>
+            <a href="vision.htm" class="header-link">Vision</a>
+            <a href="about-us.htm" class="header-link">Acerca de nosotros</a>
+        </nav>
+        <div class="menu-toggle" id="menuToggle">
+            ☰
+        </div>
+    </header>
+    
     <h1>Introduce tus credenciales.</h1>
     
+    <footer>
+        
+    </footer>
 </body>
-
-<footer>
-    
-</footer>
 
 </html>

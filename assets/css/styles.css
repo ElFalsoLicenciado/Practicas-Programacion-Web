@@ -2,102 +2,22 @@
 @import url('https://fonts.googleapis.com/css2?family=Josefin+Sans:ital,wght@0,100..700;1,100..700&family=Roboto:ital,wght@0,100..900;1,100..900&display=swap');
 
 
-/* Colores a usar
-   Color morena #782c2d
+/* Colores a usar:
+Color morena #863335
 
 
 */
 
-body {
-    background-color: #d8ffe2;
-}
+/* Fuentes a usar:
+Fuente chingona: ui-sans-serif, system-ui, sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol", "Noto Color Emoji"
+'Roboto'
+'Josefin Sans'
+*/
 
-/* Barra superior donde se encuentra el titulo y links */
-/* ================= TOPBAR ================= */
-
-.topbar {
-    display: grid;
-    grid-template-columns: 25% 50% 25%;
-    align-items: stretch;
-    background: linear-gradient(90deg, #57c574, #42c7b5);
-    padding: 0 24px;
-    position: sticky;
-    top: 0;
-    z-index: 1000;
-}
-
-/* Logo */
-.topbar-logo {
-    display: flex;
-    align-items: center;
-}
-
-.logo {
-    height: 60px;
-    width: auto;
-}
-
-/* Título */
-.topbar-title {
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    font-family: 'Roboto';
-    color: #782c2d;
-    font-weight: 600;
-    font-size: clamp(1.4rem, 4vw, 2.4rem);
+.text-box {
+    margin-left: 15px;
+    margin-right: 15px;
     text-align: center;
-}
-
-/* Links */
-.topbar-links-section {
-    display: flex;
-    justify-content: flex-end;
-    height: 100%;
-}
-
-/* Botones */
-.topbar-link {
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    padding: 0 20px;
-    height: 100%;
-    font-family: 'Josefin Sans';
-    font-size: clamp(0.95rem, 2.5vw, 1.2rem);
-    color: #394644;
-    text-decoration: none;
-    transition: 0.3s ease;
-}
-
-.topbar-link:hover {
-    background-color: rgba(0, 0, 0, 0.25);
-    color: white;
-}
-
-/* ================= MENÚ HAMBURGUESA ================= */
-
-.menu-toggle {
-    display: none;
-    font-size: 2rem;
-    cursor: pointer;
-    align-items: center;
-    justify-content: flex-end;
-}
-
-#logo-img {
-    border-radius: 50%;
-    border: 6px solid #782c2d;
-    margin-bottom: 10px;
-    height: 70px;
-    width: auto;
-}
-
-/* En caso de que se visualize en celular */
-@media (max-width: 600px) {
-    .logo {
-        height: 35px;
-    }
 }
 
 h1 {
@@ -111,3 +31,119 @@ p {
     color: rgb(74, 57, 138);
     font-size: clamp(0.95rem, 2.5vw, 1.2rem);
 }
+
+body {
+    background-color: #d8ffe2;
+    margin: 0px;
+}
+
+
+.header {
+    background-size: cover;
+    display: grid;
+    grid-template-columns: 50% 50%;
+    align-items: stretch;
+    background: #833132;
+    position: sticky;
+    top: 0;
+}
+
+.header-brand {
+    display: flex;
+    justify-content: left;
+    height: 100%;
+    text-align: center;
+    vertical-align: middle;
+}
+
+
+.header-logo {
+    display: flex;
+    align-items: center;
+    cursor: pointer;                /*A la hora de poner el cursor encima se pone la manita.*/
+    margin: 5px 0 0 10px;
+}
+
+.logo-img {
+    border-radius: 50%;
+    border: 6px solid #660708;
+    height: 70px;
+    width: auto;
+    margin-bottom: 10px;
+}
+
+.header-title {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-family: ui-sans-serif, system-ui, sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol", "Noto Color Emoji";
+    color: #ffffff;
+    font-weight: 600;
+    font-size: clamp(1.1rem, 4vw, 1.5rem);
+    text-align: center;
+    margin: 0 0 10px 10px;
+}
+
+.header-links {
+    display: flex;
+    justify-content: flex-end;
+    height: 100%;
+    text-align: center;
+    vertical-align: middle;
+    
+}
+
+.header-link {
+    display: flex;
+    align-items: center;
+    padding: 0 20px 0 20px;
+    height: 100%;
+    font-family: 'Josefin Sans';
+    font-size: clamp(0.95rem, 2.5vw, 1.2rem);
+    color: rgb(245, 203, 204);
+    text-decoration: none;
+    transition: 0.3s ease;
+}
+
+.header-link:hover {
+    background-color: rgba(0, 0, 0, 0.25);
+    color: white;
+}
+
+
+.menu-toggle {
+    display: none;
+    font-size: 2rem;
+    cursor: pointer;
+    align-items: center;
+    justify-content: flex-end;
+}
+
+#index-title {
+    background-image: url("https://images.unsplash.com/photo-1663380984443-bc88fe4bb2ba?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3Nzg4Nzd8MHwxfHNlYXJjaHwxfHxtYXJjaGluZyUyMGJhbmQlMjB1bmlmb3JtfGVufDF8fHx8MTc3MjY3NjM3MHww&ixlib=rb-4.1.0&q=80&w=1080&utm_source=figma&utm_medium=referral");
+    background-size: cover;
+    background-position: center;
+    width: 100%;
+    height: 100%;
+    text-align: center;
+}
+
+.page-title {
+    text-align: center;
+}
+
+
+
+.curse-img {
+    margin-bottom: 10px;
+    height: 70px;
+    width: auto;
+}
+
+/* En caso de que se visualize en celular */
+@media (max-width: 600px) {
+    .logo {
+        height: 35px;
+    }
+}
+
