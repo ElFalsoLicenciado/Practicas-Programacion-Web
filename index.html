@@ -1,8 +1,7 @@
-<!DOCTYPE html>
-<html lang="es-MX">
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<html lang="es">
 <head>
-    <!-- Codificacion de caracteres -->
-    <meta charset="UTF-8">
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
     
     <!-- Titulo de la ventana -->
     <title>Página principal</title>
@@ -26,40 +25,86 @@
 </head>
 <body>
     <!-- BARRA SUPERIOR -->
-    <header class="header">
-        <div class="header-brand">
-            <div class="header-logo" onclick="document.location='index.html'">
-                <img src="/assets/img/bdg1.jpg" alt="Logo TECNM Morelia" class="logo-img">
-                <div class="header-title">BANDA DE GUERRA TECNM</div>
+    <div id="header-base">
+        <div id="header-brand">
+            <div id="header-logo" onclick="document.location='index.html'">
+                <img src="/assets/img/bdg1.jpg" alt="Logo TECNM Morelia" id="logo-img">
+                <div id="header-title">BANDA DE GUERRA TECNM</div>
             </div>
         </div>
         
-        <nav class="header-links" id="navMenu">
+        <div id="header-links">
             <a href="login.htm" class="header-link">Iniciar sesión</a>
             <a href="mision.htm" class="header-link">Mision</a>
             <a href="vision.htm" class="header-link">Vision</a>
             <a href="about-us.htm" class="header-link">Acerca de nosotros</a>
-        </nav>
+        </div>
         <div class="menu-toggle" id="menuToggle">
             ☰
         </div>
-    </header>
-
-    <div id="index-title">
-        <h1 class="text-box">Página principal del sitio.</h1>
     </div>
     
-
-    <div class="text-box">
-        <h1>Página principal del sitio.</h1>
+    <div id="main-content">
+        <div id="index-title">
+            <h1 class="text-box">Página principal del sitio.</h1>
+            <p class="text-box">¡Únete a la banda de guerra ahora mismo!</p>
+            <div class="hero-buttons">
+                <a class="hero-btn">Unirte</a>
+                <a class="hero-btn" id="btnVideo">Informes</a>
+            </div>
+        </div>  
+        <div id="catalogo">
+            <h2 id="catalogo-h2">Cursos disponibles</h2>
+            
+            <div class="catalog-grid">
+                
+                <div class="curso">
+                    <h3>Caja</h3>
+                    <p>Aprende las bases del tambor de guerra.</p>
+                    <a href="caja.htm" class="curso-btn">Ver curso</a>
+                </div>
+                
+                <div class="curso">
+                    <h3>Corneta</h3>
+                    <p>Aprende los toques reglamentarios.</p>
+                    <a href="corneta.htm" class="curso-btn">Ver curso</a>
+                </div>
+                
+                <div class="curso">
+                    <h3>Señalamientos</h3>
+                    <p>Dirección y control de la banda.</p>
+                    <a href="baston.htm" class="curso-btn">Ver curso</a>
+                </div>
+                
+                <div class="curso">
+                    <h3>Marcha</h3>
+                    <p>Formaciones y disciplina de marcha.</p>
+                    <a href="marcha.htm" class="curso-btn">Ver curso</a>
+                </div>
+                
+            </div>
+        </div>
+    </div>
+    <div id="footer">
+        <p>
+            <a href="https://validator.w3.org/check?uri=referer">
+                <img src="https://www.w3.org/Icons/valid-html401" alt="Valid HTML 4.01 Transitional" height="31" width="88">
+            </a>
+        </p>
         
-        <p> dineros</p>
+        <p>
+            <a href="https://jigsaw.w3.org/css-validator/check/referer">
+                <img style="border:0;width:88px;height:31px"
+                src="https://jigsaw.w3.org/css-validator/images/vcss-blue"
+                alt="Valid CSS!" />
+            </a>
+        </p>
     </div>
     
-    <footer>
-        <a href="caja.htm">Caja</a>
-    </footer>
+    <script type="text/javascript" src="/assets/js/scripts.js"></script>
     
 </body>
+
+
 
 </html>
