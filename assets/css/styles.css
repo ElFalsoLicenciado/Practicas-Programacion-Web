@@ -38,11 +38,11 @@ body {
 #header-base {
     display: grid;
     grid-template-columns: 50% 50%;
-
+    
     background: #833132;
     background-size: cover;
     align-items: stretch;
-
+    
     position: sticky;
     top: 0;
     z-index: 10;
@@ -50,13 +50,13 @@ body {
 
 #header-brand {
     display: flex;
-
+    
     justify-content: left;
     text-align: center;
     vertical-align: middle;
-
+    
     height: 100%;
-
+    
 }
 
 
@@ -126,10 +126,10 @@ body {
     background-image: url("https://images.unsplash.com/photo-1663380984443-bc88fe4bb2ba");
     background-size: cover;
     background-position: center;
-
+    
     width: 100%;
     height: 400px;
-
+    
     display: flex;
     flex-direction: column;
     justify-content: center;
@@ -184,27 +184,49 @@ body {
 }
 
 #catalogo {
+    justify-content: center;
+    vertical-align: middle;
+    align-items: center;
     padding: 40px;
+    
 }
 
 #catalogo-h2 {
-    margin-bottom: 20px;
+    margin-bottom: 30px;
 }
 
 .catalog-grid {
     display: grid;
     grid-template-columns: 1fr 1fr;
-    gap: 25px;
-    max-width: 800px;
-    margin: auto;
+    gap: 40px;
+    max-width: 900px;
+    margin: 70px auto;
+    padding: 30px;
+    background-color: #00000063;
+    border-radius: 30px;
 }
 
 .curso {
-    background: #f7f7f7;
+    background-size: cover;
+    background-position: center;
+    
+    height: 230px;
     border-radius: 10px;
+    
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.curso-info {
+    background: rgba(255, 255, 255, 0.65);
     padding: 20px;
-    text-align: center;
-    box-shadow: 0px 3px 8px rgba(0,0,0,0.15);
+    border-radius: 8px;
+    width: 80%;
+}
+
+.curso:hover{
+    transform: scale(1.05);
 }
 
 .curso h3 {
@@ -224,6 +246,7 @@ body {
     color: white;
     text-decoration: none;
     border-radius: 5px;
+    font-family: 'Josefin Sans';
 }
 
 .curso-btn:hover {
