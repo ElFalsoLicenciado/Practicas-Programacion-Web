@@ -1,0 +1,53 @@
+@import url('https://fonts.googleapis.com/css2?family=Josefin+Sans:ital,wght@0,100..700;1,100..700&family=Roboto:ital,wght@0,100..900;1,100..900&display=swap');
+
+.admin-panel{
+    max-width: 600px;
+    margin: 40px auto;
+    padding: 30px;
+    background: #f9f9f9;
+    border-radius: 10px;
+}
+
+.admin-tabs{
+    display: flex;
+    justify-content: center;
+    margin-bottom: 30px;
+}
+
+.admin-tabs button{
+    padding: 10px 20px;
+    margin: 5px;
+    border: none;
+    background: #833132;
+    color: white;
+    border-radius: 5px;
+    cursor: pointer;
+}
+
+.admin-tabs button:hover{
+    background: #5f2324;
+}
+
+.admin-section{
+    text-align: left;
+}
+
+.delete-btn{
+    width:100%;
+    padding:12px;
+    background:#a11d1d;
+    color:white;
+    border:none;
+    border-radius:6px;
+    cursor:pointer;
+}
+
+.update-btn{
+    width:100%;
+    padding:12px;
+    background:#1d7c2e;
+    color:white;
+    border:none;
+    border-radius:6px;
+    cursor:pointer;
+}

@@ -9,9 +9,9 @@
     <link rel="icon" type="image/x-icon" href="../assets/img/favicon.ico">
     
     <!-- Link para enlazar el CSS -->
-    <!-- <link rel="stylesheet" href="https://raw.githack.com/ElFalsoLicenciado/Practicas-Programacion-Web/Practica2/assets/css/styles.css"> -->
-    <link rel="stylesheet" href="assets/css/styles.css">
-    
+    <link rel="stylesheet" href="/assets/css/styles.css">
+    <link rel="stylesheet" href="/assets/css/form-admin.css">
+    <link rel="stylesheet" href="/assets/css/forms.css">
 </head>
 
 <body>
@@ -36,6 +36,81 @@
         <div>
             <p>Un aplauso para la administracion</p>
         </div>
+        <div class="admin-panel">
+            <h2>Administración de Cursos</h2>
+            <div class="admin-tabs">
+                <button onclick="mostrarSeccion('alta')">Alta</button>
+                <button onclick="mostrarSeccion('baja')">Baja</button>
+                <button onclick="mostrarSeccion('actualizar')">Actualizar</button>
+            </div>
+            <div id="alta" class="admin-section">
+                <h3>Agregar Curso</h3>
+                <form action="#" method="post">
+                    <div class="form-group">
+                        <label>Nombre del curso</label>
+                        <input type="text" class="form-input">
+                    </div>
+                    <div class="form-group">
+                        <label>Imagen del curso (URL)</label>
+                        <input type="text" class="form-input">
+                    </div>
+                    <div class="form-group">
+                        <label>Número de clases</label>
+                        <input type="text" class="form-input">
+                    </div>
+                    <button type="submit" class="register-btn">
+                        Agregar Curso
+                    </button>
+                </form>
+            </div>
+            <div id="baja" class="admin-section" style="display:none;">
+                <h3>Eliminar Curso</h3>
+                <form action="#" method="post">
+                    <div class="form-group">
+                        <label>Seleccionar curso</label>
+                        <select class="form-input">
+                            <option>Caja</option>
+                            <option>Corneta</option>
+                            <option>Señalamientos</option>
+                            <option>Marcha</option>
+                        </select>
+                    </div>
+                    <button class="delete-btn">
+                        Eliminar Curso
+                    </button>
+                </form>
+            </div>
+            <div id="actualizar" class="admin-section" style="display:none;">
+                
+                <h3>Actualizar Curso</h3>
+                <form action="#" method="post">
+                    <div class="form-group">
+                        <label>Seleccionar curso</label>
+                        <select class="form-input">
+                            <option>Caja</option>
+                            <option>Corneta</option>
+                            <option>Señalamientos</option>
+                            <option>Marcha</option>
+                        </select>
+                    </div>
+                    <div class="form-group">
+                        <label>Nuevo nombre</label>
+                        <input type="text" class="form-input">
+                    </div>
+                    <div class="form-group">
+                        <label>Nueva imagen (URL)</label>
+                        <input type="text" class="form-input">
+                    </div>
+                    <div class="form-group">
+                        <label>Número de clases</label>
+                        <input type="text" class="form-input">
+                    </div>
+                    <button class="update-btn">
+                        Actualizar Curso
+                    </button>
+                </form>
+            </div>
+        </div>
     </div>
     <div id="footer">
         <p> Validaciones </p>
@@ -57,6 +132,15 @@
             <p>© 2026 Banda de Guerra TECNM. Todos los derechos reservados.</p>
         </div>
     </div>
+    <script type="text/javascript">
+        function mostrarSeccion(seccion){
+            document.getElementById("alta").style.display="none";
+            document.getElementById("baja").style.display="none";
+            document.getElementById("actualizar").style.display="none";
+            
+            document.getElementById(seccion).style.display="block"; 
+        }
+    </script>
 </body>
 
 
