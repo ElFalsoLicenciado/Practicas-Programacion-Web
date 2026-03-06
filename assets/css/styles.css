@@ -193,7 +193,7 @@ body {
 }
 
 #main-content {
-    flex: 1;
+    flex: 2;
 }
 
 #catalogo {
@@ -221,7 +221,6 @@ body {
 }
 
 .curso {
-    background: linear-gradient(rgb(161, 76, 76));
     background-size: cover;
     background-position: center;
     
