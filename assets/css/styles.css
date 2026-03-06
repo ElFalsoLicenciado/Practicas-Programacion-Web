@@ -26,11 +26,18 @@ p {
     font-family: 'Josefin Sans';
 }
 
+html, body {
+    height: 100%;
+    margin: 0px;
+}
+
 body::-webkit-scrollbar {
     display: none;
 }
 
 body {
+    display: flex;
+    flex-direction: column;
     background-color: #fff;
     margin: 0px;
     text-align: center;
@@ -183,6 +190,10 @@ body {
 
 #page-title {
     text-align: center;
+}
+
+#main-content {
+    flex: 1;
 }
 
 #catalogo {
