@@ -15,8 +15,6 @@ Fuente chingona: ui-sans-serif, system-ui, sans-serif, "Apple Color Emoji", "Seg
 */
 
 .text-box {
-    margin-left: 15px;
-    margin-right: 15px;
     text-align: center;
 }
 
@@ -128,7 +126,7 @@ body {
     background-position: center;
     
     width: 100%;
-    height: 400px;
+    height: 30%;
     
     display: flex;
     flex-direction: column;
@@ -160,7 +158,7 @@ body {
     display: flex;
     justify-content: center;
     max-width: 400px;
-    margin-left: 0%;
+    margin: 20px 0 40px 0;
 }
 
 .hero-btn {
@@ -202,27 +200,34 @@ body {
     max-width: 900px;
     margin: 70px auto;
     padding: 30px;
-    background-color: #00000063;
-    border-radius: 30px;
+    background-color: #706c6c63;
+    border-radius: 40px;
+    border: 1px solid #0e0d0d63;
 }
 
 .curso {
+    background: linear-gradient(rgb(161, 76, 76));
     background-size: cover;
     background-position: center;
     
     height: 230px;
-    border-radius: 10px;
+    border-radius: 40px;
+
+    padding: 20px;
     
     display: flex;
-    align-items: center;
+    flex-direction: column;
     justify-content: center;
+    vertical-align: middle;
+    align-items: center;
+
 }
 
 .curso-info {
-    background: rgba(255, 255, 255, 0.65);
+    background: #8f8888cb;
     padding: 20px;
-    border-radius: 8px;
-    width: 80%;
+    border-radius: 15%;
+    width: 50%;
 }
 
 .curso:hover{
@@ -231,11 +236,12 @@ body {
 
 .curso h3 {
     font-family: 'Roboto';
+    font-size: 1.5rem;
     margin: 10px 0;
 }
 
 .curso p {
-    font-size: 0.9rem;
+    font-size: 1.0rem;
 }
 
 .curso-btn {
@@ -263,9 +269,27 @@ body {
     justify-content: center;
     vertical-align: middle;
     align-items: center;
-    padding: 40px;
-    background-color: #968d8d;
+    padding: 20px 40px 40px 40px;
+    background-color: #313131;
 }
+
+#validations-section {
+    display: flex;
+    justify-content: center;
+    margin-bottom: 20px;
+    /* max-width: 400px; */
+}
+
+#footer p{
+    font-family: 'Roboto';
+    margin-bottom: 0px;
+    color: #fff;
+}
+
+#copyright-footer {
+    border-top: 1px solid #6e6e6e;
+}
+
 
 /* En caso de que se visualize en celular */
 @media (max-width: 600px) {
