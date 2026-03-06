@@ -288,3 +288,56 @@ p, label, input, select, button, a {
         font-size: 1.8em;
     }
 }
+
+/* --- SECCION FILOSOFIA (ESTILO TARJETAS IMAGEN 2) --- */
+#about-section {
+    background-color: #fdfdfd; /* Fondo casi blanco para que resalten las sombras */
+    padding: 60px 20px;
+    flex: 1 0 auto; /* Esto ayuda a empujar el footer hacia abajo */
+}
+
+.about-table {
+    width: 95%;
+    max-width: 1100px;
+    margin: 40px auto;
+    border-collapse: separate;
+    border-spacing: 25px 0px; /* Espacio horizontal entre celdas */
+}
+
+/* TARJETAS */
+.about-card {
+    background: #ffffff !important;
+    border: 1px solid #eeeeee !important;
+    border-radius: 15px !important; /* Bordes redondeados */
+    padding: 40px 25px !important;
+    text-align: center;
+    
+    /* Sombra suave y elegante */
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.08) !important;
+    
+    /* Efecto de elevación */
+    transition: all 0.3s ease;
+    height: 400px; /* Altura fija para que todas se vean iguales */
+    display: block;
+}
+
+.about-card:hover {
+    transform: translateY(-10px);
+    box-shadow: 0 15px 40px rgba(0, 0, 0, 0.15) !important;
+}
+
+/* ICONOS CIRCULARES */
+.about-icon {
+    width: 70px;
+    height: 70px;
+    line-height: 70px;
+    margin: 0 auto 25px auto;
+    border-radius: 50%;
+    font-size: 28px;
+    display: block;
+}
+
+/* Colores exactos de la imagen 2 */
+.icon-mision { background-color: #ffe5e5; color: #b91c1c; }
+.icon-vision { background-color: #e0eaff; color: #2563eb; }
+.icon-valores { background-color: #fef3c7; color: #d97706; }
