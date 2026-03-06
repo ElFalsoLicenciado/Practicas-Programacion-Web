@@ -22,7 +22,7 @@ h1,h2,h3,h4{
     font-family: 'Roboto';
 }
 
-p {
+p, li {
     font-family: 'Josefin Sans';
 }
 
@@ -196,16 +196,39 @@ body {
     flex: 2;
 }
 
+#footer {
+    justify-content: center;
+    vertical-align: middle;
+    align-items: center;
+    padding: 20px 40px 40px 40px;
+    background-color: #313131;
+}
+
+#validations-section {
+    display: flex;
+    justify-content: center;
+    margin-bottom: 20px;
+    /* max-width: 400px; */
+}
+
+#footer p{
+    font-family: 'Roboto';
+    margin-bottom: 0px;
+    color: #fff;
+}
+
+#copyright-footer {
+    border-top: 1px solid #6e6e6e;
+}
+
+
+/* PARA INDEX */
 #catalogo {
     justify-content: center;
     vertical-align: middle;
     align-items: center;
     padding: 40px;
     
-}
-
-#catalogo-h2 {
-    margin-bottom: 30px;
 }
 
 .catalog-grid {
@@ -226,7 +249,7 @@ body {
     
     height: 230px;
     border-radius: 40px;
-
+    
     padding: 20px;
     
     display: flex;
@@ -234,7 +257,10 @@ body {
     justify-content: center;
     vertical-align: middle;
     align-items: center;
+}
 
+#catalogo-h2 {
+    margin-bottom: 30px;
 }
 
 .curso-info {
@@ -279,31 +305,69 @@ body {
     width: auto;
 }
 
-#footer {
-    justify-content: center;
-    vertical-align: middle;
-    align-items: center;
-    padding: 20px 40px 40px 40px;
-    background-color: #313131;
+/* PARA ABOUT-US */
+.tr-card {
+    width: 33%;
 }
 
-#validations-section {
+.about-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr;
+
+    gap: 40px;
+    max-width: 1000px;
+
+    margin: 70px auto;
+    padding: 30px;
+
+    border-radius: 40px;
+    border: 1px solid #0e0d0d63;
+}
+
+.about-card {
+    background-color: #706c6c63;
+    border-radius: 40px;
+    border: 1px solid;
+
+    padding: 20px;
+
     display: flex;
-    justify-content: center;
-    margin-bottom: 20px;
-    /* max-width: 400px; */
+    flex-direction: column;
+    align-items: center;
 }
 
-#footer p{
-    font-family: 'Roboto';
-    margin-bottom: 0px;
-    color: #fff;
+.about-card h2,
+.about-card p,
+.about-card ul {
+    width: 80%;
 }
 
-#copyright-footer {
-    border-top: 1px solid #6e6e6e;
+.color{
+    background-color: #b2d630;
 }
 
+.about-icon {
+    vertical-align: middle;
+    border-radius: 100%;
+    border: 0px solid;
+    font-size: clamp(1.1rem, 4vw, 1.5rem);
+    width: 30px;
+}
+
+.valores-list {
+    list-style: none;
+    padding: 0;
+    text-align: left;
+}
+
+.valores-list li {
+    margin-bottom: 10px;
+}
+
+.valores-list span {
+    color: #833132;
+    margin-right: 5px;
+}
 
 /* En caso de que se visualize en celular */
 @media (max-width: 600px) {
