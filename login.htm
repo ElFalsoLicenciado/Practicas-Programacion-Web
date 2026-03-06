@@ -2,20 +2,19 @@
 <html lang="es">
 <head>
     <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-    <!-- Titulo de la ventana -->
-    <title>Iniciar sesión</title>
+    <title>Registro de Usuario</title>
     
-    <!-- Iconito bonito para el sitio web -->
     <link rel="icon" type="image/x-icon" href="../assets/img/favicon.ico">
     
-    <!-- Link para enlazar el CSS -->
-    <!-- <link rel="stylesheet" href="https://raw.githack.com/ElFalsoLicenciado/Practicas-Programacion-Web/Practica2/assets/css/styles.css"> -->
-    <link rel="stylesheet" href="assets/css/styles.css">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/iowosyse/estilos@main/registro.css" type="text/css">
+    
+    <meta name="description" content="Formulario de registro para la banda de guerra.">
+    <meta name="keywords" content="Registro, Banda de Guerra, HTML 4.01">
+    <meta name="author" content="TecNM Morelia">
 </head>
-
 <body>
-    <!-- BARRA SUPERIOR -->
-    <div id="header-base">
+    
+    <<div id="header-base">
     <div id="header-brand">
         <div id="header-logo" onclick="document.location='index.html'">
             <img src="/assets/img/bdg1.jpg" alt="Logo TECNM Morelia" id="logo-img">
@@ -32,11 +31,69 @@
     </div>
 </div>
     
-    <h1>Introduce tus credenciales.</h1>
-    
-    <div>
-        
+    <div id="main-content">
+        <div class="register-wrapper">
+            <h1 class="text-box register-title">Formulario de Registro</h1>
+            <p class="text-box register-subtitle">&Uacute;nete a nuestra comunidad y comienza tu entrenamiento.</p>
+            
+            <div class="form-card">
+                <form action="#" method="post" class="register-form">
+                    
+                    <div class="form-group">
+                        <label for="nombre">Nombre Completo:</label>
+                        <input type="text" id="nombre" name="nombre" class="form-input" value="">
+                    </div>
+                    
+                    <div class="form-group">
+                        <label for="correo">Correo Electr&oacute;nico:</label>
+                        <input type="text" id="correo" name="correo" class="form-input" value="">
+                    </div>
+                    
+                    <div class="form-group">
+                        <label for="instrumento">Instrumento de inter&eacute;s:</label>
+                        <select id="instrumento" name="instrumento" class="form-input">
+                            <option value="caja">Caja (Tambor)</option>
+                            <option value="corneta">Corneta</option>
+                            <option value="comandante">Comandante</option>
+                            <option value="ninguno">A&uacute;n no decido</option>
+                        </select>
+                    </div>
+                    
+                    <div class="form-group">
+                        <label for="password">Contrase&ntilde;a:</label>
+                        <input type="password" id="password" name="password" class="form-input" value="">
+                    </div>
+                    
+                    <div class="form-group">
+                        <label for="confirm_password">Confirmar Contrase&ntilde;a:</label>
+                        <input type="password" id="confirm_password" name="confirm_password" class="form-input" value="">
+                    </div>
+                    
+                    <div class="form-actions">
+                        <button type="submit" class="register-btn">Completar Registro</button>
+                    </div>
+                    
+                    <div class="form-footer">
+                        <p>&iquest;Ya tienes cuenta? <a href="login.htm">Inicia sesi&oacute;n aqu&iacute;</a></p>
+                    </div>
+                </form>
+            </div>
+        </div>
     </div>
+    
+    <div id="footer">
+        <div>
+            <div class="w3c-container">
+                <a href="https://validator.w3.org/check?uri=referer" style="text-decoration: none; border: 0;">
+                    <img src="https://www.w3.org/Icons/valid-html401" alt="Valid HTML 4.01 Transitional" height="31" width="88" style="border:0; margin: 0 5px;">
+                </a>
+                
+                <a href="https://jigsaw.w3.org/css-validator/check/referer" style="text-decoration: none; border: 0;">
+                    <img style="border:0;width:88px;height:31px; margin: 0 5px;" src="https://jigsaw.w3.org/css-validator/images/vcss-blue" alt="Valid CSS">
+                </a>
+            </div>
+        </div>
+    </div>
+    
 </body>
-
 </html>

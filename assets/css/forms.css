@@ -1,0 +1,281 @@
+/* =========================================
+   ESTILOS ESPECÍFICOS PARA REGISTRO
+   Basado en la identidad visual de Banda de Guerra
+   ========================================= */
+
+/* 1. IMPORTACIÓN DE FUENTES */
+@import url('https://fonts.googleapis.com/css2?family=Josefin+Sans:ital,wght@0,100..700;1,100..700&family=Roboto:ital,wght@0,100..900;1,100..900&display=swap');
+
+/* 2. ESTILOS GENERALES (Reset y Tipografía) */
+body {
+    background-color: #fff;
+    margin: 0px;
+    text-align: center;
+}
+
+h1, h2, h3, h4 {
+    font-family: 'Roboto', sans-serif;
+}
+
+p, label, input, select, button, a {
+    font-family: 'Josefin Sans', sans-serif;
+}
+
+.text-box {
+    margin-left: 15px;
+    margin-right: 15px;
+    text-align: center;
+}
+
+/* 3. ESTILOS DEL HEADER (Copiados del original) */
+#header-base {
+    display: grid;
+    grid-template-columns: 50% 50%;
+    
+    background: #833132;
+    background-size: cover;
+    align-items: stretch;
+    
+    position: sticky;
+    top: 0;
+    z-index: 10;
+}
+
+#header-brand {
+    display: flex;
+    
+    justify-content: left;
+    text-align: center;
+    vertical-align: middle;
+    
+    height: 100%;
+    
+}
+
+
+#header-logo {
+    display: flex;
+    align-items: center;
+    cursor: pointer;                /*A la hora de poner el cursor encima se pone la manita.*/
+    margin: 5px 0 0 10px;
+}
+
+#logo-img {
+    border-radius: 50%;
+    border: 6px solid #660708;
+    height: 70px;
+    width: auto;
+    margin-bottom: 10px;
+}
+
+#header-title {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-family: ui-sans-serif, system-ui, sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol", "Noto Color Emoji";
+    color: #ffffff;
+    font-weight: 600;
+    font-size: clamp(1.1rem, 4vw, 1.5rem);
+    text-align: center;
+    margin: 0 0 10px 10px;
+}
+
+#header-links {
+    display: flex;
+    justify-content: flex-end;
+    height: 100%;
+    text-align: center;
+    vertical-align: middle;
+    
+}
+
+.header-link {
+    display: flex;
+    align-items: center;
+    padding: 0 20px 0 20px;
+    height: 100%;
+    font-family: 'Josefin Sans';
+    font-size: clamp(0.95rem, 2.5vw, 1.2rem);
+    color: rgb(245, 203, 204);
+    text-decoration: none;
+    transition: 0.3s ease;
+}
+
+.header-link:hover {
+    background-color: rgba(0, 0, 0, 0.25);
+    color: white;
+}
+
+
+.menu-toggle {
+    display: none;
+    font-size: 2rem;
+    cursor: pointer;
+    align-items: center;
+    justify-content: flex-end;
+}
+
+/* 4. ESTILOS DEL CONTENIDO Y FORMULARIO */
+
+#main-content {
+    /* Aseguramos que el contenido principal tenga fondo blanco */
+    background-color: #fff;
+    padding-bottom: 50px;
+}
+
+/* Contenedor principal centrado */
+.register-wrapper {
+    padding: 40px 20px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    background-color: #f9f9f9; 
+}
+
+.register-title {
+    color: #833132;
+    margin-bottom: 10px;
+    font-size: 2.5em;
+    font-weight: bold;
+}
+
+.register-subtitle {
+    color: #666;
+    margin-bottom: 40px;
+    font-size: 1.2em;
+}
+
+/* Tarjeta del formulario */
+.form-card {
+    background-color: #fff;
+    padding: 40px;
+    border-radius: 10px;
+    box-shadow: 0 4px 15px rgba(0,0,0,0.1);
+    width: 100%;
+    max-width: 500px;
+    border-top: 5px solid #833132;
+    box-sizing: border-box; /* Importante para que el padding no rompa el ancho */
+}
+
+/* Estilos directos al formulario y sus hijos */
+.register-form {
+    display: block;
+    width: 100%;
+    text-align: left;
+}
+
+.form-group {
+    margin-bottom: 20px;
+    display: block;
+}
+
+/* Labels */
+.register-form label {
+    display: block;
+    font-family: 'Roboto', sans-serif;
+    font-weight: bold;
+    margin-bottom: 8px;
+    color: #333;
+    font-size: 0.95em;
+}
+
+/* Inputs y Selects */
+.form-input {
+    width: 100%; /* Ocupa todo el ancho disponible */
+    padding: 12px;
+    border: 1px solid #ccc;
+    border-radius: 6px;
+    font-family: 'Josefin Sans', sans-serif;
+    font-size: 1em;
+    background-color: #fafafa;
+    box-sizing: border-box; /* CRITICO: Evita que el padding sume al ancho total */
+}
+
+.form-input:focus {
+    outline: none;
+    border-color: #833132;
+    background-color: #fff;
+}
+
+/* Botón de acción principal */
+.form-actions {
+    text-align: center;
+    margin-top: 30px;
+}
+
+.register-btn {
+    width: 100%;
+    padding: 12px;
+    background-color: #833132;
+    color: white;
+    border: none;
+    border-radius: 6px;
+    font-family: 'Josefin Sans', sans-serif;
+    font-size: 1.1em;
+    cursor: pointer;
+    transition: background 0.3s;
+}
+
+.register-btn:hover {
+    background-color: #5f2324;
+}
+
+/* Pie del formulario */
+.form-footer {
+    margin-top: 25px;
+    font-size: 0.9em;
+    border-top: 1px solid #eee;
+    padding-top: 15px;
+    text-align: center;
+}
+
+.form-footer p {
+    margin: 0;
+    color: #666;
+}
+
+.form-footer a {
+    color: #833132;
+    text-decoration: none;
+    font-weight: bold;
+}
+
+.form-footer a:hover {
+    text-decoration: underline;
+}
+
+/* 5. FOOTER */
+#footer {
+    padding: 40px;
+    background-color: #968d8d;
+    display: flex;
+    justify-content: center;
+}
+
+.w3c-container {
+    text-align: center;
+}
+
+/* 6. RESPONSIVIDAD */
+@media (max-width: 600px) {
+    #header-base {
+        grid-template-columns: 80% 20%;
+    }
+    
+    #header-links {
+        display: none;
+    }
+    
+    .menu-toggle {
+        display: flex;
+    }
+    
+    .form-card {
+        padding: 20px;
+    }
+    
+    .register-title {
+        font-size: 1.8em;
+    }
+}
