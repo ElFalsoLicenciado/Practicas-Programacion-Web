@@ -259,6 +259,14 @@ body {
     width: auto;
 }
 
+#footer {
+    justify-content: center;
+    vertical-align: middle;
+    align-items: center;
+    padding: 40px;
+    background-color: #968d8d;
+}
+
 /* En caso de que se visualize en celular */
 @media (max-width: 600px) {
     .logo {
