@@ -6,31 +6,26 @@
     
     <link rel="icon" type="image/x-icon" href="../assets/img/favicon.ico">
     
-    <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/iowosyse/estilos@main/registro.css" type="text/css">
+    <link rel="stylesheet" href="assets/css/forms.css" type="text/css">
     
-    <meta name="description" content="Formulario de registro para la banda de guerra.">
-    <meta name="keywords" content="Registro, Banda de Guerra, HTML 4.01">
-    <meta name="author" content="TecNM Morelia">
 </head>
 <body>
-    
-    <<div id="header-base">
-    <div id="header-brand">
-        <div id="header-logo" onclick="document.location='index.html'">
-            <img src="/assets/img/bdg1.jpg" alt="Logo TECNM Morelia" id="logo-img">
-            <div id="header-title">BANDA DE GUERRA TECNM</div>
+    <div id="header-base">
+        <div id="header-brand">
+            <div id="header-logo" onclick="document.location='index.html'">
+                <img src="/assets/img/bdg1.jpg" alt="Logo TECNM Morelia" id="logo-img">
+                <div id="header-title">BANDA DE GUERRA TECNM</div>
+            </div>
+        </div>
+        <div id="header-links">
+            <a href="login.htm" class="header-link">Iniciar sesion</a>
+            <a href="admin.htm" class="header-link">Administracion</a>
+            <a href="about-us.htm" class="header-link">Acerca de nosotros</a>
+        </div>
+        <div class="menu-toggle" id="menuToggle">
+            ☰
         </div>
     </div>
-    <div id="header-links">
-        <a href="login.htm" class="header-link">Iniciar sesion</a>
-        <a href="admin.htm" class="header-link">Administracion</a>
-        <a href="about-us.htm" class="header-link">Acerca de nosotros</a>
-    </div>
-    <div class="menu-toggle" id="menuToggle">
-        ☰
-    </div>
-</div>
-    
     <div id="main-content">
         <div class="register-wrapper">
             <h1 class="text-box register-title">Formulario de Registro</h1>
@@ -82,16 +77,23 @@
     </div>
     
     <div id="footer">
-        <div>
-            <div class="w3c-container">
-                <a href="https://validator.w3.org/check?uri=referer" style="text-decoration: none; border: 0;">
-                    <img src="https://www.w3.org/Icons/valid-html401" alt="Valid HTML 4.01 Transitional" height="31" width="88" style="border:0; margin: 0 5px;">
+        <p> Validaciones </p>
+        <div >
+        </div>
+        <div id="validations-section">
+            <p>
+                <a href="https://validator.w3.org/check?uri=referer">
+                    <img src="https://www.w3.org/Icons/valid-html401" alt="Valid HTML 4.01 Transitional" height="31" width="88">
                 </a>
-                
-                <a href="https://jigsaw.w3.org/css-validator/check/referer" style="text-decoration: none; border: 0;">
-                    <img style="border:0;width:88px;height:31px; margin: 0 5px;" src="https://jigsaw.w3.org/css-validator/images/vcss-blue" alt="Valid CSS">
+            </p>
+            <p>
+                <a href="https://jigsaw.w3.org/css-validator/check/referer">
+                    <img style="border:0;width:88px;height:31px" src="https://jigsaw.w3.org/css-validator/images/vcss-blue" alt="Valid CSS">
                 </a>
-            </div>
+            </p>
+        </div>
+        <div id="copyright-footer">
+            <p>© 2026 Banda de Guerra TECNM. Todos los derechos reservados.</p>
         </div>
     </div>
     

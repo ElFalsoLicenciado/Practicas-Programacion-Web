@@ -26,6 +26,10 @@ p {
     font-family: 'Josefin Sans';
 }
 
+body::-webkit-scrollbar {
+    display: none;
+}
+
 body {
     background-color: #fff;
     margin: 0px;
