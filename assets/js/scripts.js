@@ -23,7 +23,6 @@ document.getElementById("btnVideo").addEventListener("click", button);
 
 function button(){
     document.getElementById("rickroll").style.display = "block";
-    document.getElementById("rickroll").play();
     setTimeout(function(){
         window.onclick = function(){
             document.getElementById("copyright").innerHTML = "You have no control over this situation.";

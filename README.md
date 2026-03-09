@@ -1,33 +1,42 @@
-# Practica 2 Programacion Web 03-04-26 +++++ #WEB
+# Practica Unidad 3
 ## Paso 1
-- Crear correctamente pagina de índex.  
-- Crear plantilla de formulario para altas, modificaciones y eliminación de productos y servicios.  
+- Agregar eventos y elementos dinámicos a los objetos del índex utilizando al menos una librería o un Framework conocido.   
+- Considerar estos eventos y elementos para el resto de las paginas para cuando se muestre todo el contenido de la BD.
 
-## Paso 2.
-- Crear un CSS para manejar el formato base del index, encabezado, pie de pagina y menus.   
-- Crear un CSS para el formato de los formularios.   
+## Paso 2
+- Aplicar validacion del lado del cliente para todos los formularios de la pagina.
+- Utilizar al menos una libreria o un framework conocido.
 
-## Paso 3.
-- Aplicar el manejo de versiones y actualizaciones del codigo fuente en GitHub.  
-- Subir un CSS a un repositorio de GitHub y acceder a el desde el codigo fuente. 
+## Paso 3
+- Aplicar el manejo de versiones y actualizaciones del codigo fuente un GitHub.
+- Realizar cambios en el repositorio del compañero.
 
-## Paso 4.
-- Incluir imagen y link para validar el codigo HTML de todas las paginas web con W3C Validator. 
-- Incluir imagen y link para validar los CSS de todas las paginas web con W3C Validator.    
+## Paso 4
+- Seguir validando el código fuente HTML de todas las paginas renderizadas.
+- Seguir validando los CSS's.
 
-## Consideraciones.
-- Por cada respuesta o elemento faltante se restaran 10 puntos
-- Puntos extra por usar elementos diferentes a los ejemplos de clase
-- Todos los archivos (PDF, video) deben tener el nombre con la siguiente estructura:
-- AP1#CONTROL_AP2#CONTROL_U2_PW_G.EXTENSION
 
-### Derecho a Evaluacion
-Registrar y completar en:
-- FreeCodeCamp
-- - HTML
-- - CSS
-- Scrimba
-- Learn HTML y CSS
+## Entregable:
+- PDF con la informacion 
+- - Breve descripción del procedimiento.
+- - Comandos y/o configuración realizada.
+- - Capturas de pantalla completa (no del código completo, sino de lo más importante o relevante)
+- Código fuente (incluir link del repositorio en la entrega)
+
+## Evaluación:
+### Derecho a evaluación.
+- Tutorial JavaScript: 200 lecciones, 267 ejercicios, 1 examen. (**W3Schools**)
+- Tutorial con todas las lecciones, ejercicios y examen de solo una librería (jQuery, React) o framework (Vue, Angular) (**W3Schools**)
+- Tutorial **FreeCodeCamp**: Front-End Devvelopment Libraries Certification (**FreeCodeCamp**)
+- Aplica tambien **Scrimba**
+
+### Fecha de entrega:
+- 23 al 25 marzo: 100
+- 26 y 27 marzo: 80
+  
+### 10 puntos menos por cada cosa faltante.
+
+*AP1#CONTROL_AP2#CONTROL_U3_PW_G.PDF*
 
 ### Validador Oficial
 - HTML: https://validator.w3.org/
