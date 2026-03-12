@@ -68,3 +68,73 @@
 - **Framework**: es una estructura de aplicación completa que contiene múltiples librerías y establece cómo la aplicación se escribe y se organiza, controlando el flujo general de la ejecución.
 - - Vue
 - - Angular
+
+## jQuery
+- jQuery es una librería de JavaScript liviana que permite "escribir menos, hacer más".
+- jQuery simplifica enormemente la programción en JS.
+- - Manipulación de HTML/DOM
+- - Manipulación de CSS
+- - Métodos de eventos HTML
+- - Efectos y animaciones
+- - AJAX
+- - Utilerias
+
+### Detalles:
+- Versión de producción
+- Versión de desarrollo
+- La sintaxis básica es: `$(selector).action()`
+- Un signo `$` para definir/acceder a jQuery
+- Un *selector* para "consultar (o encontrar)" elementos HTML
+- Un *action* jQuery `()` que se realizará en el elemento(s)
+- **Ejemplos**:
+  - `$(this).hide()` oculta el elemento actual.
+  - `$("p").hide()` oculta todos los elementos `<p>`.
+  - `$(".test").hide()` oculta todos los elementos con `class="test"`.
+  - `$("#test").hide()` oculta el elemento con `id="test"`.
+
+## React
+- Librería de JS para crear interfaces de usuario (Front-End).
+- Se utiliza para crear aplicaciones de una sola página.
+- Permite crear componentes de UI reutilizables.
+- React fue desarrollado por el ingeniero de software de Facebook: Jordan Walke.
+- React también se conoce como React.js o ReactJS.
+
+### Detalles:
+- Crea un **DOM VIRTUAL** en memoria.
+- Sólo cambia lo que necesita ser cambiado.
+- **Preparación**:
+  - Instalar Node.js
+  - Instalar herramienta de compilación (Vite)
+  - Crear aplicación React
+  - Instalar dependencias
+  - Ejecutar aplicación
+
+
+``` shell
+node -v
+npm install -g create-vite
+npm create vite@latest my-react-app -- --template react
+npm install
+npm run dev
+```
+
+## Vue
+- Las interfaces de usuario integradas en Vue se actualizan automáticamente cuando cambian los datos.
+
+### Detalles
+
+
+## Angular
+- Permite crear aplicaciones escalables de una sola página con TypeScript
+- Creado con TypeScript
+- Utiliza componentes y plantillas
+- Manejo de las API's
+
+### Detalles
+- **Preparación**:
+  1. Tener Node.js
+  2. Instalar Angular CLI
+  3. Crear aplicación
+  4. Ejecutar aplicación
+- **Aplicación**:
+  1.  
