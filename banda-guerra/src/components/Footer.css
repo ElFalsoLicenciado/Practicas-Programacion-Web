@@ -1,0 +1,25 @@
+#footer {
+    justify-content: center;
+    vertical-align: middle;
+    align-items: center;
+    padding: 20px 40px 40px 40px;
+    background-color: #313131;
+}
+
+#validations-section {
+    display: flex;
+    justify-content: center;
+    margin-bottom: 20px;
+    /* max-width: 400px; */
+}
+
+
+#footer p{
+    font-family: 'Roboto';
+    margin-bottom: 0px;
+    color: #fff;
+}
+
+#copyright-footer {
+    border-top: 1px solid #6e6e6e;
+}
