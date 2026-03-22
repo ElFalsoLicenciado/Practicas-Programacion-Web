@@ -41,3 +41,23 @@ body {
 .main-content {
   flex: 1;
 }
+
+.generic-btn {
+  margin: 1.5vh;
+  padding: 12px 25px;
+  background: #833132;
+  color: white;
+  text-decoration: none;
+  border-radius: 6px;
+  font-family: 'Poppins';
+  font-size: clamp(0.8rem, 3vw, 1.2rem);
+  transition: 0.3s;
+  cursor: pointer;
+  display: inline-block;
+  border: none;
+}
+
+.generic-btn:hover {
+  background: #851a1b;
+  transform: translateY(-2px);
+}
