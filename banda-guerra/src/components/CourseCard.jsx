@@ -7,7 +7,7 @@ const CourseCard = ({ curso }) => {
     )
 
     return (
-        <div className='curso-card'>
+        <div className='curso-card' onClick={() => window.location.href = '/course'}>
             <div id='img-container'>
                 <img src={curso.img} alt={curso.nombre}/>
             </div>

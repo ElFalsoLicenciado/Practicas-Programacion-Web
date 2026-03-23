@@ -9,7 +9,7 @@
     
     width: 100%;
     min-height: 30vh;
-    padding: 1.5rem 1rem;
+    padding: 1.0rem 1rem;
     
     display: flex;
     flex-direction: column;
@@ -27,21 +27,21 @@
 #hero h1 {
     color: white;
     text-transform: uppercase;
-    font-size: clamp(1.6rem, 5vw, 3rem);
+    font-size: clamp(1.3rem, 5vw, 2.8rem);
     margin-bottom: 10px;
 }
 
 #hero p {
     color: white;
-    font-size: clamp(1rem, 4vw, 2rem);
-    margin-bottom: 20px;
+    font-size: clamp(0.8rem, 4vw, 1.6rem);
+    margin-bottom: 1vh;
 }
 
 .hero-btns {
     display: flex;
     justify-content: center;
     max-width: 400px;
-    margin: 10px 0 20px 0;
+    margin: 1vh 0 1.5vh 0;
 }
 
 .hero-btn {

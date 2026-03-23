@@ -1,6 +1,6 @@
 #carousel {
   margin: 7vh;
-  height: 500px;
+  height: 300px;
   display: flex;
   align-items: center;
   justify-content: center;
@@ -9,7 +9,7 @@
 
 #carousel-content {
   width: 350px;
-  height: 400px;
+  height: 350px;
   transition: opacity 0.2s ease, transform 0.2s ease;
 }
 

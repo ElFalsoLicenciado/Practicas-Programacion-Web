@@ -16,10 +16,14 @@
 
 #footer p{
     font-family: 'Roboto';
-    margin-bottom: 0px;
+    margin-bottom: 5px;
     color: #fff;
 }
 
 #copyright-footer {
     border-top: 1px solid #6e6e6e;
+}
+
+#copyright-footer p {
+    margin-top: 1vh;
 }
