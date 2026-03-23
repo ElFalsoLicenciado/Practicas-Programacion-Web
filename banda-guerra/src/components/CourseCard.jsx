@@ -1,11 +1,19 @@
 import React from "react";
 import './CourseCard.css'
 
-const CourseCard = () => {
-    return (
-        <>
+const CourseCard = ({ curso }) => {
+    if (curso==null) return (
+        <div>Cargando servicios...</div>
+    )
 
-        </>
+    return (
+        <div className='curso-card'>
+            <div id='img-container'>
+                <img src={curso.img} alt={curso.nombre}/>
+            </div>
+            <h3>{curso.nombre}</h3>
+            <p id='desc'>{curso.desc}</p>
+        </div>
     )
 }
 
