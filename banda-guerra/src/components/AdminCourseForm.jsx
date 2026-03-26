@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
 import FormField from '../utils/FormField';
+import './AdminForm.css'
 
 const AdminForm = ({onCursoAgregado, onResetCursos}) => {
     const navigate = useNavigate()
@@ -17,43 +18,42 @@ const AdminForm = ({onCursoAgregado, onResetCursos}) => {
     
     const campos = [
         {
-            id: 'nombre', label: 'Nombre del curso', type: 'text', requiered: true,
-            placeholder: 'Introduzca aquí el nombre', hint: 'Mínimo 5 caracteres, máxmimo 50'
+            id: 'nombre-field', label: 'Nombre del curso', type: 'text', required: true,
+            placeholder: 'Introduzca aquí el nombre', hint: 'Mínimo 5 caracteres, máximo 50'
         },
         {
-            id: 'desc', label: 'Descripción del curso', type: 'text', requiered: true,
-            placeholder: 'Introduzca aquí la descripción', hint: 'Mínimo 5 caracteres, máxmimo 200'
+            id: 'descripcion-field', label: 'Descripción del curso', type: 'textarea', required: true,
+            placeholder: 'Introduzca aquí la descripción', hint: 'Mínimo 5 caracteres, máximo 200'
         },
         {
-            id: 'precio', label: 'Cuota de inscripción', type: 'number', requiered: true,
-            placeholder: 'Introduzca aquí el precio', hint: 'El precio debbe ser mayor a 0'
+            id: 'precio-field', label: 'Cuota de inscripción', type: 'number', required: true,
+            placeholder: 'Introduzca aquí el precio', hint: 'El precio debe ser mayor a 0'
         },
         {
-            id: 'img', label: 'Imagen', type: 'text', requiered: true,
+            id: 'img-field', label: 'Imagen', type: 'text', required: false,
             placeholder: 'Ej: URL de una imagen', hint: 'URL válida de la imagen (opcional)'
         }
     ]
     
     const validarCampo = (id, valor) => {
         switch(id) {
-            case 'nombre':
-            if (valor.length < 5) return 'El nombre debe tener al menos 5 caracteres'
-            if (valor.length > 50) return 'El nombre no puede exceder los 50 caracteres'
+            case 'nombre-field':
+            if (!valor) return 'El nombre es requerido'
+            if (valor.length < 3) return 'Mínimo 3 caracteres'
+            if (valor.length > 50) return 'Máximo 50 caracteres'
             return ''
-            case 'desc':
-            if (valor.length < 5) return 'La descripción debe tener al menos 5 caracteres'
-            if (valor.length > 200) return 'La descripción no puede exceder los 200 caracteres'
+            case 'descripcion-field':
+            if (!valor) return 'La descripción es requerida'
+            if (valor.length < 10) return 'Mínimo 10 caracteres'
+            if (valor.length > 200) return 'Máximo 200 caracteres'
             return ''
-            case 'precio':
-            const precio = parseFloat(valor)
-            if (isNaN(precio)) return 'El precio debe ser un número mayor a 0'
-            if (precio <= 0) return 'El precio no puede ser un número negativo'
+            case 'precio-field':
+            if (!valor) return 'El precio es requerido'
+            if (valor <= 0) return 'El precio debe ser mayor a 0'
             return ''
-            case 'img':
-            if (valor.length === 0) return ''
-            const urlPattern = /^(https?:\/\/)?([\da-z.-]+)\.([a-z.]{2,6})([/\w .-]*)*\/?$/
-            if (!urlPattern.test(valor) && !valor.startsWith('assets/')) {
-                return 'Ingresa una URL válida'
+            case 'img-field':
+            if (valor && !valor.match(/^(https?:\/\/)?([\da-z.-]+)\.([a-z.]{2,6})([/\w .-]*)*\/?$/) && !valor.startsWith('assets/')) {
+                return 'URL no válida'
             }
             return ''
             default:
@@ -62,30 +62,35 @@ const AdminForm = ({onCursoAgregado, onResetCursos}) => {
     }
     
     const handleChange = (e) => {
-        const { id, value} = e.target
-        setFormData(prev => ({ ...prev, [id]: value}))
+        const { id, value, type } = e.target
+        setFormData(prev => ({...prev, [id]: type === 'number' ? parseFloat(value) || '' : value}))
         
+        if (errors[id]) {
+            setErrors(prev => ({ ...prev, [id]: '' }))
+        }
+    }
+    
+    const handleBlur = (e) => {
+        const { id, value } = e.target
         const error = validarCampo(id, value)
-        setErrors(prev => ({ ...prev, [id]: error})) 
+        setErrors(prev => ({ ...prev, [id]: error }))
     }
     
     const handleSubmit = async (e) => {
         e.preventDefault()
         
         const newErrors = {}
-        let isValid = true
         
         campos.forEach(campo => {
-            if(campo.requiered) {
+            if (campo.required) {
                 const error = validarCampo(campo.id, formData[campo.id])
-                if(error) {
-                    newErrors[campo.id] = error
-                    isValid = false
+                if (error) {
+                newErrors[campo.id] = error
                 }
             }
         })
-        
-        if (!isValid) {
+
+        if (!validarFormulario()) {
             setErrors(newErrors)
             mostrarNotificacion('Por favor, corrige los errores en el formulario', 'error')
             return
@@ -124,6 +129,21 @@ const AdminForm = ({onCursoAgregado, onResetCursos}) => {
         }
     }
     
+    const validarFormulario = () => {
+        const nuevosErrores = {}
+        
+        campos.forEach(campo => {
+            if (campo.required) {
+                const valor = formData[campo.id]
+                const error = validarCampo(campo.id, valor)
+                if (error) nuevosErrores[campo.id] = error
+            }
+        })
+        
+        setErrors(nuevosErrores)
+        return Object.keys(nuevosErrores).length === 0
+    }
+    
     const limpiarFormulario = () => {
         setFormData({
             id: 0,
@@ -142,28 +162,56 @@ const AdminForm = ({onCursoAgregado, onResetCursos}) => {
             limpiarFormulario()
         }
     }
-
+    
     const mostrarNotificacion = (mensaje, tipo) => {
         setNotificacion({ mensaje, tipo })
         setTimeout(() => setNotificacion(null), 3000)
     }
-
+    
     return (
-        <div id= 'course-form' onSubmit={handleSubmit}>
-            {campos.map(campo => (
-                <FormField
+        <div>
+            <form className= 'admin-form' onSubmit={handleSubmit}>
+                <div>
+                    <h2 className='title-admin-form'>Añadir un curso</h2>
+                </div>
+                {campos.map(campo => (
+                    <FormField
                     key={campo.id}
                     id={campo.id}
                     nombre={campo.label}
                     type={campo.type}
-                    required={campo.requiered}
+                    required={campo.required}
                     placeholder={campo.placeholder}
                     hint={campo.hint}
+                    value={formData[campo.id]}
                     onChange={handleChange}
-                    onBlur={handleChange}
+                    onBlur={handleBlur}
                     error={errors[campo.id]}
-                />
-            ))}
+                    rows={10}
+                    min={campo.min}
+                    max={campo.max}
+                    step={campo.step}
+                    defaultValue={campo.defaultValue}
+                    />
+                ))}
+
+                <div className='form-actions'>
+                    <button type='submit' className='form-save-btn'>Agregar curso</button> 
+                    <button type='button' onClick={limpiarFormulario}>Limpiar</button>
+                    <button type='button' onClick={handleReset} className='form-reset-btn'>Reset cursos</button>
+                    <button type='button' onClick={() => navigate('/')}> Cancelar</button>
+                </div>
+            </form>
+            {notificacion && (
+                <div className={`toast ${notificacion.tipo}`}>
+                <span className="toast-icon">
+                    {notificacion.tipo === 'success' && '✓'}
+                    {notificacion.tipo === 'error' && '✗'}
+                    {notificacion.tipo === 'warning' && '⚠'}
+                </span>
+                <span className="toast-message">{notificacion.mensaje}</span>
+                </div>
+            )}
         </div>
     )
     

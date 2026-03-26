@@ -10,7 +10,8 @@
   font-family: 'Roboto', sans-serif;
   font-weight: 500;
   color: #333;
-  font-size: 0.95rem;
+  font-size: 1.1  rem;
+  text-align: left;
 }
 
 .required-star {
@@ -20,6 +21,7 @@
 .form-field input,
 .form-field textarea,
 .form-field select {
+  
   width: 100%;
   padding: 12px;
   border: 2px solid #ddd;
@@ -28,11 +30,14 @@
   font-size: 1rem;
   transition: all 0.3s ease;
   box-sizing: border-box;
+  text-align: left;
+  
 }
 
 .form-field textarea {
   resize: vertical;
   min-height: 80px;
+  margin: 0px;
 }
 
 .form-field input:focus,
@@ -59,6 +64,7 @@
 }
 
 .field-hint {
+  text-align: left;
   color: #666;
   font-size: 0.8rem;
   margin-top: 5px;
