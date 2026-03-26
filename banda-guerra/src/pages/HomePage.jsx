@@ -25,7 +25,7 @@ const HomePage = () => {
                 />
             <div id='catalogo'>
                 <div>
-                    <h2 className='h2-title'>Cursos disponibles:</h2>
+                    <h2 class='h2-title'>Cursos disponibles:</h2>
                 </div>
                 <CourseCarousel cursos={cursos}/>
             </div>

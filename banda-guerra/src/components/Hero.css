@@ -25,7 +25,7 @@
 }
 
 #hero h1 {
-    color: white;
+    color: #ffffff;
     text-transform: uppercase;
     font-size: clamp(1.3rem, 5vw, 2.8rem);
     margin-bottom: 10px;

@@ -36,7 +36,7 @@
     display: flex;
     align-items: center;
     justify-content: center;
-    font-family: ui-sans-serif, system-ui, sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol", "Noto Color Emoji";
+    font-family: 'Poppins';
     color: #ffffff;
     font-weight: 600;
     font-size: clamp(1.1rem, 4vw, 1.5rem);

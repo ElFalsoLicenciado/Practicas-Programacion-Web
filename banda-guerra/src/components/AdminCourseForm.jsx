@@ -143,8 +143,8 @@ const AdminCourseForm = ({ onCursoAgregado, onResetCursos }) => {
   }
 
   return (
-    <div id="admin-container" className='form-container'>
-      <form id="admin-form" className='form' onSubmit={handleSubmit}>
+    <div id="admin-container">
+      <form id="admin-form" onSubmit={handleSubmit}>
         <div>
            <h2 className='form-title'>Añadir un curso</h2>
         </div>
