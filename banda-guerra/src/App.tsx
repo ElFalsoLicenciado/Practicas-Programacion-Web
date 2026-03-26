@@ -3,7 +3,7 @@ import {Routes, Route} from 'react-router-dom'
 import Header from './components/Header'
 import Footer from './components/Footer'
 import HomePage from './pages/HomePage'         //Rute 1
-import LoginPage from './pages/LoginPage'       //Ruta 2
+import LoginPage from './pages/CredentialsPage'       //Ruta 2
 import AdminPage from './pages/AdminPage'       //Ruta 3
 import AboutUsPage from './pages/AboutUsPage'   //Ruta 4
 import CoursePage from './pages/CoursePage'     //Ruta 5
