@@ -1,0 +1,263 @@
+.form {
+  max-width: 700px;
+  margin-inline: auto;
+  margin-top: 40px;
+  margin-bottom: 50px;
+  box-shadow: 0 8px 20px rgba(0, 0, 0, 0.35);
+  border-radius: 20px;
+  padding: 30px 60px;
+  border-top: 5px solid #833132
+}
+
+.form-container {
+  max-width: 600px;
+  margin: 0 auto;
+  padding: 0px 20px;
+}
+
+.form-title {
+    margin-bottom: 35px;
+}
+
+.form-field {
+  margin-bottom: 20px;
+  text-align: left;
+  width: 100%;
+}
+
+.form-label {
+  display: block;
+  margin-bottom: 8px;
+  font-family: 'Roboto', sans-serif;
+  font-weight: 500;
+  color: #333;
+  font-size: 1.1rem;
+  text-align: left;
+}
+
+.required-star {
+  color: #dc3545;
+}
+
+.form-field input,
+.form-field textarea,
+.form-field select {
+  width: 100%;
+  padding: 12px;
+  border: 2px solid #ddd;
+  border-radius: 8px;
+  font-family: 'Poppins', sans-serif;
+  font-size: 1rem;
+  transition: all 0.3s ease;
+  box-sizing: border-box;
+  text-align: left;
+}
+
+.form-field textarea {
+  resize: vertical;
+  min-height: 80px;
+  margin: 0px;
+}
+
+.form-field input:focus,
+.form-field textarea:focus,
+.form-field select:focus {
+  outline: none;
+  border-color: #024591;
+  box-shadow: 0 0 0 3px rgba(2, 69, 145, 0.1);
+}
+
+.form-field input.error,
+.form-field textarea.error,
+.form-field select.error {
+  border-color: #dc3545;
+  background-color: #fff8f8;
+}
+
+.form-field input:disabled,
+.form-field textarea:disabled,
+.form-field select:disabled {
+  background-color: #f5f5f5;
+  cursor: not-allowed;
+  opacity: 0.7;
+}
+
+.field-hint {
+  text-align: left;
+  color: #666;
+  font-size: 0.8rem;
+  margin-top: 5px;
+  font-family: 'Poppins', sans-serif;
+  font-style: italic;
+}
+
+.field-error {
+  color: #dc3545;
+  font-size: 0.85rem;
+  margin-top: 5px;
+  font-family: 'Poppins', sans-serif;
+  display: flex;
+  align-items: center;
+  gap: 5px;
+}
+
+.field-error::before {
+  content: "⚠";
+  font-size: 0.9rem;
+}
+
+.form-actions {
+  display: flex;
+  gap: 15px;
+  margin-top: 30px;
+  flex-wrap: wrap;
+}
+
+.form-actions button {
+  flex: 1;
+  padding: 12px;
+  border: none;
+  border-radius: 8px;
+  font-family: 'Poppins';
+  font-size: 1rem;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all 0.3s ease;
+}
+
+.form-actions button[type="submit"] {
+  background: #024591;
+  color: white;
+}
+
+.form-actions button[type="submit"]:hover {
+  background: #012b5c;
+  transform: translateY(-2px);
+  box-shadow: 0 5px 15px rgba(2, 69, 145, 0.3);
+}
+
+.form-actions button[type="button"] {
+  background: #6c757d;
+  color: white;
+}
+
+.form-actions button[type="button"]:hover {
+  background: #545b62;
+  transform: translateY(-2px);
+}
+
+.form-actions button.reset-btn {
+  background: #dc3545;
+  color: white;
+}
+
+.form-actions button.reset-btn:hover {
+  background: #c82333;
+  transform: translateY(-2px);
+  box-shadow: 0 5px 15px rgba(220, 53, 69, 0.3);
+}
+
+.toast {
+  position: fixed;
+  top: 100px;
+  right: 20px;
+  background: white;
+  border-radius: 10px;
+  padding: 15px 20px;
+  box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  animation: slideIn 0.3s ease;
+  border-left: 4px solid;
+  z-index: 1000;
+}
+
+.toast.success {
+  border-left-color: #28a745;
+}
+
+.toast.error {
+  border-left-color: #dc3545;
+}
+
+.toast.warning {
+  border-left-color: #ffc107;
+}
+
+.toast-icon {
+  font-size: 1.2rem;
+}
+
+.toast-message {
+  font-family: 'Poppins';
+  font-size: 0.9rem;
+  color: #333;
+}
+
+@keyframes slideIn {
+  from {
+    transform: translateX(100%);
+    opacity: 0;
+  }
+  to {
+    transform: translateX(0);
+    opacity: 1;
+  }
+}
+
+@keyframes slideOut {
+  from {
+    transform: translateX(0);
+    opacity: 1;
+  }
+  to {
+    transform: translateX(100%);
+    opacity: 0;
+  }
+}
+
+/* Responsive */
+@media (max-width: 768px) {
+  #admin-container {
+    padding: 20px 15px;
+  }
+  
+  #admin-form {
+    padding: 20px;
+  }
+  
+  .form-actions {
+    flex-direction: column;
+  }
+  
+  .toast {
+    left: 20px;
+    right: 20px;
+  }
+}
+
+.form-footer {
+  margin-top: 25px;
+  font-size: 0.9em;
+  border-top: 1px solid #eee;
+  padding-top: 15px;
+  text-align: center;
+}
+
+.form-footer p {
+  margin: 0;
+  color: #666;
+  font-family: 'Josefin Sans', sans-serif;
+}
+
+.form-footer a {
+  color: #833132;
+  text-decoration: none;
+  font-weight: bold;
+}
+
+.form-footer a:hover {
+  text-decoration: underline;
+}
+

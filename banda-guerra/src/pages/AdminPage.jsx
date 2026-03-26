@@ -17,8 +17,8 @@ const AdminPage = () => {
     
     return (
         <div id='admin-page'>
-            <h2 className='admin-page-h2'>Sitio de administración</h2>
-            <p className='admin-page-p'> Un aplauso para la administración</p>
+            <h1 className='h1-title'>Sitio de administración</h1>
+            <p className='p-text'> Un aplauso para la administración</p>
             <div id='admin-forms'>
                 <AdminCourseForm
                     onCursoAgregado={handleCursoAgregado}

@@ -61,3 +61,31 @@ body {
   background: #851a1b;
   transform: translateY(-2px);
 }
+
+.h1-title {
+  margin: 20px auto;
+  max-width: 400px;
+  margin-inline: auto;
+  color: #833132;
+  font-size: 2.5em;
+  font-weight: bold;
+  font-family: 'Roboto', sans-serif;
+}
+
+.h2-title {
+  margin: 20px auto;
+  max-width: 400px;
+  margin-inline: auto;
+  color: #833132;
+  font-size: 1.8em;
+  font-weight: bold;
+  font-family: 'Roboto', sans-serif;
+}
+
+.p-text {
+    max-width: 350px;
+    margin-inline: auto;
+    margin-top: 20px;
+    margin-bottom: 25px;
+    font-size: 1.1rem;
+}

@@ -115,7 +115,7 @@ const SignInForm = () => {
   }
 
   return (
-    <>
+    <div id='signin-container'>
       <form id="signin-form" onSubmit={handleSubmit}>
         {campos.map(campo => (
           <div key={campo.id} className="form-field">
@@ -159,7 +159,7 @@ const SignInForm = () => {
           <span className="toast-message">{notificacion.mensaje}</span>
         </div>
       )}
-    </>
+    </div>
   )
 }
 

@@ -7,23 +7,22 @@ const CredentialsPage = () => {
   const [isLogin, setIsLogin] = useState(true) // true: login, false: registro
 
   return (
-    <div id='login-page'>
-      <div className="register-wrapper">
-        <h1 className="text-box register-title">
+    <div id='credentials-page'>
+        <h1 className="h1-title"> 
           {isLogin ? 'Iniciar Sesión' : 'Crear una cuenta'}
         </h1>
-        <p className="text-box register-subtitle">
+        <p className="p-text">
           {isLogin 
             ? 'Ingresa a tu cuenta y continúa tu entrenamiento.' 
             : 'Únete a nuestra comunidad y comienza tu entrenamiento.'}
         </p>
         
-        <div className='credentials-form-card'>
-          <div className='credentials-container'>
+        <div className='form'>
+          <div className='form-container'>
             {isLogin ? <SignInForm /> : <RegisterForm />}
           </div>
 
-          <div className="credentials-form-footer">
+          <div className="form-footer">
             {isLogin ? (
               <p>
                 ¿No tienes cuenta?{' '}
@@ -41,7 +40,6 @@ const CredentialsPage = () => {
             )}
           </div>
         </div>
-      </div>
     </div>
   )
 }

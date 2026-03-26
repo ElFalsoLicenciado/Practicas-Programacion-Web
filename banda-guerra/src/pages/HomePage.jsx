@@ -16,7 +16,7 @@ const HomePage = () => {
 
     console.log(cursos)
     return (
-        <>
+        <div id='home-page'>
             <Hero
                 bgImg="https://images.unsplash.com/photo-1663380984443-bc88fe4bb2ba"
                 title="Página de cursos virtuales de banda de guerra."
@@ -25,11 +25,11 @@ const HomePage = () => {
                 />
             <div id='catalogo'>
                 <div>
-                    <h2 id='catalogo-h2'>Cursos disponibles:</h2>
+                    <h2 className='h2-title'>Cursos disponibles:</h2>
                 </div>
                 <CourseCarousel cursos={cursos}/>
             </div>
-        </>
+        </div>
     )
 }
 
