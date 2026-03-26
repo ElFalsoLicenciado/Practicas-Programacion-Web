@@ -1,5 +1,11 @@
 .admin-page-h2 {
     margin: 20px auto;
+    max-width: 400px;
+    margin-inline: auto;
+    color: #833132;
+    font-size: 2.5em;
+    font-weight: bold;
+    font-family: 'Roboto', sans-serif;
 }
 .admin-page-p {
     margin: 10px auto;

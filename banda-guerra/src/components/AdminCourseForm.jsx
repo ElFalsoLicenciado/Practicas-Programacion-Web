@@ -27,17 +27,17 @@ const AdminCourseForm = ({ onCursoAgregado, onResetCursos }) => {
   const validarCampo = (id, valor) => {
     switch(id) {
       case 'nombre':
-        if (!valor) return 'El nombre es requerido'
+        if (!valor) return 'Por favor, llene este campo'
         if (valor.length < 3) return 'Mínimo 3 caracteres'
         if (valor.length > 50) return 'Máximo 50 caracteres'
         return ''
       case 'desc':
-        if (!valor) return 'La descripción es requerida'
+        if (!valor) return 'Por favor, llene este campo'
         if (valor.length < 10) return 'Mínimo 10 caracteres'
         if (valor.length > 200) return 'Máximo 200 caracteres'
         return ''
       case 'precio':
-        if (!valor) return 'El precio es requerido'
+        if (!valor) return 'Por favor, llene este campo'
         const precio = parseFloat(valor)
         if (isNaN(precio) || precio <= 0) return 'El precio debe ser mayor a 0'
         return ''

@@ -21,12 +21,12 @@ const SignInForm = () => {
   const validarCampo = (id, valor) => {
     switch(id) {
       case 'correo':
-        if (!valor) return 'El correo es requerido'
+        if (!valor) return 'Por favor, ingrese su correo'
         const emailPattern = /^[^\s@]+@[^\s@]+\.[^\s@]+$/
         if (!emailPattern.test(valor)) return 'Ingresa un correo válido'
         return ''
       case 'password':
-        if (!valor) return 'La contraseña es requerida'
+        if (!valor) return 'Por favor, ingrese la contraseña'
         return ''
       default:
         return ''

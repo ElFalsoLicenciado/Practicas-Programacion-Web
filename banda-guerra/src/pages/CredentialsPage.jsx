@@ -10,7 +10,7 @@ const CredentialsPage = () => {
     <div id='login-page'>
       <div className="register-wrapper">
         <h1 className="text-box register-title">
-          {isLogin ? 'Iniciar Sesión' : 'Formulario de Registro'}
+          {isLogin ? 'Iniciar Sesión' : 'Crear una cuenta'}
         </h1>
         <p className="text-box register-subtitle">
           {isLogin 

@@ -35,12 +35,12 @@ const SigInForm = () => {
   const validarCampo = (id, valor, allData = formData) => {
     switch(id) {
       case 'nombre':
-        if (!valor) return 'El nombre es requerido'
+        if (!valor) return 'Este campo es obligatorio'
         if (valor.length < 3) return 'Mínimo 3 caracteres'
         if (valor.length > 100) return 'Máximo 100 caracteres'
         return ''
       case 'correo':
-        if (!valor) return 'El correo es requerido'
+        if (!valor) return 'Este campo es obligatorio'
         const emailPattern = /^[^\s@]+@[^\s@]+\.[^\s@]+$/
         if (!emailPattern.test(valor)) return 'Ingresa un correo válido'
         return ''
@@ -48,7 +48,7 @@ const SigInForm = () => {
         if (!valor) return 'Selecciona un instrumento'
         return ''
       case 'password':
-        if (!valor) return 'La contraseña es requerida'
+        if (!valor) return 'Este campo es obligatorio'
         if (valor.length < 6) return 'Mínimo 6 caracteres'
         return ''
       case 'confirm_password':
