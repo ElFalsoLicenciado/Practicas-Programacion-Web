@@ -12,7 +12,7 @@ const CourseCard = ({ curso }) => {
                 <img src={curso.img} alt={curso.nombre}/>
             </div>
             <h3>{curso.nombre}</h3>
-            <p id='desc'>{curso.desc}</p>
+            <p id='course-desc'>{curso.desc}</p>
         </div>
     )
 }
