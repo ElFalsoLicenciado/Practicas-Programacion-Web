@@ -12,9 +12,9 @@ const SignInForm = () => {
   const [notificacion, setNotificacion] = useState(null)
 
   const campos = [
-    { id: 'correo', label: 'Correo Electrónico', type: 'email', required: true,
+    { id: 'correo', label: 'Correo Electrónico', type: 'email', required: 'yes',
       placeholder: 'ejemplo@correo.com', hint: 'Ingresa el correo con el que te registraste' },
-    { id: 'password', label: 'Contraseña', type: 'password', required: true,
+    { id: 'password', label: 'Contraseña', type: 'password', required: 'yes',
       placeholder: '••••••••', hint: 'Ingresa tu contraseña' }
   ]
 
@@ -52,7 +52,7 @@ const SignInForm = () => {
     let isValid = true
     
     campos.forEach(campo => {
-      if (campo.required) {
+      if (campo.required == 'yes') {
         const error = validarCampo(campo.id, formData[campo.id])
         if (error) {
           newErrors[campo.id] = error
@@ -67,7 +67,6 @@ const SignInForm = () => {
       return
     }
     
-    // Buscar usuario en localStorage
     const usuariosGuardados = localStorage.getItem('usuarios')
     let usuarios = []
     if (usuariosGuardados) {
@@ -84,7 +83,6 @@ const SignInForm = () => {
       return
     }
     
-    // Guardar sesión del usuario actual
     localStorage.setItem('usuarioActual', JSON.stringify({
       id: usuarioEncontrado.id,
       nombre: usuarioEncontrado.nombre,
@@ -95,9 +93,8 @@ const SignInForm = () => {
     limpiarFormulario()
     mostrarNotificacion('¡Inicio de sesión exitoso!', 'success')
     
-    // Redirigir después de 1.5 segundos
     setTimeout(() => {
-      navigate('/dashboard') // Cambia a la ruta que corresponda
+      navigate('/')
     }, 1500)
   }
 
@@ -121,7 +118,7 @@ const SignInForm = () => {
           <div key={campo.id} className="form-field">
             <label htmlFor={campo.id} className="form-label">
               {campo.label}
-              {campo.required && <span className="required-star"> *</span>}
+              {campo.required=='yes' && <span className="required-star"> *</span>}
             </label>
             
             <input

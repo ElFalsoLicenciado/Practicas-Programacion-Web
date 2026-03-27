@@ -147,7 +147,7 @@ const SigInForm = () => {
     mostrarNotificacion('Registro exitoso. ¡Bienvenido!', 'success')
     
     setTimeout(() => {
-      navigate('/dashboard')
+      navigate('/')
     }, 1500)
   }
 

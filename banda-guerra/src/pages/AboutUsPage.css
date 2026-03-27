@@ -1,0 +1,37 @@
+
+#about-us-hero {
+    text-align: center;
+    margin-bottom: 40px;
+}
+
+.about-title {
+    color: #ffffff;
+    font-size: 3rem;
+    font-weight: 700;
+    font-family: 'Roboto', sans-serif;
+    margin-bottom: 20px;
+    text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.2);
+}
+
+.about-subtitle {
+    font-size: 1.2rem;
+    max-width: 800px;
+    margin: 0 auto;
+    line-height: 1.6;
+    font-family: 'Josefin Sans', sans-serif;
+    opacity: 0.9;
+}
+
+@media (max-width: 768px) {
+    .about-hero {
+        padding: 40px 20px 30px;
+    }
+    
+    .about-title {
+        font-size: 2rem;
+    }
+    
+    .about-subtitle {
+        font-size: 1rem;
+    }
+}

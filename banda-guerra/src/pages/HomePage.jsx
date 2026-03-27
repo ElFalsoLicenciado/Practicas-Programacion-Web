@@ -18,6 +18,7 @@ const HomePage = () => {
     return (
         <div id='home-page'>
             <Hero
+                heroId='home-page-hero'
                 bgImg="https://images.unsplash.com/photo-1663380984443-bc88fe4bb2ba"
                 title="Página de cursos virtuales de banda de guerra."
                 desc='Plataforma "oficial" para aprender diversas cosas que pues se aprenden en banda de guerra ayuda.'
@@ -25,7 +26,7 @@ const HomePage = () => {
                 />
             <div id='catalogo'>
                 <div>
-                    <h2 class='h2-title'>Cursos disponibles:</h2>
+                    <h2 className='h2-title'>Cursos disponibles:</h2>
                 </div>
                 <CourseCarousel cursos={cursos}/>
             </div>
