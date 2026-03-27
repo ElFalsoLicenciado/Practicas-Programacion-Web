@@ -144,7 +144,7 @@ const SignInForm = () => {
           </div>
         ))}
         
-        <div className="form-actions">
+        <div className="form-actions single-btn">
           <button type="submit" className="signin-btn">Iniciar Sesión</button>
         </div>
       </form>

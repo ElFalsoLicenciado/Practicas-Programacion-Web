@@ -190,11 +190,13 @@ const AdminCourseForm = ({ onCursoAgregado, onResetCursos }) => {
         ))}
         
         <div className="form-actions">
+          <button type="button" onClick={handleReset} className="btn-reset">Reset cursos</button>
+          <button type="button" onClick={limpiarFormulario} className='btn-clear'>Limpiar</button>
           <button type="submit">Agregar curso</button>
-          <button type="button" onClick={limpiarFormulario}>Limpiar</button>
-          <button type="button" onClick={handleReset} className="reset-btn">Reset cursos</button>
-          <button type="button" onClick={() => navigate('/')}>Cancelar</button>
         </div>
+        <div className='form-actions single-btn'>
+              <button type="button" onClick={() => navigate('/')}>Cancelar</button>
+          </div>
       </form>
       
       {notificacion && (

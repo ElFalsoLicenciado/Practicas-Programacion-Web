@@ -221,7 +221,7 @@ const SigInForm = () => {
             </div>
           ))}
           
-          <div className="form-actions">
+          <div className="form-actions single-btn">
             <button type="submit" className="register-btn">Completar Registro</button>
           </div>
           
