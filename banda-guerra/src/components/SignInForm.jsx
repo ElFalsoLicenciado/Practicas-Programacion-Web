@@ -47,7 +47,6 @@ const SignInForm = () => {
   const handleSubmit = async (e) => {
     e.preventDefault()
     
-    // Validar campos
     const newErrors = {}
     let isValid = true
     

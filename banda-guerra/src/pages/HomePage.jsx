@@ -14,7 +14,6 @@ const botones = [
 const HomePage = () => {
     const { cursos } = useCursos();
 
-    console.log(cursos)
     return (
         <div id='home-page'>
             <Hero
