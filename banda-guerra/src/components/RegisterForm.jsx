@@ -2,12 +2,13 @@ import React, { useState } from 'react'
 import { useNavigate } from 'react-router-dom'
 import './CredentialsForm.css'
 
-const SigInForm = () => {
+const SigInForm = ({onUsuarioAgregado, onCheckUsername}) => {
   const navigate = useNavigate()
   const [formData, setFormData] = useState({
-    nombre: '',
-    correo: '',
-    instrumento: 'caja',
+    name: '',
+    username: '',
+    mail: '',
+    instrument: 'ninguno',
     password: '',
     confirm_password: ''
   })
@@ -15,36 +16,45 @@ const SigInForm = () => {
   const [notificacion, setNotificacion] = useState(null)
 
   const campos = [
-    { id: 'nombre', label: 'Nombre Completo', type: 'text', required: true,
+    { id: 'name', label: 'Nombre Completo', type: 'text', required: 'yes',
       placeholder: 'Ej: Juan Pérez', hint: 'Mínimo 3 caracteres, máximo 100' },
-    { id: 'correo', label: 'Correo Electrónico', type: 'email', required: true,
+    {
+      id: 'username', label: 'Nombre de usuario', type: 'text', required: 'yes',
+      placeholder: 'Ej: juanperez', hint: 'Mínimo 4 caracteres, máximo 20'
+    },
+    { id: 'mail', label: 'Correo Electrónico', type: 'email', required: 'yes',
       placeholder: 'ejemplo@correo.com', hint: 'Ingresa un correo válido' },
-    { id: 'instrumento', label: 'Instrumento de interés', type: 'select', required: true,
+    { id: 'instrument', label: 'Instrumento de interés', type: 'select', required: 'yes',
       options: [
         { value: 'caja', label: 'Caja (Tambor)' },
         { value: 'corneta', label: 'Corneta' },
         { value: 'comandante', label: 'Comandante' },
         { value: 'ninguno', label: 'Aún no decido' }
       ] },
-    { id: 'password', label: 'Contraseña', type: 'password', required: true,
+    { id: 'password', label: 'Contraseña', type: 'password', required: 'yes',
       placeholder: '••••••••', hint: 'Mínimo 6 caracteres' },
-    { id: 'confirm_password', label: 'Confirmar Contraseña', type: 'password', required: true,
+    { id: 'confirm_password', label: 'Confirmar Contraseña', type: 'password', required: 'yes',
       placeholder: '••••••••', hint: 'Debe coincidir con la contraseña' }
   ]
 
   const validarCampo = (id, valor, allData = formData) => {
     switch(id) {
-      case 'nombre':
+      case 'name':
         if (!valor) return 'Este campo es obligatorio'
         if (valor.length < 3) return 'Mínimo 3 caracteres'
         if (valor.length > 100) return 'Máximo 100 caracteres'
         return ''
-      case 'correo':
+      case 'username':
+        if (!valor) return 'Este campo es obligatorio'
+        if (valor.length < 5) return 'Mínimo 5 caracteres'
+        if (valor.length > 20) return 'Máximo 20 caracteres'
+        return ''
+      case 'mail':
         if (!valor) return 'Este campo es obligatorio'
         const emailPattern = /^[^\s@]+@[^\s@]+\.[^\s@]+$/
         if (!emailPattern.test(valor)) return 'Ingresa un correo válido'
         return ''
-      case 'instrumento':
+      case 'instrument':
         if (!valor) return 'Selecciona un instrumento'
         return ''
       case 'password':
@@ -94,7 +104,7 @@ const SigInForm = () => {
     let isValid = true
     
     campos.forEach(campo => {
-      if (campo.required) {
+      if (campo.required == 'yes') {
         const error = validarCampo(campo.id, formData[campo.id], formData)
         if (error) {
           newErrors[campo.id] = error
@@ -108,43 +118,30 @@ const SigInForm = () => {
       mostrarNotificacion('Por favor, corrige los errores en el formulario', 'error')
       return
     }
+        
+    const existeUsuario = onCheckUsername(formData.username)
     
-    const usuariosGuardados = localStorage.getItem('usuarios')
-    let usuarios = []
-    if (usuariosGuardados) {
-      usuarios = JSON.parse(usuariosGuardados)
-    }
-    
-    const existeUsuario = usuarios.some(u => 
-      u.correo.toLowerCase() === formData.correo.toLowerCase()
-    )
-    
+
     if (existeUsuario) {
       mostrarNotificacion('Ya existe una cuenta con este correo electrónico', 'warning')
       return
     }
     
     const nuevoUsuario = {
-      id: usuarios.length > 0 ? usuarios[usuarios.length - 1].id + 1 : 1,
-      nombre: formData.nombre.trim(),
-      correo: formData.correo.trim(),
-      instrumento: formData.instrumento,
+      name: formData.name.trim(),
+      username: formData.username.trim(),
+      mail: formData.mail.trim(),
+      instrument: formData.instrument,
       password: formData.password, 
-      fechaRegistro: new Date().toUTCString()
+      regDate: new Date()
     }    
     
-    usuarios.push(nuevoUsuario)
-    localStorage.setItem('usuarios', JSON.stringify(usuarios))
-    
-    localStorage.setItem('usuarioActual', JSON.stringify({
-      id: nuevoUsuario.id,
-      nombre: nuevoUsuario.nombre,
-      correo: nuevoUsuario.correo,
-      instrumento: nuevoUsuario.instrumento
-    }))
-    
-    limpiarFormulario()
-    mostrarNotificacion('Registro exitoso. ¡Bienvenido!', 'success')
+    const resultado = onUsuarioAgregado(nuevoUsuario)
+
+    if(resultado !== false) {
+      limpiarFormulario()
+      mostrarNotificacion('Registro exitoso. ¡Bienvenido!', 'success')
+    }
     
     setTimeout(() => {
       navigate('/')
@@ -153,9 +150,9 @@ const SigInForm = () => {
 
   const limpiarFormulario = () => {
     setFormData({
-      nombre: '',
-      correo: '',
-      instrumento: 'caja',
+      name: '',
+      mail: '',
+      instrument: 'caja',
       password: '',
       confirm_password: ''
     })

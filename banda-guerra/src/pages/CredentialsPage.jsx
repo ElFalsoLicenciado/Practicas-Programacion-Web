@@ -1,9 +1,28 @@
 import React, { useState } from 'react'
 import SignInForm from '../components/SignInForm'
 import RegisterForm from '../components/RegisterForm'
+import useUsuarios from '../hooks/useUsuarios'
 import './CredentialsPage.css'
 
 const CredentialsPage = () => {
+  const {addUser, resetUsers, login, checkUsername} = useUsuarios()
+
+  const handleUsuarioAgregado = (nuevoUsuario) => {
+    return addUser(nuevoUsuario)
+  }
+
+  const handleResetUsuarios = () => {
+    resetUsers()
+  }
+
+  const handleLogin = (credField, passField) => {
+    return login(credField, passField)
+  }
+
+  const handleCheckUsername = (username) => {
+    return checkUsername(username);
+  }
+
   const [isLogin, setIsLogin] = useState(true)
 
   return (
@@ -19,7 +38,13 @@ const CredentialsPage = () => {
         <div className='form-container'>
           <div className='form'>
             <div>
-              {isLogin ? <SignInForm /> : <RegisterForm />}
+              {isLogin ? <SignInForm 
+                onLogin={handleLogin}
+              /> : 
+              <RegisterForm 
+                onUsuarioAgregado={handleUsuarioAgregado}
+                onCheckUsername={handleCheckUsername}
+              />}
             </div>
 
             <div className="form-footer">

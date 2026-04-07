@@ -2,28 +2,28 @@ import React, { useState } from 'react'
 import { useNavigate } from 'react-router-dom'
 import './CredentialsForm.css'
 
-const SignInForm = () => {
+const SignInForm = ({onLogin}) => {
   const navigate = useNavigate()
   const [formData, setFormData] = useState({
-    correo: '',
+    credential: '',
     password: ''
   })
   const [errors, setErrors] = useState({})
   const [notificacion, setNotificacion] = useState(null)
 
   const campos = [
-    { id: 'correo', label: 'Correo Electrónico', type: 'email', required: 'yes',
-      placeholder: 'ejemplo@correo.com', hint: 'Ingresa el correo con el que te registraste' },
+    { id: 'credential', label: 'E-mail o nombre de usuario', type: 'text', required: 'yes',
+      placeholder: 'ejemplo@correo.com o juanperez', hint: 'Ingresa el correo o nombre de usuario con el que te registraste' },
     { id: 'password', label: 'Contraseña', type: 'password', required: 'yes',
       placeholder: '••••••••', hint: 'Ingresa tu contraseña' }
   ]
 
   const validarCampo = (id, valor) => {
     switch(id) {
-      case 'correo':
-        if (!valor) return 'Por favor, ingrese su correo'
-        const emailPattern = /^[^\s@]+@[^\s@]+\.[^\s@]+$/
-        if (!emailPattern.test(valor)) return 'Ingresa un correo válido'
+      case 'credential':
+        if (!valor) return 'Por favor, ingrese su correo o nombre de usuario'
+        // const emailPattern = /^[^\s@]+@[^\s@]+\.[^\s@]+$/
+        // if (!emailPattern.test(valor)) return 'Ingresa un correo válido'
         return ''
       case 'password':
         if (!valor) return 'Por favor, ingrese la contraseña'
@@ -65,30 +65,14 @@ const SignInForm = () => {
       mostrarNotificacion('Por favor, completa todos los campos', 'error')
       return
     }
-    
-    const usuariosGuardados = localStorage.getItem('usuarios')
-    let usuarios = []
-    if (usuariosGuardados) {
-      usuarios = JSON.parse(usuariosGuardados)
-    }
-    
-    const usuarioEncontrado = usuarios.find(u => 
-      u.correo.toLowerCase() === formData.correo.toLowerCase() &&
-      u.password === formData.password
-    )
-    
+  
+    const usuarioEncontrado = onLogin(formData.credential, formData.password)
+        
     if (!usuarioEncontrado) {
       mostrarNotificacion('Correo o contraseña incorrectos', 'error')
       return
     }
-    
-    localStorage.setItem('usuarioActual', JSON.stringify({
-      id: usuarioEncontrado.id,
-      nombre: usuarioEncontrado.nombre,
-      correo: usuarioEncontrado.correo,
-      instrumento: usuarioEncontrado.instrumento
-    }))
-    
+        
     limpiarFormulario()
     mostrarNotificacion('¡Inicio de sesión exitoso!', 'success')
     
@@ -99,7 +83,7 @@ const SignInForm = () => {
 
   const limpiarFormulario = () => {
     setFormData({
-      correo: '',
+      credential: '',
       password: ''
     })
     setErrors({})
