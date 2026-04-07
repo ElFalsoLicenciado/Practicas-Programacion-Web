@@ -130,8 +130,8 @@ const SigInForm = () => {
       correo: formData.correo.trim(),
       instrumento: formData.instrumento,
       password: formData.password, 
-      fechaRegistro: new Date().toISOString()
-    }
+      fechaRegistro: new Date().toUTCString()
+    }    
     
     usuarios.push(nuevoUsuario)
     localStorage.setItem('usuarios', JSON.stringify(usuarios))

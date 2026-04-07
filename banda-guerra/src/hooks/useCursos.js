@@ -1,6 +1,6 @@
 import { useState, useEffect } from "react";
 
-const cursosDefault = [
+const defaultCursos = [
     { 
         id: 0, nombre: 'Caja', 
         desc: 'Aprende las bases del tambor de guerra', 
@@ -33,7 +33,7 @@ const cursosDefault = [
 
 const useCursos = () => {
     
-    const [cursos, setCursos] = useState([])
+    const [cursos, setCursos] = useState([]);
     const [loading, setLoading] = useState(true);
     
     useEffect(() => {
@@ -47,34 +47,34 @@ const useCursos = () => {
                 setCursos(JSON.parse(cursosGuardados))
             }
             else{
-                setCursos(cursosDefault)
-                localStorage.setItem('cursos', JSON.stringify(cursosDefault))
+                setCursos(defaultCursos)
+                localStorage.setItem('cursos', JSON.stringify(defaultCursos))
             }
-            console.log('Cursos cargados correctamente.')
+            // console.log('Cursos cargados correctamente.')
         } catch (e) {
             console.error('Error al cargar los cursos', e)
-            setCursos(cursosDefault)
+            setCursos(defaultCursos)
         } finally {
             setLoading(false)
         }
     }
     
-    const agregarCurso = (nuevoCurso) => {
-        const existe = cursos.some(s => s.nombre.toLowerCase() === nuevoCurso.nombre.toLowerCase())
+    const agregarCurso = (newCurso) => {
+        const existe = cursos.some(s => s.nombre.toLowerCase() === newCurso.nombre.toLowerCase())
         
         if (existe) {
             return false 
         }
         
-        const nuevosCursos = [...cursos, nuevoCurso]
+        const nuevosCursos = [...cursos, newCurso]
         setCursos(nuevosCursos)
         localStorage.setItem('cursos', JSON.stringify(nuevosCursos))
         return true 
     }
     
     const resetCursos = () => {
-        setCursos(cursosDefault)
-        localStorage.setItem('cursos', JSON.stringify(cursosDefault))
+        setCursos(defaultCursos)
+        localStorage.setItem('cursos', JSON.stringify(defaultCursos))
     }
     
     const getCursoById = (id) => {
