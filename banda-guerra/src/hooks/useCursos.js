@@ -32,7 +32,7 @@ const cursosDefault = [
 
 
 const useCursos = () => {
-
+    
     const [cursos, setCursos] = useState([])
     const [loading, setLoading] = useState(true);
     
@@ -77,11 +77,21 @@ const useCursos = () => {
         localStorage.setItem('cursos', JSON.stringify(cursosDefault))
     }
     
+    const getCursoById = (id) => {
+        return cursos.find(c => c.id === id);
+    }
+
+    const getCursoByName = (name) => {
+        return cursos.find(c => c.nombre.toLowerCase() === name);
+    }
+    
     return {
         cursos,
         loading,
         agregarCurso,
-        resetCursos
+        resetCursos,
+        getCursoById,
+        getCursoByName
     }
 }
 

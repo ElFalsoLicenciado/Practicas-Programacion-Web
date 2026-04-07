@@ -1,4 +1,4 @@
-import React from 'react'
+import React, { type JSX } from 'react'
 import {Routes, Route} from 'react-router-dom'
 import Header from './components/Header'
 import Footer from './components/Footer'
@@ -9,7 +9,7 @@ import AboutUsPage from './pages/AboutUsPage'   //Ruta 4
 import CoursePage from './pages/CoursePage'     //Ruta 5
 
 
-function App() {
+const App = (): JSX.Element => {
   return (
     <>
     <div className='app'>
@@ -20,7 +20,7 @@ function App() {
           <Route path='/login' element={<LoginPage/>}/>
           <Route path='/admin' element={<AdminPage/>}/>
           <Route path='/about-us' element={<AboutUsPage/>}/>
-          <Route path='/course' element={<CoursePage/>}/>
+          <Route path='/course/:id' element={<CoursePage/>}/>
         </Routes>
       </div>
       <Footer/>
