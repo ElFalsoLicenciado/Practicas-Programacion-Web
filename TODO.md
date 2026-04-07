@@ -1,10 +1,9 @@
 # Cosas por hacer
-1. En formulario de registro de usuario agregar campo para rol de usuario.
-2. Página de gestión de perfil.
-3. Bloquear el acceso a adminstración, solo los administradores o profesores pueden acceder.
-En administración agregar los siguiente:
-4. Gestión de cursos (editar y borrar).
-5. Gestión de cuentas (cambiar datos o credenciales).
+1. [ ]  Página de gestión de perfil.  
+2. [ ]  Bloquear el acceso a adminstración, solo los administradores o profesores pueden acceder.    
+En administración agregar los siguiente:      
+1. [ ] Gestión de cursos (editar y borrar).  
+2. [ ] Gestión de cuentas (cambiar datos o credenciales).   
 
 
 # Permisos
