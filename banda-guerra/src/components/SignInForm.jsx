@@ -77,7 +77,7 @@ const SignInForm = ({onLogin}) => {
     mostrarNotificacion('¡Inicio de sesión exitoso!', 'success')
     
     setTimeout(() => {
-      navigate('/')
+      window.location.href = '/';
     }, 1500)
   }
 

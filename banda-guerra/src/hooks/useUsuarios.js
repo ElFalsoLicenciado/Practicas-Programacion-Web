@@ -2,7 +2,7 @@ import { useState, useEffect } from "react";
 
 const defaultUsers = [
     {
-    id : 70, role : 'user', name : 'Yazmin Garcia',
+        id : 70, role : 'user', name : 'Yazmin Garcia',
         username : 'iazmin', mail : 'example@gmail.com' , password : 'minions',
         instrument : 'caja', regDate : new Date()
     },
@@ -50,7 +50,7 @@ const useUsuarios = () => {
         if (exists) return false
         
         let userId = users.length > 0 ? users[users.length - 1].id + 1 : 1
-
+        
         while (true) {
             if (users.some(u => u.id === userId)) userId = userId + 1
             else break
@@ -67,6 +67,13 @@ const useUsuarios = () => {
         return true
     }
     
+    const getCurrentUser = () => {
+        const session = localStorage.getItem('currentUser');
+        if (!session) return null;
+        
+        return JSON.parse(session);
+    }
+    
     const resetUsers = () => {
         setUsers(defaultUsers)
         localStorage.setItem('users', JSON.stringify(defaultUsers))        
@@ -74,37 +81,37 @@ const useUsuarios = () => {
     
     const login = (credField , passField) => {
         const found = users.find(u => (u.mail === credField || u.username === credField) && u.password === passField)        
-
+        
         if (!found) return false
         
-
         setSession(found)
         
         return true
     }
     
     const setSession = (sessionUser) => {
-        localStorage.setItem('currentUser', JSON.stringify(
-            {
-                id: sessionUser.id
-            }
-        ))
+        localStorage.setItem('currentUser', JSON.stringify({
+            id: sessionUser.id,
+            username: sessionUser.username
+        }));
     }
-
+    
     const checkUsername = (username) => {
         const found = users.find(u => (u.username == username))
-
+        
         if (found) return true
         return false
     }
     
     
     return {
+        users,
         loading,
         addUser,
         resetUsers,
         login,
-        checkUsername
+        checkUsername,
+        getCurrentUser
     }
 }
 

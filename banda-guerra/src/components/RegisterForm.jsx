@@ -144,7 +144,7 @@ const SigInForm = ({onUsuarioAgregado, onCheckUsername}) => {
     }
     
     setTimeout(() => {
-      navigate('/')
+      window.location.href = '/';
     }, 1500)
   }
 
