@@ -1,0 +1,24 @@
+Cosas por hacer:
+    ☐ 1. Página de gestión de perfil. @high 
+    ☐ 2. Bloquear el acceso a adminstración, solo los administradores o profesores pueden acceder. @critical @today 
+    En administración agregar los siguiente:      
+        ☐ 3. Gestión de cursos (editar y borrar). @high 
+        ☐ 4. Gestión de cuentas (cambiar datos o credenciales). @low 
+        
+
+# Permisos
+## Estudiante
+- Ver cursos
+- Tomar cursos
+
+## Maestro
+- Ver cursos
+- Agregar, editar y borrar cursos propios.
+
+## Administrador
+- Ver cursos
+- Agregar, editar y borrar todos los cursos.
+- Gestionar cuentas.
+
+Alt + D = Terminar
+Alt + C = Cancelada

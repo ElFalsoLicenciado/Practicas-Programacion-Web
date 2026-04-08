@@ -9,7 +9,6 @@ const Header = () => {
 
     useEffect(() => {
         setUser(getCurrentUser());
-        console.log(user);
     }, []);
 
     const logout = () => {

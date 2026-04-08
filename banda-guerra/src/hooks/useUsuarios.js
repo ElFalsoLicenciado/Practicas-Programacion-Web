@@ -70,6 +70,8 @@ const useUsuarios = () => {
     const getCurrentUser = () => {
         const session = localStorage.getItem('currentUser');
         if (!session) return null;
+
+        console.log(session);
         
         return JSON.parse(session);
     }
