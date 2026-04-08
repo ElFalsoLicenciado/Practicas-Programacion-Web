@@ -2,8 +2,7 @@ import React, { useState } from 'react'
 import { useNavigate } from 'react-router-dom'
 import './CredentialsForm.css'
 
-const SigInForm = ({onUsuarioAgregado, onCheckUsername}) => {
-  const navigate = useNavigate()
+const SigInForm = ({onUsuarioAgregado, onCheckUsername, onCheckMail}) => {
   const [formData, setFormData] = useState({
     name: '',
     username: '',
@@ -46,7 +45,7 @@ const SigInForm = ({onUsuarioAgregado, onCheckUsername}) => {
         return ''
       case 'username':
         if (!valor) return 'Este campo es obligatorio'
-        if (valor.length < 5) return 'Mínimo 5 caracteres'
+        if (valor.length < 4) return 'Mínimo 4 caracteres'
         if (valor.length > 20) return 'Máximo 20 caracteres'
         return ''
       case 'mail':
@@ -119,11 +118,21 @@ const SigInForm = ({onUsuarioAgregado, onCheckUsername}) => {
       return
     }
         
-    const existeUsuario = onCheckUsername(formData.username)
-    
+    const existeUsername = onCheckUsername(formData.username)
+    const existeMail = onCheckMail(formData.mail)
 
-    if (existeUsuario) {
-      mostrarNotificacion('Ya existe una cuenta con este correo electrónico', 'warning')
+    if (existeMail && existeUsername) {
+      mostrarNotificacion('Ya existe una cuenta con este nombre de usuario y correo electronico', 'warning')
+      return
+    }
+
+    if (existeUsername) {
+      mostrarNotificacion('Ya existe una cuenta con este nombre de usuario', 'warning')
+      return
+    }
+
+    if (existeMail) {
+      mostrarNotificacion('Ya existe una cuenta con este correo electronico', 'warning')
       return
     }
     
@@ -151,6 +160,7 @@ const SigInForm = ({onUsuarioAgregado, onCheckUsername}) => {
   const limpiarFormulario = () => {
     setFormData({
       name: '',
+      username: '',
       mail: '',
       instrument: 'caja',
       password: '',

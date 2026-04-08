@@ -8,9 +8,14 @@ import AdminPage from './pages/AdminPage'       //Ruta 3
 import AboutUsPage from './pages/AboutUsPage'   //Ruta 4
 import CoursePage from './pages/CoursePage'     //Ruta 5
 import ProfilePage from './pages/ProfilePage'
-
+import ProtectedRoute from './utils/ProtectedRoute'
+import useUsuarios from './hooks/useUsuarios'
 
 const App = (): JSX.Element => {
+
+  const { getCurrentUser } = useUsuarios();
+  const user = getCurrentUser();
+
   return (
     <>
     <div className='app'>
@@ -19,7 +24,15 @@ const App = (): JSX.Element => {
         <Routes>
           <Route path='/' element={<HomePage/>}/>
           <Route path='/login' element={<LoginPage/>}/>
-          <Route path='/admin' element={<AdminPage/>}/>
+          <Route path='/admin' element={    
+            <ProtectedRoute 
+            user={user} 
+            allowedRoles={['admin', 'teacher']}
+            noLogin='/'
+            noRole='/'
+            >
+                <AdminPage />
+            </ProtectedRoute>}/>
           <Route path='/about-us' element={<AboutUsPage/>}/>
           <Route path='/course/:id' element={<CoursePage/>}/>
           <Route path='/profile' element={<ProfilePage/>}/>

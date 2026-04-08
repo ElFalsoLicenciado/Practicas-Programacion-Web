@@ -14,6 +14,7 @@ const Header = () => {
     const logout = () => {
         localStorage.removeItem('currentUser');
         setUser(null);
+        window.location.href = '/';
     }
     
 
@@ -43,7 +44,11 @@ const Header = () => {
                     </div>
                 )}
 
-                <Link to="/admin" className="header-link">Administración</Link>
+                {user && (user.role === 'admin' || user.role === 'teacher') && (
+                    <Link to="/admin" className="header-link">
+                        Administración
+                    </Link>
+                )}
                 <Link to="/about-us" className="header-link">Acerca de nosotros</Link>
             </div>
         </div>

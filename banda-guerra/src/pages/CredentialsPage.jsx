@@ -5,7 +5,7 @@ import useUsuarios from '../hooks/useUsuarios'
 import './CredentialsPage.css'
 
 const CredentialsPage = () => {
-  const {addUser, resetUsers, login, checkUsername} = useUsuarios()
+  const {addUser, resetUsers, login, checkUsername, checkMail} = useUsuarios()
 
   const handleUsuarioAgregado = (nuevoUsuario) => {
     return addUser(nuevoUsuario)
@@ -21,6 +21,10 @@ const CredentialsPage = () => {
 
   const handleCheckUsername = (username) => {
     return checkUsername(username);
+  }
+
+  const handleCheckMail = (mail) => {
+    return checkMail(mail)
   }
 
   const [isLogin, setIsLogin] = useState(true)
@@ -44,6 +48,7 @@ const CredentialsPage = () => {
               <RegisterForm 
                 onUsuarioAgregado={handleUsuarioAgregado}
                 onCheckUsername={handleCheckUsername}
+                onCheckMail={handleCheckMail}
               />}
             </div>
 

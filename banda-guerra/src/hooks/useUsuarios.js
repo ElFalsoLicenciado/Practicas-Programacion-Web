@@ -2,15 +2,21 @@ import { useState, useEffect } from "react";
 
 const defaultUsers = [
     {
-        id : 70, role : 'user', name : 'Yazmin Garcia',
-        username : 'iazmin', mail : 'example@gmail.com' , password : 'minions',
-        instrument : 'caja', regDate : new Date()
-    },
-    {
         id :  69, role : 'admin', name : 'Alberto Montoya',
         username : 'asbestus', mail : 'example@gmail.com', password : 'wevos',
         instrument : 'ninguno', regDate : new Date('2025-06-15')
+    },
+    {
+        id : 70, role : 'teacher', name : 'Yazmin Garcia',
+        username : 'iazmin', mail : 'yazmin@gmail.com' , password : 'minions',
+        instrument : 'ninguno', regDate : new Date()
+    },
+    {
+        id : 13, role : 'user', name : 'Candido Ortega',
+        username : 'iowosyse', mail : 'cande@gmail.com', password : 'chamba',
+        instrument : 'corneta', regDate : new Date('2025-08-11') 
     }
+
 ]
 
 const useUsuarios = () => {
@@ -57,6 +63,7 @@ const useUsuarios = () => {
         }
         
         newUser.id = userId
+        newUser.role = 'user'
         
         const newUsers = [...users, newUser]
         setUsers(newUsers)
@@ -71,8 +78,6 @@ const useUsuarios = () => {
         const session = localStorage.getItem('currentUser');
         if (!session) return null;
 
-        console.log(session);
-        
         return JSON.parse(session);
     }
     
@@ -94,13 +99,20 @@ const useUsuarios = () => {
     const setSession = (sessionUser) => {
         localStorage.setItem('currentUser', JSON.stringify({
             id: sessionUser.id,
-            username: sessionUser.username
+            username: sessionUser.username,
+            role: sessionUser.role
         }));
     }
     
     const checkUsername = (username) => {
         const found = users.find(u => (u.username == username))
         
+        if (found) return true
+        return false
+    }
+    const checkMail = (mail) => {
+        const found = users.find(u => (u.mail === mail))
+
         if (found) return true
         return false
     }
@@ -113,6 +125,7 @@ const useUsuarios = () => {
         resetUsers,
         login,
         checkUsername,
+        checkMail,
         getCurrentUser
     }
 }
