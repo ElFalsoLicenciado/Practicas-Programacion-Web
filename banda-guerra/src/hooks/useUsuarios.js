@@ -12,7 +12,12 @@ const defaultUsers = [
         instrument : 'ninguno', regDate : new Date()
     },
     {
-        id : 13, role : 'user', name : 'Candido Ortega',
+        id : 13, role : 'teacher', name : 'Ruben Lara',
+        username : 'ruben', mail : 'ruben@gmail.com',  password : 'desweb',
+        instrument : 'ninguno', regDate : new Date()
+    },
+    {
+        id : 67, role : 'user', name : 'Candido Ortega',
         username : 'iowosyse', mail : 'cande@gmail.com', password : 'chamba',
         instrument : 'corneta', regDate : new Date('2025-08-11') 
     }
@@ -73,12 +78,69 @@ const useUsuarios = () => {
         
         return true
     }
+
+    const editUser = (id, data, field) => {
+        const user = getUserById(id)
+
+        if(!user) return false
+
+        switch (field) {
+            case 'name' : user.name = data 
+            break;
+            
+            case 'mail' : user.mail = data
+            break;
+            
+            case 'password' : user.password = data
+            break;
+
+            case 'instrument' : user.instrument = data
+            break;
+        
+            default:
+                break;
+        }
+        return replaceUser(user)
+    }
+
+    const replaceUser = (user) => {
+        const index = users.findIndex(u => u.id === user.id)
+
+        if(index !== -1) {
+            const editedUsers = users
+            editedUsers[index] = user
+            setUsers(editedUsers)
+            return true
+        }
+        return false
+    }
     
     const getCurrentUser = () => {
         const session = localStorage.getItem('currentUser');
         if (!session) return null;
 
         return JSON.parse(session);
+    }
+
+
+    const getUserById = (id) => {
+        const user = users.find(u => (u.id === id))
+
+        return user
+    }
+
+    const checkUsername = (username) => {
+        const found = users.find(u => (u.username === username))
+        
+        if (found) return true
+        return false
+    }
+    
+    const checkMail = (mail) => {
+        const found = users.find(u => (u.mail === mail))
+
+        if (found) return true
+        return false
     }
     
     const resetUsers = () => {
@@ -104,29 +166,16 @@ const useUsuarios = () => {
         }));
     }
     
-    const checkUsername = (username) => {
-        const found = users.find(u => (u.username == username))
-        
-        if (found) return true
-        return false
-    }
-    const checkMail = (mail) => {
-        const found = users.find(u => (u.mail === mail))
-
-        if (found) return true
-        return false
-    }
-    
-    
     return {
         users,
         loading,
         addUser,
+        editUser,
         resetUsers,
+        getCurrentUser,
         login,
         checkUsername,
-        checkMail,
-        getCurrentUser
+        checkMail
     }
 }
 

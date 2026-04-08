@@ -41,6 +41,21 @@
 **Tailwind CSS**
 
 ***FAVOR DE ENCRIPTAR LAS CONTRASEÑAS***
+USAR SHA256
+
+## Notas Yovax
+- Cada vez que cargue una ruta que debe estar protegida, debe haber una función al principio que haga una llamada al api.
+- Y que en tus cookies exista la sesión del usuario.
+- Entonces si por ejemplo `/mis-cursos` es una ruta protegida, entonces al cargar el archivo que renderiza `/mis-cursos`, debe al principio cargar la llamada al *endpoint*
+
+Eso puede ser con un useEffect
+
+1. Hace la llamada y envías la sesión del usuario
+
+2. No hay sesión? No haces la llamada y devuelves a login. Si hay sesión? Envia la sesión al endpoint y con esta informacion consultas en la BD si el usuario existe y que rol tiene. En base a eso lo redireccionas donde debe
+Esto debe ocurrir cada vez que cargues una ruta
+Es complicado así que va a tomar tiempo rey
+Y esto tienes que protegerlo con JWT
 
 # Apuntes
 

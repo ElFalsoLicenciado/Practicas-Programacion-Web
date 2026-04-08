@@ -1,10 +1,15 @@
 Cosas por hacer:
     ☐ 1. Página de gestión de perfil. @high 
     ✔ 2. Bloquear el acceso a adminstración, solo los administradores o profesores pueden acceder. @critical @today @done (4/8/2026, 2:11:36 AM)
+    ☐ 8. Restringir rutas a = /mis-cursos,... @critical 
     En administración agregar los siguiente:      
         ☐ 3. Gestión de cursos (editar y borrar). @high 
         ☐ 4. Gestión de cuentas (cambiar datos o credenciales). @low 
-        
+    En registrarse o crear cuenta agregar:
+        ☐ 5. Agregar integracion con Google para la sesión @critical 
+        ☐ 6. Desarrollar sistema de sesiones con JWT @critical 
+        ☐ 7. Encriptar contraseñas en SHA256 (En el backend) @critical
+
 
 # Permisos
 ## Estudiante

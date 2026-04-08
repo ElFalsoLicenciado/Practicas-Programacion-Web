@@ -23,7 +23,7 @@ const SigInForm = ({onUsuarioAgregado, onCheckUsername, onCheckMail}) => {
     },
     { id: 'mail', label: 'Correo Electrónico', type: 'email', required: 'yes',
       placeholder: 'ejemplo@correo.com', hint: 'Ingresa un correo válido' },
-    { id: 'instrument', label: 'Instrumento de interés', type: 'select', required: 'yes',
+    { id: 'instrument', label: 'Rol en banda de guerra', type: 'select', required: 'yes',
       options: [
         { value: 'caja', label: 'Caja (Tambor)' },
         { value: 'corneta', label: 'Corneta' },
@@ -54,7 +54,7 @@ const SigInForm = ({onUsuarioAgregado, onCheckUsername, onCheckMail}) => {
         if (!emailPattern.test(valor)) return 'Ingresa un correo válido'
         return ''
       case 'instrument':
-        if (!valor) return 'Selecciona un instrumento'
+        if (!valor) return 'Selecciona un rol'
         return ''
       case 'password':
         if (!valor) return 'Este campo es obligatorio'

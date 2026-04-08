@@ -2,28 +2,28 @@ import { useState, useEffect } from "react";
 
 const defaultCursos = [
     { 
-        id: 0, nombre: 'Caja', 
+        id: 0, id_user: 70, nombre: 'Caja', 
         desc: 'Aprende las bases del tambor de guerra', 
         precio: 69, 
         img: 'https://i5.walmartimages.com/asr/65870d1a-391f-4551-b366-3a651c2dab65.66b39406ddcc7c5a3c5f88e3d75290d7.png'
     },
     
     {
-        id: 1, nombre: 'Corneta',
+        id: 1, id_user: 13, nombre: 'Corneta',
         desc: 'Aprende los toques reglamentarios',
         precio: 67,
         img: 'https://clavedemi.com/wp-content/uploads/2022/09/real_corneta.webp'
     },
     
     {
-        id: 2, nombre: 'Señalamientos',
+        id: 2, id_user: 13, nombre: 'Señalamientos',
         desc: 'Dirección y control de la banda',
         precio: 13,
         img: 'https://www.wikihow.com/images/thumb/1/15/Join-a-Marching-Band-Step-9.jpg/v4-728px-Join-a-Marching-Band-Step-9.jpg.webp'
     },
     
     {
-        id: 3, nombre: 'Marcha',
+        id: 3,  id_user: 70, nombre: 'Marcha',
         desc: 'Formaciones y disciplina de marcha',
         precio: 5,
         img: 'https://png.pngtree.com/background/20230403/original/pngtree-bandwalas-with-instruments-marching-vector-picture-image_2266850.jpg'
@@ -50,7 +50,6 @@ const useCursos = () => {
                 setCursos(defaultCursos)
                 localStorage.setItem('cursos', JSON.stringify(defaultCursos))
             }
-            // console.log('Cursos cargados correctamente.')
         } catch (e) {
             console.error('Error al cargar los cursos', e)
             setCursos(defaultCursos)
