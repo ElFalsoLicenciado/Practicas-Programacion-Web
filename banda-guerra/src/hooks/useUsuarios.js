@@ -21,12 +21,12 @@ const defaultUsers = [
         username : 'iowosyse', mail : 'cande@gmail.com', password : 'chamba',
         instrument : 'corneta', regDate : new Date('2025-08-11') 
     }
-
 ]
 
 const useUsuarios = () => {
     const [users, setUsers] = useState([]);
     const [loading, setLoading] = useState(true);
+    const [currentUser, setCurrentUser] = useState(null);
     
     useEffect(() => {
         loadUsers()
@@ -37,10 +37,9 @@ const useUsuarios = () => {
             const usuariosGuardados = localStorage.getItem('users')
             
             if (usuariosGuardados) {
-                setUsers(JSON.parse(usuariosGuardados))
-            }
-            
-            else {
+                const parsedUsers = JSON.parse(usuariosGuardados)
+                setUsers(parsedUsers)
+            } else {
                 setUsers(defaultUsers)
                 localStorage.setItem('users', JSON.stringify(defaultUsers))
             }
@@ -56,7 +55,7 @@ const useUsuarios = () => {
         let exists = false;
         
         if (users.some(u => u.username === newUser.username)) exists = true;
-        if (users.some(u => u.mail === newUser)) exists = true;
+        if (users.some(u => u.mail === newUser.mail)) exists = true;
         
         if (exists) return false
         
@@ -79,66 +78,112 @@ const useUsuarios = () => {
         return true
     }
 
-    const editUser = (id, data, field) => {
-        const user = getUserById(id)
-
-        if(!user) return false
-
-        switch (field) {
-            case 'name' : user.name = data 
-            break;
-            
-            case 'mail' : user.mail = data
-            break;
-            
-            case 'password' : user.password = data
-            break;
-
-            case 'instrument' : user.instrument = data
-            break;
-        
-            default:
-                break;
+    const editUser = (updatedUser) => {
+        try {
+            // Obtener usuarios actuales del localStorage
+            const usuariosGuardados = localStorage.getItem('users')
+            if (usuariosGuardados) {
+                let parsed = JSON.parse(usuariosGuardados)
+                const index = parsed.findIndex(u => u.id === updatedUser.id)
+                
+                if (index !== -1) {
+                    // Actualizar el usuario
+                    parsed[index] = { ...parsed[index], ...updatedUser }
+                    
+                    // Guardar en localStorage
+                    localStorage.setItem('users', JSON.stringify(parsed))
+                    
+                    // IMPORTANTE: Actualizar el estado users también
+                    setUsers(parsed)
+                    
+                    // Actualizar currentUser si es el mismo usuario
+                    const current = getCurrentUserFromLocal()
+                    if (current && current.id === updatedUser.id) {
+                        const updatedCurrent = { ...current, ...updatedUser }
+                        localStorage.setItem('currentUser', JSON.stringify(updatedCurrent))
+                        setCurrentUser(updatedCurrent)
+                    }
+                    
+                    return true
+                }
+            }
+            return false
+        } catch (e) {
+            console.error('Error al editar usuario:', e)
+            return false
         }
-        return replaceUser(user)
     }
 
     const replaceUser = (user) => {
         const index = users.findIndex(u => u.id === user.id)
-
-        if(index !== -1) {
-            const editedUsers = users
+        if (index !== -1) {
+            const editedUsers = [...users]
             editedUsers[index] = user
             setUsers(editedUsers)
+            localStorage.setItem('users', JSON.stringify(editedUsers))
             return true
         }
         return false
     }
     
-    const getCurrentUser = () => {
+    const getCurrentUserFromLocal = () => {
         const session = localStorage.getItem('currentUser');
         if (!session) return null;
-
         return JSON.parse(session);
     }
 
+    const getCurrentUser = () => {
+        // Primero intentar desde el estado
+        if (currentUser) return currentUser;
+        
+        // Si no, desde localStorage
+        const session = localStorage.getItem('currentUser');
+        if (!session) return null;
+        
+        const sessionUser = JSON.parse(session);
+        
+        // Buscar el usuario completo en el estado users
+        const fullUser = users.find(u => u.id === sessionUser.id);
+        if (fullUser) {
+            setCurrentUser(fullUser);
+            return fullUser;
+        }
+        
+        return sessionUser;
+    }
 
     const getUserById = (id) => {
-        const user = users.find(u => (u.id === id))
-
-        return user
+        // Buscar primero en el estado users (que debería estar actualizado)
+        let user = users.find(u => u.id === id)
+        
+        // Si no está en el estado, buscar en localStorage
+        if (!user) {
+            try {
+                const usuariosGuardados = localStorage.getItem('users')
+                if (usuariosGuardados) {
+                    const parsed = JSON.parse(usuariosGuardados)
+                    user = parsed.find(u => u.id === id)
+                    // Actualizar el estado si encontramos el usuario
+                    if (user) {
+                        setUsers(parsed)
+                    }
+                }
+            } catch (e) {
+                console.error('Error al buscar usuario:', e)
+            }
+        }
+        
+        return user || null
     }
 
     const checkUsername = (username) => {
-        const found = users.find(u => (u.username === username))
-        
+        const found = users.find(u => u.username === username)
         if (found) return true
         return false
     }
     
     const checkMail = (mail) => {
-        const found = users.find(u => (u.mail === mail))
-
+        const found = users.find(u => u.mail === mail)
         if (found) return true
         return false
     }
@@ -148,31 +193,57 @@ const useUsuarios = () => {
         localStorage.setItem('users', JSON.stringify(defaultUsers))        
     }
     
-    const login = (credField , passField) => {
+    const login = (credField, passField) => {
         const found = users.find(u => (u.mail === credField || u.username === credField) && u.password === passField)        
         
         if (!found) return false
         
         setSession(found)
+        setCurrentUser(found)
         
         return true
     }
     
     const setSession = (sessionUser) => {
-        localStorage.setItem('currentUser', JSON.stringify({
+        const sessionData = {
             id: sessionUser.id,
             username: sessionUser.username,
-            role: sessionUser.role
-        }));
+            role: sessionUser.role,
+            name: sessionUser.name,
+            mail: sessionUser.mail,
+            instrument: sessionUser.instrument
+        }
+        localStorage.setItem('currentUser', JSON.stringify(sessionData));
+        setCurrentUser(sessionData)
+    }
+    
+    // Nueva función para refrescar el usuario actual
+    const refreshCurrentUser = () => {
+        const session = localStorage.getItem('currentUser');
+        if (session) {
+            const sessionUser = JSON.parse(session);
+            const fullUser = users.find(u => u.id === sessionUser.id);
+            if (fullUser) {
+                setCurrentUser(fullUser);
+                return fullUser;
+            }
+            setCurrentUser(sessionUser);
+            return sessionUser;
+        }
+        return null;
     }
     
     return {
         users,
         loading,
+        currentUser,
         addUser,
         editUser,
+        replaceUser,
         resetUsers,
+        getUserById,
         getCurrentUser,
+        refreshCurrentUser,
         login,
         checkUsername,
         checkMail

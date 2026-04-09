@@ -195,7 +195,7 @@ const AdminCourseForm = ({ onCursoAgregado, onResetCursos }) => {
           <button type="submit">Agregar curso</button>
         </div>
         <div className='form-actions single-btn'>
-              <button type="button" onClick={() => navigate('/')}>Cancelar</button>
+              <button type="button" className='btn-cancel' onClick={() => navigate('/')}>Cancelar</button>
           </div>
       </form>
       

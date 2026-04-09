@@ -4,12 +4,18 @@ import useUsuarios from "../hooks/useUsuarios";
 import './Header.css';
 
 const Header = () => {
-    const { getCurrentUser } = useUsuarios();
-    const [user, setUser] = useState(null);
+    const { getCurrentUser } = useUsuarios()
+    const [user, setUser] = useState(null)
+    const [loading, setLoading] = useState(true)
 
     useEffect(() => {
-        setUser(getCurrentUser());
-    }, []);
+            const loadUser = async () => {
+                const currentUser = getCurrentUser()
+                setUser(currentUser)
+                setLoading(false)
+            }
+            loadUser()
+        }, [])
 
     const logout = () => {
         localStorage.removeItem('currentUser');
