@@ -1,25 +1,41 @@
 # Practica Unidad 4
 ## Paso 1
-
+- Crear una clase o plantilla para la conexión a la BD.
+- Mostrar todos los productos y servicios almacenados en la BD, manejar eventos y diseño.
 ## Paso 2
-
+- Crear un módulo para registrar, modificar y eliminar usuarios de la Página Web.
+(Agregar Cloudfare/Captcha/Mandar correo de verificación)
+- Usar permisos, roles y tipos de usuario correctos en la BD.
+(Roles: Administrador, Usuario y Turista [loggeo])(Usuario de loggeo [Permisos de lectura y escritura en solo usuarios]) 
+- Cifrar contraseñas de los usuarios en la BD.
 ## Paso 3
-
+- De la practica anterior en la plantilla de formularios, almacenar y actualizar la información en la BD.
+- Usar AJAX para mínimo un elemento:
+  - Nombre de usuario.
+  - Nombre / Id de Producto o Servicio.
+- Conservar Sesiones del Navegador.
 ## Paso 4
-
+- Seguir validando el código fuente HTML de todas las páginas rendereizadas.
+- Seguir validando los CSSs.
+- El Servidor Web debe tener conexión cifrada (HTTPS).
+- Commits en GitHub.
 
 ## Entregable:
 - PDF con la informacion 
+- - Diseño de red con direcciones IP, servicios y datos de acceso.
 - - Breve descripción del procedimiento.
 - - Comandos y/o configuración realizada.
 - - Capturas de pantalla completa (no del código completo, sino de lo más importante o relevante)
+- Conclusiones.
 - Código fuente (incluir link del repositorio en la entrega)
 
 ## Evaluación:
 ### Derecho a evaluación.
-
+- Tutorial Lengauje del lado del Servidor.
+- Entregar todas las actividades de la Unidad.
 ### Fecha de entrega:
-
+- 4 al 6 de mayo: 100
+- 7 y 8 de mayo: 80
   
 ### 10 puntos menos por cada cosa faltante.
 
@@ -34,7 +50,7 @@
 **Java** + **Oracle**/**MySQL**
 
 ## Front-end
-**Nextjs** o **React router** (más nativo y liviano)
+**React router** (más nativo y liviano)
 
 **JWT** (Inicio de sesión)
 
@@ -58,6 +74,8 @@ Es complicado así que va a tomar tiempo rey
 Y esto tienes que protegerlo con JWT
 
 # Apuntes
+
+
 
 
 # Uso de TODO
