@@ -1,14 +1,23 @@
 Cosas por hacer:
     ✔ 1. Página de gestión de perfil. @high @done (4/8/2026, 6:40:41 PM)
     ✔ 2. Bloquear el acceso a adminstración, solo los administradores o profesores pueden acceder. @critical @today @done (4/8/2026, 2:11:36 AM)
+    ☐ 6. Desarrollar sistema de sesiones con JWT @critical 
     ☐ 8. Restringir rutas a = /mis-cursos,... @critical 
+    ☐ 10. Crear una clase o plantilla para la conexión a la BD. @critical 
+
     En administración agregar los siguiente:      
         ☐ 3. Gestión de cursos (editar y borrar). @high 
-        ☐ 4. Gestión de cuentas (cambiar datos o credenciales). @low 
+        ✘ 4. Gestión de cuentas (cambiar datos o credenciales). @low @cancelled (4/13/2026, 9:57:40 PM)
+        ☐ 12. Crear usuarios y sus roles para el manejo de los cursos. @high 
+        IDEA = Usuario Admin = Puede ver todos los cursos.
+               Usuario Teach = Puede ver unicamente sus cursos.  
+        ☐ 13. Gestion de lecciones (agregar, editar y borrar) @high 
     En registrarse o crear cuenta agregar:
-        ☐ 5. Agregar integracion con Google para la sesión @critical 
-        ☐ 6. Desarrollar sistema de sesiones con JWT @critical 
+        ☐ 5. Agregar integracion con Google para la sesión @low 
         ☐ 7. Encriptar contraseñas en SHA256 (En el backend) @critical
+        ☐ 9. Crear usuarios y sus roles para el manejo de los usuarios. @critical
+        ☐ 11. Usar AJAX para el correo electronico y username. @high 
+        
 
 
 # Permisos
