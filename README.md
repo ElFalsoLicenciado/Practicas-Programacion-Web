@@ -120,3 +120,68 @@ Tagging:
 `*` You can add tags using @ sign, like this @tag
 `*` You can use following pre-existing tags to mark tasks @critical @high @low @today
 `*` Auto intellisense is provided to help you in finding tags
+
+## Tailwind --> CSS
+
+### Background
+
+- `bg-auto` = `background-size: auto;`
+- `bg-cover` = `background-size: cover;`
+- `bg-contain` = `background-size: contain;`
+- `bg-size-(<custom-property>)` = `background-size: var(<custom-property>);`
+- `bg-size-[<value>]` = `background-size: <value>;`
+
+### Flexbox & Grid
+
+- `items-start` = `align-items: flex-start;`
+- `items-end` = `align-items: flex-end;`
+- `items-end-safe` = `align-items: safe flex-end;`
+- `items-center` = `align-items: center;`
+- `items-center-safe` = `align-items: safe center;`
+- `items-baseline` = `align-items: baseline;`
+- `items-baseline-last` = `align-items: last baseline;`
+- `items-stretch` = `align-items: stretch;`
+- `justify-start` = `justify-content: flex-start;`
+- `justify-end` = `justify-content: flex-end;`
+- `justify-end-safe` = `justify-content: safe flex-end;`
+- `justify-center` = `justify-content: center;`
+- `justify-center-safe` = `justify-content: safe center;`
+- `justify-between` = `justify-content: space-between;`
+- `justify-around` = `justify-content: space-around;`
+- `justify-evenly` = `justify-content: space-evenly;`
+- `justify-stretch` = `justify-content: stretch;`
+- `justify-baseline` = `justify-content: baseline;`
+- `justify-normal` = `justify-content: normal;`
+
+### Layout
+
+- `inline`, `flex`, etc = `display:`
+- `` = ``
+
+### Interactivity
+
+`cursor` = `cursor`
+
+### Sizing
+
+- `h-` = `heigh:`
+- `w-` = `width:`
+
+### Typography
+
+- `text-left` = `text-align: left;`
+- `text-center` = `text-align: center;`
+- `text-right` = `text-align: right;`
+- `text-justify` = `text-align: justify;`
+- `text-start` = `text-align: start;`
+- `text-end` = `text-align: end;`
+- `align-baseline` = `vertical-align: baseline;`
+- `align-top` = `vertical-align: top;`
+- `align-middle` = `vertical-align: middle;`
+- `align-bottom` = `vertical-align: bottom;`
+- `align-text-top` = `vertical-align: text-top;`
+- `align-text-bottom` = `vertical-align: text-bottom;`
+- `align-sub` = `vertical-align: sub;`
+- `align-super` = `vertical-align: super;`
+- `align-(<custom-property>)` = `vertical-align: var(<custom-property>);`
+- `align-[<value>]` = `vertical-align: <value>;`
