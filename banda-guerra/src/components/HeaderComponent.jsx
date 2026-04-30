@@ -10,9 +10,9 @@ export default function Header() {
                 {/* header-brand */}
                 <div className='flex justify-start text-center align-middle h-max'>
                     {/* header-logo*/}
-                    <div className='flex items-center cursor-pointer mt-1.5 ml-2.5'>
+                    <div className='flex items-center cursor-pointer mt-1.25 ml-2.5'>
                         {/* logo-img */}
-                        <img className='border-[#660708] border-[6px] rounded-[50%] h-17.5 w-auto mb-2.5 mt-1.5' src="/bdg1.jpg" alt="Logo" id="logo-img"/>
+                        <img className='border-[#660708] border-[6px] rounded-[50%] h-17.5 w-auto mb-2.5' src="/bdg1.jpg" alt="Logo" id="logo-img"/>
                         {/*header-title*/}
                         <div className='flex items-center justify-center poppins-txt text-white font-semibold text-center mb-2.5 ml-2.5 text-(length:--header-title-font-size)'>
                             BANDA DE GUERRA TECNM

@@ -8,6 +8,9 @@ export default function Router() {
             <Routes>
                 <Route element={<AppLayout />}>
                     <Route path='/' element={<Home/>}/>
+                    <Route path='/login' />
+                    <Route path='/admin' />
+                    <Route path='/about-us'/>
                 </Route>
             </Routes>
         </BrowserRouter>

@@ -9,27 +9,56 @@
   --header-title-font-size: clamp(1.1rem, 4vw, 1.5rem);
   --header-link-font-size: clamp(0.95rem, 2.5vw, 1.2rem);
   --header-link-font-color: rgb(245, 203, 204);
+  --hero-h1-font-size: clamp(1.3rem, 5vw, 2.8rem);
+  --hero-p-font-size: clamp(0.8rem, 4vw, 1.6rem);
 }
 
 @layer components {
   .poppins-txt {
-      @apply font-(family-name:--font-poppins)
+    @apply font-(family-name:--font-poppins)
   }
-
+  
+  /* Variables del header */
+  
   .header-link {
-    @apply flex items-center pr-5 pl-5 h-full font-(family-name:--font-poppins)  text-(length:--header-link-font-size) text-(--header-link-font-color) duration-30 ease-in-out
+    @apply flex items-center px-5 h-full font-(family-name:--font-poppins)  text-(length:--header-link-font-size) text-(--header-link-font-color) duration-30 ease-in-out
   }
-
+  
   .header-link:hover {
     @apply bg-[rgba(0,0,0,.25)] text-white
   }
-}
-
-h1, h2, h3, h4 {
-  font-family: 'Roboto';
-}
-
-p, li {
-  font-family: 'Poppins';
+  
+  /* Variables del footer */
+  
+  .footer-p {
+    @apply font-(family-name:--font-roboto) mb-1.5 text-white
+  }
+  
+  
+  /* Variables del hero */
+  .hero-h1, .hero-p {
+    @apply max-w-150 ml-0 text-center
+  }
+  
+  .hero-h1 {
+    @apply text-white uppercase text-(length:--hero-h1-font-size) mb-2.5 font-bold font-(family-name:--font-roboto)
+  }
+  
+  .hero-p {
+    @apply text-white text-(length:--hero-p-font-size) mb-[1vh] font-(family-name:--font-poppins)
+  }
+  
+  .hero-btns {
+    @apply flex justify-center max-w-100 mt-[1vh] mb-[1.5vh]
+  }
+  
+  .hero-btn {
+    @apply ml-3.75 mr-3.75 py-3 px-6.5 bg-[#833132] text-white rounded-[6px] font-(family-name:--font-poppins) cursor-pointer duration-30
+  }
+  
+  .hero-btn:hover {
+    @apply  bg-[#5f2324];
+  }
+  
 }
 
