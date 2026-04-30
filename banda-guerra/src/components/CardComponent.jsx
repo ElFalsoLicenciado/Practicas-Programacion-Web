@@ -1,5 +1,8 @@
-export default function CardComponent() {
+export default function Card ({ children, onClick, className = "", style = {} }) {
   return (
-    <div>CardComponent</div>
-  )
-}
+      <div className={`card ${className}`} onClick={onClick} style={style}>
+          {children}
+      </div>
+  );
+};
+

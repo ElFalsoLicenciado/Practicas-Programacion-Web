@@ -1,3 +1,4 @@
+import Carousel from "../components/CarouselComponent";
 import Hero from "../components/HeroComponent";
 
 export default function HomeView() {
@@ -14,7 +15,11 @@ export default function HomeView() {
             title='Página de cursos virtuales de banda de guerra'
             desc='Plataforma "oficial" para aprender diversas cosas que pues se aprenden en banda de guerra ayuda.'
             buttons={botones}/>
-        <h1 className='text-5xl font-bold text-center'>HOME</h1>
+        {/* Catalogo */}
+        <div className=''>
+            <h2 className='mx-auto my-5 max-w-100 text-center text-[#833132] text-(length:--h2-title-font-size) font-bold font-(family-name:--font-roboto)'>Cursos disponibles</h2>
+            <Carousel/>
+        </div>
     </>
   )
 }

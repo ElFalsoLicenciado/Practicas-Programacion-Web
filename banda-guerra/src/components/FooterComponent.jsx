@@ -3,7 +3,7 @@ export default function Footer() {
         <>
             {/* Footer */}
             <div className='justify-center align-middle items-center pt-5 pl-10 pr-10 pb-10 bg-[#313131]'>
-                <p className='flex justify-center footer-p'> Validaciones </p>
+                <p className='flex justify-center footer-p '> Validaciones </p>
                 {/* validations-section */}
                 <div className='flex justify-center mb-5'>
                     <p>

@@ -11,6 +11,9 @@
   --header-link-font-color: rgb(245, 203, 204);
   --hero-h1-font-size: clamp(1.3rem, 5vw, 2.8rem);
   --hero-p-font-size: clamp(0.8rem, 4vw, 1.6rem);
+  --h1-title-font-size: 2.5em;
+  --h2-title-font-size: 1.8em;
+  
 }
 
 @layer components {
