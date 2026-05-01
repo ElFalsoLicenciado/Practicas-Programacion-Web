@@ -1,8 +1,9 @@
 // import { Link } from "react-router-dom";
 
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 
 export default function Header() {
+    const navigate = useNavigate()
     return (
         <>
             {/* header-base */}
@@ -10,7 +11,7 @@ export default function Header() {
                 {/* header-brand */}
                 <div className='flex justify-start text-center align-middle h-max'>
                     {/* header-logo*/}
-                    <div className='flex items-center cursor-pointer mt-1.25 ml-2.5'>
+                    <div className='flex items-center cursor-pointer mt-1.25 ml-2.5' onClick={() => navigate('/')}>
                         {/* logo-img */}
                         <img className='border-[#660708] border-[6px] rounded-[50%] h-17.5 w-auto mb-2.5' src="/bdg1.jpg" alt="Logo" id="logo-img"/>
                         {/*header-title*/}

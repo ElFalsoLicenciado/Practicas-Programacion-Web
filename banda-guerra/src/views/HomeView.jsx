@@ -16,7 +16,7 @@ export default function HomeView() {
             desc='Plataforma "oficial" para aprender diversas cosas que pues se aprenden en banda de guerra ayuda.'
             buttons={botones}/>
         {/* Catalogo */}
-        <div className=''>
+        <div className='justify-center align-middle items-center p-10'>
             <h2 className='mx-auto my-5 max-w-100 text-center text-[#833132] text-(length:--h2-title-font-size) font-bold font-(family-name:--font-roboto)'>Cursos disponibles</h2>
             <Carousel/>
         </div>

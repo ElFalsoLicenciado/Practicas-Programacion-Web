@@ -13,8 +13,37 @@
   --hero-p-font-size: clamp(0.8rem, 4vw, 1.6rem);
   --h1-title-font-size: 2.5em;
   --h2-title-font-size: 1.8em;
+  --carousel-bg-color: linear-gradient(135deg, #f8f9fa 0%, #e9ecef 100%)
   
 }
+
+@theme {
+  --animate-bounce-left: bounce-left 1s infinite;
+  --animate-bounce-right: bounce-right 1s infinite;
+  
+  @keyframes bounce-left {
+    0%, 100% {
+      transform: translateX(-10%);
+      animation-timing-function: cubic-bezier(0.8, 0, 1, 1);
+    }
+    50% {
+      transform: translateX(0);
+      animation-timing-function: cubic-bezier(0, 0, 0.2, 1);
+    }
+  }
+  
+  @keyframes bounce-right {
+    0%, 100% {
+      transform: translateX(10%);
+      animation-timing-function: cubic-bezier(0.8, 0, 1, 1);
+    }
+    50% {
+      transform: translateX(0);
+      animation-timing-function: cubic-bezier(0, 0, 0.2, 1);
+    }
+  }
+}
+
 
 @layer components {
   .poppins-txt {
@@ -56,11 +85,77 @@
   }
   
   .hero-btn {
-    @apply ml-3.75 mr-3.75 py-3 px-6.5 bg-[#833132] text-white rounded-[6px] font-(family-name:--font-poppins) cursor-pointer duration-30
+    @apply ml-3.75 mr-3.75 py-3 px-6.5 bg-[#833132] text-white rounded-md font-(family-name:--font-poppins) cursor-pointer duration-30
   }
   
   .hero-btn:hover {
     @apply  bg-[#5f2324];
+  }
+  
+  .btn-carousel {
+    @apply size-12.5 rounded-[50%] bg-white text-2xl font-bold text-[#833132] cursor-pointer transition-all duration-30 ease-in-out shadow-[0_4px_15px_rgba(0,0,0,0.15)] flex items-center justify-center z-10 relative overflow-hidden
+  }
+  
+  .btn-carousel::before {
+    @apply content-[''] absolute top-1/2 left-1/2 size-0 rounded-full bg-[rgba(131,49,50,0.1)] -translate-x-1/2 -translate-y-1/2 transition-[width,height] duration-400 before:w-[200%] before:h-[200%]
+  }
+  
+  .btn-carousel:hover::before {
+    @apply size-full
+  }
+  
+  .btn-carousel:hover {
+    @apply bg-[#833132] text-white scale-110
+  }
+  
+  .btn-carousel:active {
+    @apply scale-95
+  }
+  
+  .scale-fade-in {
+    animation: slideIn 0.5s cubic-bezier(0.4, 0, 0.2, 1);
+  }
+  
+  .slide-out-left {
+    animation: slideOutLeft 0.4s ease forwards;
+  }
+  
+  .slide-out-right {
+    animation: slideOutRight 0.4s ease forwards;
+  }
+  
+  @keyframes slideIn {
+    0% {
+      opacity: 0;
+      transform: translateX(30px) scale(0.95);
+    }
+    100% {
+      opacity: 1;
+      transform: translateX(0) scale(1);
+    }
+  }
+  
+  
+  @keyframes slideOutLeft {
+    from {
+      opacity: 1;
+      transform: translateX(0);
+    }
+    to {
+      opacity: 0;
+      transform: translateX(-30px);
+    }
+  }
+  
+  @keyframes slideOutRight {
+    from {
+      opacity: 1;
+      transform: translateX(0);
+    }
+    to {
+      opacity: 0;
+      transform: translateX(30px);
+    }
   }
   
 }

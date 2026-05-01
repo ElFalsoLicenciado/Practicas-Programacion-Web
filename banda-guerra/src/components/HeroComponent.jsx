@@ -7,7 +7,7 @@ export default function Hero(props) {
     }
 
     return (
-        <div className='bg-cover bg-center w-full max-h-125 px-4 py-4 flex flex-col justify-center align-middle items-center' style={getBackgroundStyle()}>
+        <div className={`bg-cover bg-center w-full max-h-125 px-4 py-4 flex flex-col justify-center align-middle items-center ${props.class}`} style={getBackgroundStyle()}>
             <h1 className='hero-h1'>{props.title}</h1>
             <p className='hero-p'>{props.desc}</p>
             {

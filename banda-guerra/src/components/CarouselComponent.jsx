@@ -8,7 +8,7 @@ export default function CarouselComponent(props) {
     const [direction, setDirection] = useState('')
     
     if (!props.items || props.items.length === 0) {
-        return <div class='relative my-40 mx-auto max-w-300 flex items-center gap-5 p-5 text-center justify-center shadow-2xl' >Cargando...</div>
+        return <div className='relative my-10 mx-auto max-w-300 flex items-center justify-center gap-5 p-5 bg-(--carousel-bg-color) rounded-[30px] shadow-2xl animate-bounce'>Cargando...</div>
     }
     
     const switchItem = (direction) => {
@@ -50,18 +50,36 @@ export default function CarouselComponent(props) {
     
 
     return (
-        <div>
-            <button>
-
+        <div className='relative my-10 mx-auto max-w-300 flex items-center justify-center gap-5 p-5 bg-(--carousel-bg-color) rounded-[30px] shadow-2xl'>
+            <button 
+                className='btn-carousel hover:animate-bounce-left'
+                onClick={() => switchItem(-1)}
+                disabled={isAnimating}
+                aria-label='Anterior'
+                >
+                    ←
             </button>
-            <div>
+            <div className={`w-95 h-120 transition-all duration-40 ease-[cubic-bezier(0.4, 0, 0.2, 1)] relative ${isAnimating ? (direction === 'left' ? 'slide-out-left' : 'slide-out-right') : 'scale-fade-in'}`} >
                 <Card/>
             </div>
-            <button>
-
+            <button 
+                className='btn-carousel hover:animate-bounce-right'
+                onClick={() => switchItem(-1)}
+                disabled={isAnimating}
+                aria-label='Siguiente'
+            >
+                →
             </button>
-            <div>
-                
+            <div className='absolute -bottom-7.5 left-1/2 translate-x-12.5 flex gap-3 z-10'>
+                {props.items.map((_, idx) => (
+                    <button
+                        key={idx}
+                        className={`indicator ${idx === index ? 'active' : ''}`}
+                        onClick={() => goToItem(idx)}
+                        disabled={isAnimating}
+                        aria-label={`Ver el item: ${idx + 1}`}
+                    />
+                ))}      
             </div>
         </div>
     )
