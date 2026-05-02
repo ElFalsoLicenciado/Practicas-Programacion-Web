@@ -1,6 +1,6 @@
-export default function Card ({ children, onClick, className = "", style = {} }) {
+export default function Card ({ children, onClick, className = "" }) {
   return (
-      <div className={`card ${className}`} onClick={onClick} style={style}>
+      <div className={className} onClick={onClick}>
           {children}
       </div>
   );

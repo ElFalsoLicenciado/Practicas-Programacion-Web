@@ -5,7 +5,7 @@ export default function HomeView() {
   
   const botones = [
     {class: 'hero-btn', link: '/login', label: 'CREAR CUENTA'},
-    {class: 'hero-btn' ,link: '/about-us', label: 'INFORMER'}
+    {class: 'hero-btn' ,link: '/about-us', label: 'INFORMES'}
   ]
   
   return (

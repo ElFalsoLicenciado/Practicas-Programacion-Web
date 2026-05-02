@@ -6,6 +6,8 @@
   --font-poppins: 'Poppins', sans-serif;
   --font-roboto: 'Roboto', sans-serif;
   --font-josefin: 'Josefin Sans', sans-serif;
+  --h1-title-font-size: 2.5em;
+  --h2-title-font-size: 1.8em;
   --header-title-font-size: clamp(1.1rem, 4vw, 1.5rem);
   --header-link-font-size: clamp(0.95rem, 2.5vw, 1.2rem);
   --header-link-font-color: rgb(245, 203, 204);
@@ -46,6 +48,18 @@
 
 
 @layer components {
+  .h1-title, .h2-title {
+    @apply mx-auto my-auto max-w-100 text-[#833132] font-bold font-(family-name:--font-robto)
+  }
+
+  .h1-title {
+    @apply text-(length:--h1-title-font-size)
+  }
+
+  .h2-title {
+    @apply text-(length:--h2-title-font-size)
+  }  
+  
   .poppins-txt {
     @apply font-(family-name:--font-poppins)
   }
@@ -91,6 +105,8 @@
   .hero-btn:hover {
     @apply  bg-[#5f2324];
   }
+
+  /* Variables del carousel */
   
   .btn-carousel {
     @apply size-12.5 rounded-[50%] bg-white text-2xl font-bold text-[#833132] cursor-pointer transition-all duration-30 ease-in-out shadow-[0_4px_15px_rgba(0,0,0,0.15)] flex items-center justify-center z-10 relative overflow-hidden
