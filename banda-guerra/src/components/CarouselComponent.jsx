@@ -1,5 +1,4 @@
 import { useState } from "react"
-import Card from './CardComponent'
 
 export default function CarouselComponent({items, children}) {
 

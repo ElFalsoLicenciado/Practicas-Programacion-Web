@@ -1,0 +1,33 @@
+export const loginConfig = {
+  initialValues: {
+    credential: '',
+    password: ''
+  },
+  fields: [
+    {
+      name: 'credential',
+      label: 'Usuario o correo',
+      type: 'text',
+      placeholder: 'Ingresa tu usuario o correo',
+      validate: (value) => {
+        if (!value) return 'Campo requerido'
+        return ''
+      }
+    },
+    {
+      name: 'password',
+      label: 'Contraseña',
+      type: 'password',
+      placeholder: '••••••••',
+      validate: (value) => {
+        if (!value) return 'Campo requerido'
+        return ''
+      }
+    }
+  ],
+  onSubmit: (data, { showToast, reset }) => {
+    showToast('Login exitoso', 'success')
+    setTimeout(() => window.location.href = '/', 1500)
+  },
+  submitText: 'Iniciar sesión'
+}
