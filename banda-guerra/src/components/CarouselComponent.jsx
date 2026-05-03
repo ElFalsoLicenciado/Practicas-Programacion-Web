@@ -1,13 +1,13 @@
 import { useState } from "react"
 import Card from './CardComponent'
 
-export default function CarouselComponent(props) {
+export default function CarouselComponent({items, children}) {
 
     const [index, setIndex ] = useState(0)
     const [isAnimating, setIsAnimating] = useState(false)
     const [direction, setDirection] = useState('')
     
-    if (!props.items || props.items.length === 0) {
+    if (!items || items.length === 0) {
         return <div className='relative my-10 mx-auto max-w-300 flex items-center justify-center gap-5 p-5 bg-(--carousel-bg-color) rounded-[30px] shadow-2xl animate-bounce'>Cargando...</div>
     }
     
@@ -20,8 +20,8 @@ export default function CarouselComponent(props) {
         setTimeout(() => {
             setIndex(prev => {
                 let newIndex = prev + direction
-                if (newIndex < 0) newIndex = props.items.length - 1
-                if (newIndex >= props.items.length) newIndex = 0
+                if (newIndex < 0) newIndex = items.length - 1
+                if (newIndex >= items.length) newIndex = 0
                 return newIndex
             })
 
@@ -60,21 +60,21 @@ export default function CarouselComponent(props) {
                     ←
             </button>
             <div className={`w-95 h-120 transition-all duration-40 ease-[cubic-bezier(0.4, 0, 0.2, 1)] relative ${isAnimating ? (direction === 'left' ? 'slide-out-left' : 'slide-out-right') : 'scale-fade-in'}`} >
-                <Card/>
+                {children(items[index], index)}
             </div>
             <button 
                 className='btn-carousel hover:animate-bounce-right'
-                onClick={() => switchItem(-1)}
+                onClick={() => switchItem(1)}
                 disabled={isAnimating}
                 aria-label='Siguiente'
             >
                 →
             </button>
-            <div className='absolute -bottom-7.5 left-1/2 translate-x-12.5 flex gap-3 z-10'>
-                {props.items.map((_, idx) => (
+            <div className='absolute -bottom-7.5 left-1/2 -translate-x-1/2 flex gap-3 z-10'>
+                {items.map((_, idx) => (
                     <button
                         key={idx}
-                        className={`indicator ${idx === index ? 'active' : ''}`}
+                        className={`carousel-indicator ${idx === index ? 'active' : ''}`}
                         onClick={() => goToItem(idx)}
                         disabled={isAnimating}
                         aria-label={`Ver el item: ${idx + 1}`}

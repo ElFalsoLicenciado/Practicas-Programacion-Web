@@ -8,6 +8,7 @@
   --font-josefin: 'Josefin Sans', sans-serif;
   --h1-title-font-size: 2.5em;
   --h2-title-font-size: 1.8em;
+  --p-text-font-size: 1.1rem;
   --header-title-font-size: clamp(1.1rem, 4vw, 1.5rem);
   --header-link-font-size: clamp(0.95rem, 2.5vw, 1.2rem);
   --header-link-font-color: rgb(245, 203, 204);
@@ -15,7 +16,8 @@
   --hero-p-font-size: clamp(0.8rem, 4vw, 1.6rem);
   --h1-title-font-size: 2.5em;
   --h2-title-font-size: 1.8em;
-  --carousel-bg-color: linear-gradient(135deg, #f8f9fa 0%, #e9ecef 100%)
+  --carousel-bg-color: linear-gradient(135deg, #f8f9fa 0%, #e9ecef 100%);
+  --form-footer-font-size: 0.9em
   
 }
 
@@ -25,7 +27,7 @@
   
   @keyframes bounce-left {
     0%, 100% {
-      transform: translateX(-10%);
+      transform: translateX(-20%);
       animation-timing-function: cubic-bezier(0.8, 0, 1, 1);
     }
     50% {
@@ -36,7 +38,7 @@
   
   @keyframes bounce-right {
     0%, 100% {
-      transform: translateX(10%);
+      transform: translateX(20%);
       animation-timing-function: cubic-bezier(0.8, 0, 1, 1);
     }
     50% {
@@ -49,7 +51,7 @@
 
 @layer components {
   .h1-title, .h2-title {
-    @apply mx-auto my-auto max-w-100 text-[#833132] font-bold font-(family-name:--font-robto)
+    @apply mx-auto my-5 max-w-100 text-[#833132] font-bold font-(family-name:--font-roboto) text-center
   }
 
   .h1-title {
@@ -59,6 +61,10 @@
   .h2-title {
     @apply text-(length:--h2-title-font-size)
   }  
+
+  .p-text {
+    @apply max-w-87.5 mx-auto mt-5 mb-6.25 text-(length:--p-text-font-size) font-(family-name:--font-poppins) text-center
+  }
   
   .poppins-txt {
     @apply font-(family-name:--font-poppins)
@@ -67,7 +73,7 @@
   /* Variables del header */
   
   .header-link {
-    @apply flex items-center px-5 h-full font-(family-name:--font-poppins)  text-(length:--header-link-font-size) text-(--header-link-font-color) duration-30 ease-in-out
+    @apply flex items-center px-5 h-full font-(family-name:--font-poppins)  text-(length:--header-link-font-size) text-(--header-link-font-color) duration-300 ease-in-out
   }
   
   .header-link:hover {
@@ -99,7 +105,7 @@
   }
   
   .hero-btn {
-    @apply ml-3.75 mr-3.75 py-3 px-6.5 bg-[#833132] text-white rounded-md font-(family-name:--font-poppins) cursor-pointer duration-30
+    @apply ml-3.75 mr-3.75 py-3 px-6.5 bg-[#833132] text-white rounded-md font-(family-name:--font-poppins) cursor-pointer duration-300
   }
   
   .hero-btn:hover {
@@ -109,7 +115,7 @@
   /* Variables del carousel */
   
   .btn-carousel {
-    @apply size-12.5 rounded-[50%] bg-white text-2xl font-bold text-[#833132] cursor-pointer transition-all duration-30 ease-in-out shadow-[0_4px_15px_rgba(0,0,0,0.15)] flex items-center justify-center z-10 relative overflow-hidden
+    @apply size-12.5 rounded-[50%] bg-white text-2xl font-bold text-[#833132] cursor-pointer transition-all duration-300 ease-in-out shadow-[0_4px_15px_rgba(0,0,0,0.15)] flex items-center justify-center z-10 relative overflow-hidden
   }
   
   .btn-carousel::before {
@@ -121,7 +127,7 @@
   }
   
   .btn-carousel:hover {
-    @apply bg-[#833132] text-white scale-110
+    @apply bg-[#833132] text-white scale-110 text-center justify-center align-middle
   }
   
   .btn-carousel:active {
@@ -150,8 +156,7 @@
       transform: translateX(0) scale(1);
     }
   }
-  
-  
+
   @keyframes slideOutLeft {
     from {
       opacity: 1;
@@ -173,6 +178,38 @@
       transform: translateX(30px);
     }
   }
+
+  .carousel-indicator {
+    @apply size-2.5 rounded-[50%] bg-[#ddd] cursor-pointer transition-all duration-300 ease-in border-none p-0
+  }
+
+  .carousel-indicator:hover {
+    @apply bg-[#833132] scale-120
+  }
+
+  .carousel-indicator.active {
+    @apply w-7.5 rounded-[5px] bg-[#833132]
+  }
+
+  /* Form */
   
+  .form-footer {
+    @apply mt-6.25 text-(length:--form-footer-font-size) border-t border-t-[#eee] pt-3.75 text-center
+  }
+
+  .form-footer p {
+    @apply m-0 text-[#666] font-(family-name:--font-josefin)
+  }
+
+  .form-footer a {
+    @apply text-[#833132] font-bold
+  }
+
+  .form-footer a:hover {
+    @apply underline
+  }
+
+
+
 }
 
