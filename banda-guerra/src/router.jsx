@@ -12,7 +12,7 @@ export default function Router() {
             <Routes>
                 <Route element={<AppLayout />}>
                     <Route path='/' element={<Home/>}/>
-                    <Route path='/login' element={<Credential/>}/>
+                    <Route path='/credentials' element={<Credential/>}/>
                     <Route path='/admin' element={<Admin/>}/>
                     <Route path='/about-us' element={<AboutUs/>}/>
                     <Route path='/course/id:' element={<Course/>}/>

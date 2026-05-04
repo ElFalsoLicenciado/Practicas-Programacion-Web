@@ -80,6 +80,22 @@ export default function FormBuilder({ config, formContainer, formContent, formFo
       )
     }
 
+    if (field.type === 'textarea') {
+    return(
+        <textarea
+          type={field.type}
+          id={field.id}
+          name={field.name}
+          value={formData[field.name]}
+          onChange={handleChange}
+          placeholder={field.placeholder}
+          className={baseClass}
+          autoComplete={field.autoComplete}
+          rows={field.rows || 4}
+        />
+      )
+    }
+
     return (
       <input
         type={field.type}
@@ -89,7 +105,7 @@ export default function FormBuilder({ config, formContainer, formContent, formFo
         onChange={handleChange}
         placeholder={field.placeholder}
         className={baseClass}
-        autoComplete={"on"}
+        autoComplete={field.autoComplete}
       />
     )
   }

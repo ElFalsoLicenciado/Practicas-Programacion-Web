@@ -7,7 +7,7 @@ export const registerConfig = {
     password: '',
     confirm_password: ''
   },
-
+  
   fields: [
     {
       id: 'sign-in-name',
@@ -17,9 +17,10 @@ export const registerConfig = {
       required: true,
       placeholder: 'Ej: Juan Pérez',
       hint: 'Mínimo 3 caracteres, máximo 100',
-      validate: v => !v ? 'Este campo es obligatorio' : v.length < 3 ? 'Mínimo 3 caracteres' : ''
+      validate: v => !v ? 'Este campo es obligatorio' : v.length < 3 ? 'Mínimo 3 caracteres' : v.length > 100 ? 'Máximo 100 caracteres' : '',
+      autoComplete: 'on'
     },
-
+    
     {
       id: 'sign-in-username',
       name: 'username',
@@ -28,9 +29,10 @@ export const registerConfig = {
       required: true,
       placeholder: 'Ej: juanperez',
       hint: 'Mínimo 4 caracteres, máximo 20',
-      validate: v => !v ? 'Este campo es obligatorio' : v.length < 4 ? 'Mínimo 4 caracteres' : ''
+      validate: v => !v ? 'Este campo es obligatorio' : v.length < 4 ? 'Mínimo 4 caracteres' : v.length > 20 ? 'Máximo 20 caracteres' : '',
+      autoComplete: 'on'
     },
-
+    
     {
       id: 'sign-in-mail',
       name: 'mail',
@@ -41,9 +43,10 @@ export const registerConfig = {
       hint: 'Ingresa un correo válido',
       validate: v =>
         !v ? 'Este campo es obligatorio' :
-        !/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(v) ? 'Correo inválido' : ''
+      !/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(v) ? 'Correo inválido' : '',
+      autoComplete: 'on'
     },
-
+    
     {
       id: 'sign-in-instrument',
       name: 'instrument',
@@ -54,9 +57,10 @@ export const registerConfig = {
         { value: 'caja', label: 'Caja' },
         { value: 'corneta', label: 'Corneta' },
         { value: 'ninguno', label: 'Ninguno' }
-      ]
+      ],
+      autoComplete: 'off'
     },
-
+    
     {
       id: 'sign-in-password',
       name: 'password',
@@ -65,9 +69,10 @@ export const registerConfig = {
       required: true,
       placeholder: '••••••••',
       hint: 'Mínimo 6 caracteres',
-      validate: v => !v ? 'Requerido' : v.length < 6 ? 'Mínimo 6 caracteres' : ''
+      validate: v => !v ? 'Requerido' : v.length < 6 ? 'Mínimo 6 caracteres' : '',
+      autoComplete: 'off'
     },
-
+    
     {
       id: 'sign-in-confirm-password',
       name: 'confirm_password',
@@ -78,12 +83,13 @@ export const registerConfig = {
       hint: 'Debe coincidir con la contraseña',
       validate: (v, data) =>
         !v ? 'Confirma tu contraseña' :
-        v !== data.password ? 'No coinciden' : ''
+      v !== data.password ? 'No coinciden' : '',
+      autoComplete: 'off'
     }
   ],
-
+  
   submitText: 'Registrarse',
-
+  
   onSubmit: (data, { showToast }) => {
     showToast('Registro exitoso', 'success')
   }

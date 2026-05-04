@@ -1,4 +1,8 @@
+import { useNavigate } from "react-router-dom"
+
 export default function Hero(props) {
+    const navigate = useNavigate();
+
     const getBackgroundStyle = () => {
         if (props.bgImg) {
             return { backgroundImage: `url(${props.bgImg})`, backgroundSize: 'cover', backgroundPosition: 'center'  }
@@ -15,7 +19,7 @@ export default function Hero(props) {
                     <div className='hero-btns'>
                         {
                             props.buttons.map((btn, index) => (
-                                <a key={index} className={btn.class || 'generic-btn'} href={btn.link}>{btn.label}</a>
+                                <button key={index} className={btn.class || 'generic-btn'} onClick={() => navigate(btn.link, { state: btn.state})}>{btn.label}</button>
                             ))
                         }
                     </div>       

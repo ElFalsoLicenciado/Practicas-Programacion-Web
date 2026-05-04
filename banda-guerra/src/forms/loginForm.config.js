@@ -13,7 +13,8 @@ export const loginConfig = {
       validate: (value) => {
         if (!value) return 'Campo requerido'
         return ''
-      }
+      },
+      autoComplete: 'on'
     },
     {
       id: 'log-in-password',
@@ -24,7 +25,8 @@ export const loginConfig = {
       validate: (value) => {
         if (!value) return 'Campo requerido'
         return ''
-      }
+      },
+      autoComplete: 'off'
     }
   ],
   onSubmit: (data, { showToast, reset }) => {

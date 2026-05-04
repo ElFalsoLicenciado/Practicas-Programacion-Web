@@ -8,7 +8,7 @@ import { useNavigate } from "react-router-dom";
 export default function HomeView() {
   
   const botones = [
-    {class: 'hero-btn', link: '/login', label: 'CREAR CUENTA'},
+    {class: 'hero-btn', link: '/credentials', label: 'CREAR CUENTA', state: { isLogin : false}},
     {class: 'hero-btn' ,link: '/about-us', label: 'INFORMES'}
   ]
 

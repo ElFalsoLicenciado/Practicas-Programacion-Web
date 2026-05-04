@@ -1,5 +1,3 @@
-// import { Link } from "react-router-dom";
-
 import { Link, useNavigate } from "react-router-dom";
 
 export default function Header() {
@@ -22,7 +20,7 @@ export default function Header() {
                 </div>
                 {/* header-links */}
                 <div className='flex justify-end w-full text-center align-middle'>
-                    <Link to={'/login'} className='header-link'>Iniciar sesion</Link>
+                    <Link to={'/credentials'} state={{isLogin:true}} className='header-link'>Iniciar sesion</Link>
                     <Link to={'/admin'} className='header-link'>Administracion</Link>
                     <Link to={'/about-us'} className='header-link'>Acerca de nosotros</Link> 
                 </div>

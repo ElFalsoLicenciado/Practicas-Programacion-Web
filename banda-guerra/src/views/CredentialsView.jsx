@@ -1,9 +1,13 @@
 import { useState } from "react";
+import { useLocation } from "react-router-dom";
 import { loginConfig, registerConfig } from '../forms'
-import FormBuilder from "../components/FormBuilder";
+import Form from "../components/FormBuilder";
 
 export default function CredentialsView() {
-  const [isLogin, setIsLogin] = useState(true);
+
+  const location = useLocation();
+
+  const [isLogin, setIsLogin] = useState(location.state?.isLogin ?? true);
 
   return (
     <div>
@@ -14,7 +18,7 @@ export default function CredentialsView() {
         {isLogin ? 'Ingresa a tu cuenta y continúa tu entrenamiento' : 'Únete a nuestra comunidad y comienza tu entrenamiento'}
       </p>
 
-      <FormBuilder config={isLogin ? loginConfig : registerConfig} formFooter={{text: isLogin ? '¿No tienes cuenta?' : '¿Ya tienes cuenta?', linkText: isLogin ? 'Regístrate aquí' : 'Inicia sesión aquí', onClick: (e) => {e.preventDefault(); setIsLogin(!isLogin) }}}/>
+      <Form config={isLogin ? loginConfig : registerConfig} formFooter={{text: isLogin ? '¿No tienes cuenta?' : '¿Ya tienes cuenta?', linkText: isLogin ? 'Regístrate aquí' : 'Inicia sesión aquí', onClick: (e) => {e.preventDefault(); setIsLogin(!isLogin) }}}/>
     </div>
   );
 } 

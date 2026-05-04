@@ -5,7 +5,7 @@ import Footer from '../components/FooterComponent';
 export default function AppLayout() {
   return (
     <>
-        <div>
+        <div className='flex flex-col min-h-screen'>
               <div>
                   <Header/>
               </div>
