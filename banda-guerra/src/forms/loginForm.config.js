@@ -5,6 +5,7 @@ export const loginConfig = {
   },
   fields: [
     {
+      id: 'log-in-credential',
       name: 'credential',
       label: 'Usuario o correo',
       type: 'text',
@@ -15,6 +16,7 @@ export const loginConfig = {
       }
     },
     {
+      id: 'log-in-password',
       name: 'password',
       label: 'Contraseña',
       type: 'password',

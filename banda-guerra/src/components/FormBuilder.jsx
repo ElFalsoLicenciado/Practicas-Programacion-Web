@@ -1,72 +1,75 @@
 import { useState } from "react";
 
-export default function FormBuilder({ config, formContainer,  formContent, formFooter }) {
+export default function FormBuilder({ config, formContainer, formContent, formFooter }) {
 
-  const [formData, setFormData] = useState(config.initialValues);
-  const [errors, setErrors] = useState({});
-  const [toast, setToast] = useState(null);
+  const [formData, setFormData] = useState(config.initialValues)
+  const [errors, setErrors] = useState({})
+  const [toast, setToast] = useState(null)
 
   const handleChange = (e) => {
-    const { name, value } = e.target;
+    const { name, value } = e.target
 
-    const newData = { ...formData, [name]: value };
-    setFormData(newData);
+    const newData = { ...formData, [name]: value }
+    setFormData(newData)
 
-    const field = config.fields.find(f => f.name === name);
+    const field = config.fields.find(f => f.name === name)
+
     if (field?.validate) {
-      const error = field.validate(value, newData);
-      setErrors(prev => ({ ...prev, [name]: error }));
+      const error = field.validate(value, newData)
+      setErrors(prev => ({ ...prev, [name]: error }))
     }
-  };
+  }
 
   const validateAll = () => {
-    let valid = true;
-    const newErrors = {};
+    let valid = true
+    const newErrors = {}
 
     config.fields.forEach(field => {
       if (field.validate) {
-        const error = field.validate(formData[field.name], formData);
+        const error = field.validate(formData[field.name], formData)
         if (error) {
-          newErrors[field.name] = error;
-          valid = false;
+          newErrors[field.name] = error
+          valid = false
         }
       }
-    });
+    })
 
-    setErrors(newErrors);
-    return valid;
-  };
+    setErrors(newErrors)
+    return valid
+  }
 
   const showToast = (mensaje, tipo) => {
-    setToast({ mensaje, tipo });
-    setTimeout(() => setToast(null), 3000);
-  };
-
-  const reset = () => {
-    setFormData(config.initialValues);
-    setErrors({});
-  };
+    setToast({ mensaje, tipo })
+    setTimeout(() => setToast(null), 3000)
+  }
 
   const handleSubmit = (e) => {
-    e.preventDefault();
+    e.preventDefault()
 
     if (!validateAll()) {
-      showToast('Corrige los errores', 'error');
-      return;
+      showToast('Corrige los errores del formulario', 'error')
+      return
     }
 
-    config.onSubmit(formData, { showToast, reset });
-  };
+    config.onSubmit(formData, { showToast })
+  }
 
   const renderField = (field) => {
+    const baseClass = `
+      w-full p-3 border-2 rounded-lg font-[Poppins] text-base
+      transition-all duration-300
+      ${errors[field.name] ? 'border-red-500 bg-red-50' : 'border-gray-300'}
+      focus:outline-none focus:border-[#833132] focus:shadow-[0_0_0_3px_rgba(131,49,50,0.1)]
+    `
 
     if (field.type === 'select') {
       return (
         <select
+          id={field.id}
           name={field.name}
           value={formData[field.name]}
           onChange={handleChange}
-          className="w-full border p-2 rounded"
+          className={baseClass}
         >
           {field.options.map(opt => (
             <option key={opt.value} value={opt.value}>
@@ -74,65 +77,92 @@ export default function FormBuilder({ config, formContainer,  formContent, formF
             </option>
           ))}
         </select>
-      );
+      )
     }
 
     return (
       <input
         type={field.type}
+        id={field.id}
         name={field.name}
         value={formData[field.name]}
         onChange={handleChange}
         placeholder={field.placeholder}
-        className="w-full border p-2 rounded"
+        className={baseClass}
+        autoComplete={"on"}
       />
-    );
-  };
+    )
+  }
 
   return (
-    <div className={ formContainer || "max-w-150 mx-auto px-5"}>
-      <form onSubmit={handleSubmit} noValidate className={ formContent || "max-w-175 mx-auto mt-10 mb-12.5 shadow-2xl rounded-[20px] py-7.5 px-15 border-t-5 border-[#833132] bg-white space-y-4"}>
+    <div className={formContainer || "max-w-150 mx-auto px-5"}>
+      <form onSubmit={handleSubmit} noValidate className={formContent || "max-w-175 mx-auto mt-10 mb-12 shadow-[0_8px_20px_rgba(0,0,0,0.35)] rounded-[20px] py-8 px-12 border-t-[5px] border-[#833132] bg-white space-y-5"}>
         {config.fields.map(field => (
-          <div key={field.name}>
-            <label className="block mb-1 font-semibold">
+          <div key={field.name} className="text-left">
+            <label htmlFor={field.id} className="block mb-2 font-[Roboto] font-medium text-[#333] text-[1.1rem]">
               {field.label}
+              {field.required && <span className="text-red-500"> *</span>}
             </label>
 
             {renderField(field)}
 
-            {errors[field.name] && (
-              <p className="text-red-500 text-sm">
-                {errors[field.name]}
+            {/* HINT */}
+            {!errors[field.name] && field.hint && (
+              <p className="text-[#666] text-sm mt-1 italic font-[Poppins]">
+                {field.hint}
               </p>
             )}
+
+            {/* ERROR */}
+            {errors[field.name] && (
+              <p className="text-red-500 text-sm mt-1 flex items-center gap-1">
+                ⚠ {errors[field.name]}
+              </p>
+            )}
+
           </div>
         ))}
 
-        <button className="w-full bg-[#833132] text-white py-2 rounded">
-          {config.submitText}
-        </button>
-        {formFooter && (
-        <div className="form-footer">
-          <p>
-            {formFooter.text}{' '}
-            <a 
-              href="#"
-              onClick={formFooter.onClick}
-              className="text-[#833132] font-semibold"
-            >
-              {formFooter.linkText}
-            </a>
-          </p>
+        <div className="flex justify-center mt-6">
+          <button className="w-full p-3 rounded-lg font-[Poppins] font-semibold bg-[#833132] text-white transition-all hover:bg-[#5f2324] hover:-translate-y-1 shadow-lg">
+            {config.submitText}
+          </button>
         </div>
-      )}
+
+        {formFooter && (
+          <div className="form-footer">
+            <p>
+              {formFooter.text}{' '}
+              <a href="#" onClick={formFooter.onClick} className="text-[#833132] font-bold">
+                {formFooter.linkText}
+              </a>
+            </p>
+          </div>
+        )}
       </form>
+
+      {/* TOAST */}
       {toast && (
-        <div className={`mt-4 text-center ${
-          toast.tipo === 'error' ? 'text-red-500' : 'text-green-500'
-        }`}>
-          {toast.mensaje}
+        <div className={`
+          fixed top-24 right-5 bg-white rounded-lg p-4 shadow-lg
+          grid grid-cols-[auto_1fr] gap-3
+          animate-[slideIn_0.3s_ease]
+          border-l-4 w-87.5
+          ${toast.tipo === 'success' ? 'border-green-500' :
+            toast.tipo === 'error' ? 'border-red-500' :
+            'border-yellow-500'}
+        `}>
+          <span className="text-lg">
+            {toast.tipo === 'success' && '✓'}
+            {toast.tipo === 'error' && '✗'}
+            {toast.tipo === 'warning' && '⚠'}
+          </span>
+
+          <span className="font-[Poppins] text-sm text-gray-800">
+            {toast.mensaje}
+          </span>
         </div>
       )}
     </div>
-  );
+  )
 }

@@ -17,7 +17,11 @@
   --h1-title-font-size: 2.5em;
   --h2-title-font-size: 1.8em;
   --carousel-bg-color: linear-gradient(135deg, #f8f9fa 0%, #e9ecef 100%);
-  --form-footer-font-size: 0.9em
+  --form-field-label-font-size: 1.1rem;
+  --form-field-error-font-size: 0.85rem;
+  --form-field-error-before-font-size: 0.85rem;
+  --form-footer-font-size: 0.9em;
+  --form-actions-font-size: 1rem;
   
 }
 
@@ -46,6 +50,17 @@
       animation-timing-function: cubic-bezier(0, 0, 0.2, 1);
     }
   }
+  
+  @keyframes slideIn {
+    from {
+      opacity: 0;
+      transform: translateY(10px);
+    }
+    to {
+      opacity: 1;
+      transform: translateY(0);
+    }
+  }
 }
 
 
@@ -53,15 +68,15 @@
   .h1-title, .h2-title {
     @apply mx-auto my-5 max-w-100 text-[#833132] font-bold font-(family-name:--font-roboto) text-center
   }
-
+  
   .h1-title {
     @apply text-(length:--h1-title-font-size)
   }
-
+  
   .h2-title {
     @apply text-(length:--h2-title-font-size)
   }  
-
+  
   .p-text {
     @apply max-w-87.5 mx-auto mt-5 mb-6.25 text-(length:--p-text-font-size) font-(family-name:--font-poppins) text-center
   }
@@ -111,7 +126,7 @@
   .hero-btn:hover {
     @apply  bg-[#5f2324];
   }
-
+  
   /* Variables del carousel */
   
   .btn-carousel {
@@ -156,7 +171,7 @@
       transform: translateX(0) scale(1);
     }
   }
-
+  
   @keyframes slideOutLeft {
     from {
       opacity: 1;
@@ -178,38 +193,39 @@
       transform: translateX(30px);
     }
   }
-
+  
   .carousel-indicator {
     @apply size-2.5 rounded-[50%] bg-[#ddd] cursor-pointer transition-all duration-300 ease-in border-none p-0
   }
-
+  
   .carousel-indicator:hover {
     @apply bg-[#833132] scale-120
   }
-
+  
   .carousel-indicator.active {
     @apply w-7.5 rounded-[5px] bg-[#833132]
   }
-
+  
   /* Form */
   
   .form-footer {
     @apply mt-6.25 text-(length:--form-footer-font-size) border-t border-t-[#eee] pt-3.75 text-center
   }
-
+  
   .form-footer p {
     @apply m-0 text-[#666] font-(family-name:--font-josefin)
   }
-
+  
   .form-footer a {
     @apply text-[#833132] font-bold
   }
-
+  
   .form-footer a:hover {
     @apply underline
   }
-
-
-
+  
+  
+  
+  
 }
 
