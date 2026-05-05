@@ -154,7 +154,7 @@ body::-webkit-scrollbar {
   }
   
   .btn-carousel:hover {
-    @apply bg-[#833132] text-white scale-110 text-center justify-center align-middle
+    @apply bg-[#833132] text-white scale-110 text-center justify-center align-middle m-2
   }
   
   .btn-carousel:active {
