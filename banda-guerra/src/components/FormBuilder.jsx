@@ -46,21 +46,21 @@ export default function FormBuilder({ config, formContainer, formContent, formFo
   const handleSubmit = (e) => {
     e.preventDefault()
 
+    const cleanData = {...formData, 
+      course_price: Number(formData.course_price),  
+      course_learn: formData.course_learn.map(i=> i.trim()).filter(i => i !== '')
+    }
+
     if (!validateAll()) {
       showToast('Corrige los errores del formulario', 'error')
       return
     }
 
-    config.onSubmit(formData, { showToast })
+    config.onSubmit(cleanData, { showToast })
   }
 
   const renderField = (field) => {
-    const baseClass = `
-      w-full p-3 border-2 rounded-lg font-[Poppins] text-base
-      transition-all duration-300
-      ${errors[field.name] ? 'border-red-500 bg-red-50' : 'border-gray-300'}
-      focus:outline-none focus:border-[#833132] focus:shadow-[0_0_0_3px_rgba(131,49,50,0.1)]
-    `
+    const baseClass = `w-full p-3 border-2 rounded-lg font-[Poppins] text-base transition-all duration-300 ${errors[field.name] ? 'border-red-500 bg-red-50' : 'border-gray-300'} focus:outline-none focus:border-[#833132] focus:shadow-[0_0_0_3px_rgba(131,49,50,0.1)]`
 
     if (field.type === 'select') {
       return (
@@ -96,6 +96,68 @@ export default function FormBuilder({ config, formContainer, formContent, formFo
       )
     }
 
+    if (field.type === 'dynamic-list') {
+      const values = formData[field.name] || [''];
+
+      const updateItem = (index, value) => {
+        const newList = [...values];
+        newList[index] = value;
+
+        setFormData(prev => ({
+          ...prev,
+          [field.name]: newList
+        }));
+      };
+
+      const addItem = () => {
+        setFormData(prev => ({
+          ...prev,
+          [field.name]: [...values, '']
+        }));
+      };
+
+      const removeItem = (index) => {
+        if (values.length === 1 ) return;
+        const newList = values.filter((_, i) => i !== index);
+
+        setFormData(prev => ({
+          ...prev,
+          [field.name]: newList.length ? newList : ['']
+        }));
+      };
+
+    return (
+      <div className="space-y-2">
+        {values.map((item, index) => (
+          <div key={index} className="flex gap-2">
+            <input
+              type="text"
+              value={item}
+              onChange={(e) => updateItem(index, e.target.value)}
+              placeholder={`Punto ${index + 1}`}
+              className={baseClass}
+            />
+
+            <button
+              type="button"
+              onClick={() => removeItem(index)}
+              className="px-3 bg-red-500 text-white rounded-lg"
+            >
+              ✕
+            </button>
+          </div>))}
+
+          <button
+            type="button"
+            onClick={addItem}
+            className="mt-2 px-4 py-2 bg-[#833132] text-white rounded-lg"
+          >
+            + Agregar
+          </button>
+        </div>
+      );
+    }
+
     return (
       <input
         type={field.type}
@@ -106,6 +168,8 @@ export default function FormBuilder({ config, formContainer, formContent, formFo
         placeholder={field.placeholder}
         className={baseClass}
         autoComplete={field.autoComplete}
+        min={field.min}
+        step={field.step}
       />
     )
   }

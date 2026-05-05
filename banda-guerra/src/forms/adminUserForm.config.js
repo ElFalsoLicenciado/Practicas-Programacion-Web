@@ -1,15 +1,27 @@
 export const adminUserConfig = {
   addUser: {
     initialValues: {
+      role: '',
       name: '',
       username: '',
       mail: '',
       instrument: 'ninguno',
-      password: '',
-      confirm_password: ''
+      password: ''
     },
     
     fields: [
+      {
+        id: 'admin-manage-user-role',
+        name: 'role',
+        label: 'Rol del usuario',
+        type: 'select',
+        required: true,
+        options: [
+          { value: 'role1', label: 'Usuario' },
+          { value: 'role2', label: 'Admin' }
+        ],
+        autoComplete: 'off'
+      },
       {
         id: 'admin-add-user-name',
         name: 'name',
@@ -21,7 +33,6 @@ export const adminUserConfig = {
         validate: v => !v ? 'Este campo es obligatorio' : v.length < 3 ? 'Mínimo 3 caracteres' : v.length > 100 ? 'Máximo 100 caracteres' : '',
         autoComplete: 'on'
       },
-      
       {
         id: 'admin-add-user-username',
         name: 'username',
@@ -32,8 +43,7 @@ export const adminUserConfig = {
         hint: 'Mínimo 4 caracteres, máximo 20',
         validate: v => !v ? 'Este campo es obligatorio' : v.length < 4 ? 'Mínimo 4 caracteres' : v.length > 20 ? 'Máximo 20 caracteres' : '',
         autoComplete: 'on'
-      },
-      
+      },      
       {
         id: 'admin-add-user-mail',
         name: 'mail',
@@ -47,7 +57,6 @@ export const adminUserConfig = {
         !/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(v) ? 'Correo inválido' : '',
         autoComplete: 'on'
       },
-      
       {
         id: 'admin-add-user-instrument',
         name: 'instrument',
@@ -61,7 +70,6 @@ export const adminUserConfig = {
         ],
         autoComplete: 'off'
       },
-      
       {
         id: 'admin-add-user-password',
         name: 'password',
@@ -72,39 +80,26 @@ export const adminUserConfig = {
         hint: 'Mínimo 6 caracteres',
         validate: v => !v ? 'Requerido' : v.length < 6 ? 'Mínimo 6 caracteres' : '',
         autoComplete: 'off'
-      },
-      
-      {
-        id: 'admin-add-user-confirm-password',
-        name: 'confirm_password',
-        label: 'Confirmar contraseña',
-        type: 'password',
-        required: true,
-        placeholder: '••••••••',
-        hint: 'Debe coincidir con la contraseña',
-        validate: (v, data) =>
-          !v ? 'Confirma tu contraseña' :
-        v !== data.password ? 'No coinciden' : '',
-        autoComplete: 'off'
       }
     ],
     
     actions: [{
-        type: 'submit',
-        label: 'Registrar usuario',
-        className: ''
+      type: 'submit',
+      label: 'Registrar usuario',
+      className: ''
     }],
     
     onSubmit: (data, { showToast }) => {
       showToast('Registro exitoso', 'success')
     }
   },
-
+  
   manageUser: {
     initialValues: {
       select_user: 'select',
       role: '',
       name: '',
+      username: '',
       mail: '',
       instrument: 'ninguno',
       password: '',
@@ -149,6 +144,18 @@ export const adminUserConfig = {
         autoComplete: 'off'
       },
       {
+        id: 'admin-add-user-username',
+        name: 'username',
+        label: 'Nombre de usuario',
+        type: 'text',
+        required: false,
+        placeholder: 'Ej: juanperez',
+        hint: 'Mínimo 4 caracteres, máximo 20',
+        validate: v => !v ? 'Este campo es obligatorio' : v.length < 4 ? 'Mínimo 4 caracteres' : v.length > 20 ? 'Máximo 20 caracteres' : '',
+        autoComplete: 'on'
+      },
+      
+      {
         id: 'admin-manage-user-mail',
         name: 'mail',
         label: 'Correo electrónico',
@@ -190,19 +197,19 @@ export const adminUserConfig = {
     ],
     
     actions: [
-        {
-            type: 'submit',
-            label: 'Guardar',
-            className: ''
-        },
-        {
-            type: 'button',
-            label: 'Eliminar',
-            className: 'bg-[#dc3545]',
-            onClick: (data, ctx) => {
-            ctx.showToast('Usuario eliminado', 'warning')
-            }
+      {
+        type: 'submit',
+        label: 'Guardar',
+        className: ''
+      },
+      {
+        type: 'button',
+        label: 'Eliminar',
+        className: 'bg-[#dc3545]',
+        onClick: (data, ctx) => {
+          ctx.showToast('Usuario eliminado', 'warning')
         }
+      }
     ],
     
     onSubmit: (data, { showToast }) => {

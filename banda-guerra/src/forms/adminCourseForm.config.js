@@ -5,7 +5,9 @@ export const adminCourseConfig = {
         initialValues: {
             course_name: '',
             course_desc: '',
-            course_img: ''
+            course_learn: [''],
+            course_img: '',
+            course_price: ''
         },
         fields : [
             {
@@ -32,6 +34,15 @@ export const adminCourseConfig = {
                 rows: 4
             },
             {
+                id: 'admin-add-course-learn',
+                name: 'course_learn',
+                label: '¿Qué aprenderá el alumno?',
+                type: 'dynamic-list',
+                required: true,
+                hint: 'Agrega los puntos de aprendizaje',
+                validate: v => v.length === 1 && v[0].length === 0  ? 'Agrega al menos un punto' : ''
+            },
+            {
                 id: 'admin-add-course-img',
                 name: 'course_img',
                 label: 'Imagen del curso',
@@ -41,6 +52,24 @@ export const adminCourseConfig = {
                 hint: 'URL válida de la imgaen (opcional)',
                 validate: v => (!urlPattern.test(v) && !v.startsWith('assets/')) ? 'URL no válida' : '',
                 autoComplete: 'no'
+            },
+            {
+                id: 'admin-add-course-price',
+                name: 'course_price',
+                label: 'Precio del curso',
+                type: 'number',
+                required: true,
+                placeholder: 'Ej: 99',
+                hint: 'Debe ser un número mayor a 0',
+                validate: v => {
+                    if (!v) return 'Este campo es obligatorio'
+                    if (isNaN(v)) return 'Debe ser un número'
+                    if (Number(v) <= 0) return 'Debe ser mayor a 0'
+                    return ''
+                },
+                autoComplete: 'off',
+                min: 0,
+                step: 1
             }
         ],
         
@@ -58,7 +87,9 @@ export const adminCourseConfig = {
             select_course: 'select',
             course_name: '',
             course_desc: '',
-            course_img: ''
+            course_learn: [''],
+            course_img: '',
+            course_price: ''
         },
         fields : [
             {
@@ -99,6 +130,15 @@ export const adminCourseConfig = {
                 rows: 4
             },
             {
+                id: 'admin-add-course-learn',
+                name: 'course_learn',
+                label: '¿Qué aprenderá el alumno?',
+                type: 'dynamic-list',
+                required: false,
+                hint: 'Agrega los puntos de aprendizaje',
+                validate: v => v.length === 0 ? 'Agrega al menos un punto' : ''
+            },
+            {
                 id: 'admin-manage-course-img',
                 name: 'course_img',
                 label: 'Imagen del curso',
@@ -108,6 +148,24 @@ export const adminCourseConfig = {
                 hint: 'URL válida de la imgaen (opcional)',
                 validate: v => !v ? '' : (!urlPattern.test(v)) ? 'URL no válida' : '',
                 autoComplete: 'no'
+            },
+            {
+                id: 'admin-manage-course-price',
+                name: 'course_price',
+                label: 'Precio del curso',
+                type: 'number',
+                required: false,
+                placeholder: 'Ej: 99',
+                hint: 'Debe ser un número mayor a 0',
+                validate: v => {
+                    if (!v) return ''
+                    if (isNaN(v)) return 'Debe ser un número'
+                    if (Number(v) <= 0) return 'Debe ser mayor a 0'
+                    return ''
+                },
+                autoComplete: 'off',
+                min: 0,
+                step: 1
             }
         ],
         
