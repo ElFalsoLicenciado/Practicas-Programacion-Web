@@ -49,7 +49,7 @@ export default function CarouselComponent({items, children}) {
     
 
     return (
-        <div className='relative my-10 mx-auto max-w-300 flex items-center justify-center gap-5 p-5 bg-(--carousel-bg-color) rounded-[30px] shadow-2xl'>
+        <div className='relative my-10 mx-auto max-w-300 flex items-center justify-center gap-5 p-5 bg-linear-to-br from-[#f8f9fa] to-[#cfcfcf] rounded-[30px] shadow-2xl'>
             <button 
                 className='btn-carousel hover:animate-bounce-left'
                 onClick={() => switchItem(-1)}

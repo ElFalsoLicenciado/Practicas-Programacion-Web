@@ -9,6 +9,7 @@
   --h1-title-font-size: 2.5em;
   --h2-title-font-size: 1.8em;
   --p-text-font-size: 1.1rem;
+  --btn-generic-font-size: clamp(0.8rem, 4vw, 1.3rem);
   --header-title-font-size: clamp(1.1rem, 4vw, 1.5rem);
   --header-link-font-size: clamp(0.95rem, 2.5vw, 1.2rem);
   --header-link-font-color: rgb(245, 203, 204);
@@ -17,6 +18,8 @@
   --h1-title-font-size: 2.5em;
   --h2-title-font-size: 1.8em;
   --carousel-bg-color: linear-gradient(135deg, #f8f9fa 0%, #e9ecef 100%);
+  --form-switch-font-size: clamp(0.8rem, 3.6vw, 1.25rem);
+  --form-small-switch-font-size: clamp(0.6rem, 3.2vw, 1.0rem);
   --form-field-label-font-size: 1.1rem;
   --form-field-error-font-size: 0.85rem;
   --form-field-error-before-font-size: 0.85rem;
@@ -24,6 +27,11 @@
   --form-actions-font-size: 1rem;
   
 }
+
+body::-webkit-scrollbar {
+  display: none;
+}
+
 
 @theme {
   --animate-bounce-left: bounce-left 1s infinite;
@@ -81,10 +89,13 @@
     @apply max-w-87.5 mx-auto mt-5 mb-6.25 text-(length:--p-text-font-size) font-(family-name:--font-poppins) text-center
   }
   
-  .poppins-txt {
-    @apply font-(family-name:--font-poppins)
+  .btn-generic-section {
+    @apply flex justify-center mx-auto my-[1.5vh] 
   }
-  
+
+  .btn-generic {
+    @apply m-[1.5vh] size-fit py-3 px-6.25 bg-[#833132] text-white rounded-md font-(family-name:--font-poppins) text-(length:--btn-generic-font-size) duration-300 cursor-pointer inline-block hover:bg-[#851a1b] hover:-translate-y-0.5
+  }  
   /* Variables del header */
   
   .header-link {
@@ -100,7 +111,6 @@
   .footer-p {
     @apply font-(family-name:--font-roboto) mb-1.5 text-white
   }
-  
   
   /* Variables del hero */
   .hero-h1, .hero-p {
@@ -128,6 +138,8 @@
   }
   
   /* Variables del carousel */
+  
+  /** Carousel btn **/
   
   .btn-carousel {
     @apply size-12.5 rounded-[50%] bg-white text-2xl font-bold text-[#833132] cursor-pointer transition-all duration-300 ease-in-out shadow-[0_4px_15px_rgba(0,0,0,0.15)] flex items-center justify-center z-10 relative overflow-hidden
@@ -206,8 +218,14 @@
     @apply w-7.5 rounded-[5px] bg-[#833132]
   }
   
-  /* Form */
+  /* Form buttons*/
   
+  .form-actions button {
+    @apply w-full p-3 rounded-lg font-[Poppins] font-semibold  transition-all duration-300 ease-in-out hover:-translate-y-1 shadow-lg
+  }
+
+  /* Form footer */
+
   .form-footer {
     @apply mt-6.25 text-(length:--form-footer-font-size) border-t border-t-[#eee] pt-3.75 text-center
   }
@@ -224,8 +242,39 @@
     @apply underline
   }
   
+  /* Form switches */
   
-  
+  .form-switch-container {
+    @apply flex justify-center mx-auto bg-[#e7e7e7] rounded-4xl
+  }
+
+  .form-normal-switch-container {
+    @apply my-[1.5vh] gap-3 py-2 px-3
+  }
+
+  .form-small-switch-container {
+    @apply my-[1.0vh] gap-2 py-1 px-1.5
+  }
+
+  .form-switch {
+    @apply size-fit  rounded-4xl font-(family-name:--font-poppins)  duration-300 cursor-pointer inline-block transition-all ease-in
+  }
+
+  .form-normal-switch {
+    @apply py-3 px-6.25 text-(length:--form-switch-font-size)
+  }
+
+  .form-small-switch {
+    @apply py-2 px-4.25 text-(length:--form-small-switch-font-size)
+  }
+
+  .form-switch:hover {
+    @apply bg-[#c5c5c5]
+  }
+
+  .form-switch-active.form-switch-active {
+    @apply bg-[#833132] text-white
+  }
   
 }
 

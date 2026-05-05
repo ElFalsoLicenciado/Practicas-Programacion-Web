@@ -29,9 +29,13 @@ export const loginConfig = {
       autoComplete: 'off'
     }
   ],
-  onSubmit: (data, { showToast, reset }) => {
+  actions: [{
+    type: 'submit',
+    label: 'Iniciar sesión',
+    className: ''
+  }],
+  onSubmit: (data, { showToast }) => {
     showToast('Login exitoso', 'success')
     setTimeout(() => window.location.href = '/', 1500)
-  },
-  submitText: 'Iniciar sesión'
+  }
 }

@@ -88,7 +88,11 @@ export const registerConfig = {
     }
   ],
   
-  submitText: 'Registrarse',
+  actions: [{
+    type: 'submit',
+    label: 'Registrarse',
+    className: ''
+  }],
   
   onSubmit: (data, { showToast }) => {
     showToast('Registro exitoso', 'success')

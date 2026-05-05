@@ -1,11 +1,11 @@
 import { useState } from "react";
 
-export default function FormBuilder({ config, formContainer, formContent, formFooter }) {
+export default function FormBuilder({ config, formContainer, formContent, formFooter, children }) {
 
   const [formData, setFormData] = useState(config.initialValues)
   const [errors, setErrors] = useState({})
-  const [toast, setToast] = useState(null)
-
+  const [toast, setToast] = useState(null)  
+  
   const handleChange = (e) => {
     const { name, value } = e.target
 
@@ -113,37 +113,55 @@ export default function FormBuilder({ config, formContainer, formContent, formFo
   return (
     <div className={formContainer || "max-w-150 mx-auto px-5"}>
       <form onSubmit={handleSubmit} noValidate className={formContent || "max-w-175 mx-auto mt-10 mb-12 shadow-[0_8px_20px_rgba(0,0,0,0.35)] rounded-[20px] py-8 px-12 border-t-[5px] border-[#833132] bg-white space-y-5"}>
-        {config.fields.map(field => (
-          <div key={field.name} className="text-left">
-            <label htmlFor={field.id} className="block mb-2 font-[Roboto] font-medium text-[#333] text-[1.1rem]">
-              {field.label}
-              {field.required && <span className="text-red-500"> *</span>}
-            </label>
+        {children}
+        {
+          config.fields.map(field => (
+            <div key={field.name} className="text-left">
+              <label htmlFor={field.id} className="block mb-2 font-[Roboto] font-medium text-[#333] text-[1.1rem]">
+                {field.label}
+                {field.required && <span className="text-red-500"> *</span>}
+              </label>
 
-            {renderField(field)}
+              {renderField(field)}
 
-            {/* HINT */}
-            {!errors[field.name] && field.hint && (
-              <p className="text-[#666] text-sm mt-1 italic font-[Poppins]">
-                {field.hint}
-              </p>
-            )}
+              {/* HINT */}
+              {!errors[field.name] && field.hint && (
+                <p className="text-[#666] text-sm mt-1 italic font-[Poppins]">
+                  {field.hint}
+                </p>
+              )}
 
-            {/* ERROR */}
-            {errors[field.name] && (
-              <p className="text-red-500 text-sm mt-1 flex items-center gap-1">
-                ⚠ {errors[field.name]}
-              </p>
-            )}
+              {/* ERROR */}
+              {errors[field.name] && (
+                <p className="text-red-500 text-sm mt-1 flex items-center gap-1">
+                  ⚠ {errors[field.name]}
+                </p>
+              )}
 
-          </div>
+            </div>
         ))}
 
-        <div className="flex justify-center mt-6">
-          <button className="w-full p-3 rounded-lg font-[Poppins] font-semibold bg-[#833132] text-white transition-all hover:bg-[#5f2324] hover:-translate-y-1 shadow-lg">
-            {config.submitText}
-          </button>
-        </div>
+        <div className="form-actions grid gap-3 mt-6">
+          {(config.actions || [
+            { type: 'submit', label: config.submitText }
+          ]).map((btn, i) => (
+            <button
+              key={i}
+              type={btn.type || 'button'}
+              onClick={
+                btn.type !== 'submit'
+                  ? () => btn.onClick?.(formData, { showToast, setFormData })
+                  : undefined
+              }
+              className={`
+                p-3 rounded-lg font-semibold text-white transition-all
+                ${btn.className || 'bg-[#833132]'}
+              `}
+            >
+              {btn.label}
+            </button>
+          ))}
+      </div>
 
         {formFooter && (
           <div className="form-footer">
