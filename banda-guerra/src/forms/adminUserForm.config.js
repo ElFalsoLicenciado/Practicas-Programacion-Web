@@ -1,22 +1,23 @@
 export const adminUserConfig = {
   addUser: {
     initialValues: {
-      role: '',
-      name: '',
+      userRole: 'none',
+      fullName: '',
       username: '',
-      mail: '',
-      instrument: 'ninguno',
+      email: '',
+      bandRole: 'ninguno',
       password: ''
     },
     
     fields: [
       {
         id: 'admin-manage-user-role',
-        name: 'role',
+        name: 'userRole',
         label: 'Rol del usuario',
         type: 'select',
         required: true,
         options: [
+          { value: 'none', label: 'Selecciona un rol'},
           { value: 'role1', label: 'Usuario' },
           { value: 'role2', label: 'Admin' }
         ],
@@ -24,7 +25,7 @@ export const adminUserConfig = {
       },
       {
         id: 'admin-add-user-name',
-        name: 'name',
+        name: 'fullName',
         label: 'Nombre completo',
         type: 'text',
         required: true,
@@ -46,7 +47,7 @@ export const adminUserConfig = {
       },      
       {
         id: 'admin-add-user-mail',
-        name: 'mail',
+        name: 'email',
         label: 'Correo electrónico',
         type: 'email',
         required: true,
@@ -59,7 +60,7 @@ export const adminUserConfig = {
       },
       {
         id: 'admin-add-user-instrument',
-        name: 'instrument',
+        name: 'bandRole',
         label: 'Rol en banda de guerra',
         type: 'select',
         required: true,
@@ -97,11 +98,11 @@ export const adminUserConfig = {
   manageUser: {
     initialValues: {
       select_user: 'select',
-      role: '',
-      name: '',
+      userRole: 'none',
+      fullName: '',
       username: '',
-      mail: '',
-      instrument: 'ninguno',
+      email: '',
+      bandRole: 'ninguno',
       password: '',
     },
     
@@ -122,11 +123,12 @@ export const adminUserConfig = {
       },
       {
         id: 'admin-manage-user-role',
-        name: 'role',
+        name: 'userRole',
         label: 'Rol del usuario',
         type: 'select',
         required: false,
         options: [
+          { value: 'none', label: 'Selecciona un rol'},
           { value: 'role1', label: 'Usuario' },
           { value: 'role2', label: 'Admin' }
         ],
@@ -134,7 +136,7 @@ export const adminUserConfig = {
       },
       {
         id: 'admin-manage-user-name',
-        name: 'name',
+        name: 'fullName',
         label: 'Nombre completo',
         type: 'text',
         required: false,
@@ -157,7 +159,7 @@ export const adminUserConfig = {
       
       {
         id: 'admin-manage-user-mail',
-        name: 'mail',
+        name: 'email',
         label: 'Correo electrónico',
         type: 'email',
         required: false,
@@ -171,7 +173,7 @@ export const adminUserConfig = {
       
       {
         id: 'admin-manage-user-instrument',
-        name: 'instrument',
+        name: 'bandRole',
         label: 'Rol en banda de guerra',
         type: 'select',
         required: false,

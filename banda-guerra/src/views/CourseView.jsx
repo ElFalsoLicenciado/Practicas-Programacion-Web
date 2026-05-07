@@ -27,14 +27,14 @@ export default function CourseView() {
       {/* HERO */}
       <div className="relative rounded-2xl overflow-hidden shadow-xl">
         <img
-          src={curso.img}
-          alt={curso.nombre}
+          src={curso.image}
+          alt={curso.title}
           className="w-full h'75 md:h-100 object-cover"
         />
 
         <div className="absolute inset-0 bg-linear-to-t from-black/70 to-transparent flex items-end">
           <h1 className="text-white text-3xl md:text-5xl font-bold p-6">
-            {curso.nombre}
+            {curso.title}
           </h1>
         </div>
       </div>
@@ -49,7 +49,7 @@ export default function CourseView() {
           </h2>
 
           <p className="text-gray-700 leading-relaxed text-lg">
-            {curso.desc}
+            {curso.description}
           </p>
 
           <div className="bg-gray-50 p-6 rounded-xl shadow-sm">
@@ -57,7 +57,7 @@ export default function CourseView() {
               ¿Qué aprenderás?
             </h3>
             <ul className="list-disc ml-6 space-y-2 text-gray-600">
-              {curso.learn.map((i, id) => (
+              {curso.learnPoints.map((i, id) => (
                 <li key={id}>{i}</li>
               ))}
             </ul>
@@ -70,7 +70,7 @@ export default function CourseView() {
           <div>
             <p className="text-gray-500">Precio</p>
             <p className="text-3xl font-bold text-[#833132]">
-              ${curso.precio}
+              ${curso.price}
             </p>
           </div>
 

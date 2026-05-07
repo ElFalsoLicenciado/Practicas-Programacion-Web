@@ -3,16 +3,16 @@ const urlPattern = /^(https?:\/\/)?([\da-z.-]+)\.([a-z.]{2,6})([/\w .-]*)*\/?$/
 export const adminCourseConfig = {
     addCourse: {
         initialValues: {
-            course_name: '',
-            course_desc: '',
-            course_learn: [''],
-            course_img: '',
-            course_price: ''
+            title: '',
+            description: '',
+            learnPoints: [''],
+            image: '',
+            price: ''
         },
         fields : [
             {
                 id: 'admin-add-course-name',
-                name: 'course_name',
+                name: 'title',
                 label: 'Nombre del curso',
                 type: 'text',
                 required: true,
@@ -23,7 +23,7 @@ export const adminCourseConfig = {
             },
             {
                 id: 'admin-add-course-desc',
-                name: 'course_desc',
+                name: 'description',
                 label: 'Descripción del curso',
                 type: 'textarea',
                 required: true,
@@ -35,7 +35,7 @@ export const adminCourseConfig = {
             },
             {
                 id: 'admin-add-course-learn',
-                name: 'course_learn',
+                name: 'learnPoints',
                 label: '¿Qué aprenderá el alumno?',
                 type: 'dynamic-list',
                 required: true,
@@ -44,7 +44,7 @@ export const adminCourseConfig = {
             },
             {
                 id: 'admin-add-course-img',
-                name: 'course_img',
+                name: 'image',
                 label: 'Imagen del curso',
                 type: 'url',
                 required: false,
@@ -55,7 +55,7 @@ export const adminCourseConfig = {
             },
             {
                 id: 'admin-add-course-price',
-                name: 'course_price',
+                name: 'price',
                 label: 'Precio del curso',
                 type: 'number',
                 required: true,
@@ -85,11 +85,11 @@ export const adminCourseConfig = {
     manageCourse: {
         initialValues: {
             select_course: 'select',
-            course_name: '',
-            course_desc: '',
-            course_learn: [''],
-            course_img: '',
-            course_price: ''
+            title: '',
+            description: '',
+            learnPoints: [''],
+            image: '',
+            price: ''
         },
         fields : [
             {
@@ -108,7 +108,7 @@ export const adminCourseConfig = {
             },
             {
                 id: 'admin-manage-course-name',
-                name: 'course_name',
+                name: 'title',
                 label: 'Nombre del curso',
                 type: 'text',
                 required: false,
@@ -119,7 +119,7 @@ export const adminCourseConfig = {
             },
             {
                 id: 'admin-manage-course-desc',
-                name: 'course_desc',
+                name: 'description',
                 label: 'Descripción del curso',
                 type: 'textarea',
                 required: false,
@@ -131,7 +131,7 @@ export const adminCourseConfig = {
             },
             {
                 id: 'admin-add-course-learn',
-                name: 'course_learn',
+                name: 'learnPoints',
                 label: '¿Qué aprenderá el alumno?',
                 type: 'dynamic-list',
                 required: false,
@@ -140,7 +140,7 @@ export const adminCourseConfig = {
             },
             {
                 id: 'admin-manage-course-img',
-                name: 'course_img',
+                name: 'image',
                 label: 'Imagen del curso',
                 type: 'url',
                 required: false,
@@ -151,7 +151,7 @@ export const adminCourseConfig = {
             },
             {
                 id: 'admin-manage-course-price',
-                name: 'course_price',
+                name: 'price',
                 label: 'Precio del curso',
                 type: 'number',
                 required: false,

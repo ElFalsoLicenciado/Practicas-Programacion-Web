@@ -47,8 +47,8 @@ export default function FormBuilder({ config, formContainer, formContent, formFo
     e.preventDefault()
 
     const cleanData = {...formData, 
-      course_price: Number(formData.course_price),  
-      course_learn: formData.course_learn.map(i=> i.trim()).filter(i => i !== '')
+      price: Number(formData.price),  
+      learnPoints: formData.learnPoints.map(i=> i.trim()).filter(i => i !== '')
     }
 
     if (!validateAll()) {

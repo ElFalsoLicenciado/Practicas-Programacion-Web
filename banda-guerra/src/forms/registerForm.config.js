@@ -1,9 +1,9 @@
 export const registerConfig = {
   initialValues: {
-    name: '',
+    fullName: '',
     username: '',
-    mail: '',
-    instrument: 'ninguno',
+    email: '',
+    bandRole: 'ninguno',
     password: '',
     confirm_password: ''
   },
@@ -11,7 +11,7 @@ export const registerConfig = {
   fields: [
     {
       id: 'sign-in-name',
-      name: 'name',
+      name: 'fullName',
       label: 'Nombre completo',
       type: 'text',
       required: true,
@@ -35,7 +35,7 @@ export const registerConfig = {
     
     {
       id: 'sign-in-mail',
-      name: 'mail',
+      name: 'email',
       label: 'Correo electrónico',
       type: 'email',
       required: true,
@@ -49,7 +49,7 @@ export const registerConfig = {
     
     {
       id: 'sign-in-instrument',
-      name: 'instrument',
+      name: 'bandRole',
       label: 'Rol en banda de guerra',
       type: 'select',
       required: true,
