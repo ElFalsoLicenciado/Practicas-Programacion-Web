@@ -1,14 +1,25 @@
 import { useParams } from "react-router-dom";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import useCursos from "../services/useCursos";
 
 export default function CourseView() {
+
   const { id } = useParams();
   const { getCursoById } = useCursos();
-
-  const curso = getCursoById(Number(id));
+  const [curso, setCurso] = useState(null);
   const [inscrito, setInscrito] = useState(false);
 
+  useEffect(() => {
+    const loadCourse = async () => {
+
+      const data = await getCursoById(id);
+
+      setCurso(data);
+    }
+
+    loadCourse();
+  }, [id])
+  
   if (!curso) {
     return (
       <div className="text-center mt-20 text-xl text-red-500">

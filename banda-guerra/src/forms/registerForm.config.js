@@ -1,4 +1,4 @@
-export const registerConfig = {
+export const registerConfig = ({registerUser, usernameExists, emailExists}) => ({
   initialValues: {
     fullName: '',
     username: '',
@@ -29,7 +29,38 @@ export const registerConfig = {
       required: true,
       placeholder: 'Ej: juanperez',
       hint: 'Mínimo 4 caracteres, máximo 20',
-      validate: v => !v ? 'Este campo es obligatorio' : v.length < 4 ? 'Mínimo 4 caracteres' : v.length > 20 ? 'Máximo 20 caracteres' : '',
+      validate: async v => {
+        
+        if (!v) {
+          return 'Este campo es obligatorio';
+        }
+        
+        if (v.length < 4) {
+          return 'Mínimo 4 caracteres';
+        }
+        
+        if (v.length > 20) {
+          return 'Máximo 20 caracteres';
+        }
+        
+        // SOLO AQUÍ HACER AJAX
+        try {
+          
+          const exists = await usernameExists(v);
+          
+          if (exists) {
+            return 'El username ya existe';
+          }
+          
+        } catch (err) {
+          
+          console.error(err);
+          
+          return 'No se pudo validar username';
+        }
+        
+        return '';
+      },
       autoComplete: 'on'
     },
     
@@ -41,9 +72,34 @@ export const registerConfig = {
       required: true,
       placeholder: 'ejemplo@correo.com',
       hint: 'Ingresa un correo válido',
-      validate: v =>
-        !v ? 'Este campo es obligatorio' :
-      !/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(v) ? 'Correo inválido' : '',
+      validate: async v => {
+        
+        if (!v) {
+          return 'Este campo es obligatorio';
+        }
+        
+        if (!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(v)) {
+          return 'Correo inválido';
+        }
+        
+        // SOLO SI EL FORMATO ES VÁLIDO
+        try {
+          
+          const exists = await emailExists(v);
+          
+          if (exists) {
+            return 'El correo ya está registrado';
+          }
+          
+        } catch (err) {
+          
+          console.error(err);
+          
+          return 'No se pudo validar correo';
+        }
+        
+        return '';
+      },
       autoComplete: 'on'
     },
     
@@ -94,7 +150,29 @@ export const registerConfig = {
     className: ''
   }],
   
-  onSubmit: (data, { showToast }) => {
-    showToast('Registro exitoso', 'success')
+  onSubmit: async (data, { showToast, resetForm }) => {
+    
+    try {
+      
+      const cleanData = {
+        fullName: data.fullName,
+        username: data.username,
+        email: data.email,
+        bandRole: data.bandRole,
+        password: data.password
+      };
+      
+      await registerUser(cleanData);
+      
+      showToast('Registro exitoso', 'success');
+      
+      resetForm();
+      
+    } catch (err) {
+      
+      console.error(err);
+      
+      showToast('Error al registrarse', 'error');
+    }
   }
-}
+})

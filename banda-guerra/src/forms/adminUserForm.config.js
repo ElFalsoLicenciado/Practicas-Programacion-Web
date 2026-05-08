@@ -1,4 +1,4 @@
-export const adminUserConfig = {
+export const adminUserConfig = ({ users, addUser, updateUser, deleteUser, getUserById, refreshUsers, usernameExists, emailExists}) => ({  
   addUser: {
     initialValues: {
       userRole: 'none',
@@ -11,16 +11,17 @@ export const adminUserConfig = {
     
     fields: [
       {
-        id: 'admin-manage-user-role',
+        id: 'admin-add-user-role',
         name: 'userRole',
         label: 'Rol del usuario',
         type: 'select',
         required: true,
         options: [
           { value: 'none', label: 'Selecciona un rol'},
-          { value: 'role1', label: 'Usuario' },
-          { value: 'role2', label: 'Admin' }
+          { value: 'user', label: 'Usuario' },
+          { value: 'admin', label: 'Admininistrador' }
         ],
+        validate: v => v == 'none' ? 'Elige un rol' : '',
         autoComplete: 'off'
       },
       {
@@ -42,7 +43,38 @@ export const adminUserConfig = {
         required: true,
         placeholder: 'Ej: juanperez',
         hint: 'Mínimo 4 caracteres, máximo 20',
-        validate: v => !v ? 'Este campo es obligatorio' : v.length < 4 ? 'Mínimo 4 caracteres' : v.length > 20 ? 'Máximo 20 caracteres' : '',
+        validate: async v => {
+          
+          if (!v) {
+            return 'Este campo es obligatorio';
+          }
+          
+          if (v.length < 4) {
+            return 'Mínimo 4 caracteres';
+          }
+          
+          if (v.length > 20) {
+            return 'Máximo 20 caracteres';
+          }
+          
+          // SOLO AQUÍ HACER AJAX
+          try {
+            
+            const exists = await usernameExists(v);
+            
+            if (exists) {
+              return 'El username ya existe';
+            }
+            
+          } catch (err) {
+            
+            console.error(err);
+            
+            return 'No se pudo validar username';
+          }
+          
+          return '';
+        },
         autoComplete: 'on'
       },      
       {
@@ -53,9 +85,34 @@ export const adminUserConfig = {
         required: true,
         placeholder: 'ejemplo@correo.com',
         hint: 'Ingresa un correo válido',
-        validate: v =>
-          !v ? 'Este campo es obligatorio' :
-        !/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(v) ? 'Correo inválido' : '',
+        validate: async v => {
+          
+          if (!v) {
+            return 'Este campo es obligatorio';
+          }
+          
+          if (!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(v)) {
+            return 'Correo inválido';
+          }
+          
+          // SOLO SI EL FORMATO ES VÁLIDO
+          try {
+            
+            const exists = await emailExists(v);
+            
+            if (exists) {
+              return 'El correo ya está registrado';
+            }
+            
+          } catch (err) {
+            
+            console.error(err);
+            
+            return 'No se pudo validar correo';
+          }
+          
+          return '';
+        },
         autoComplete: 'on'
       },
       {
@@ -90,8 +147,22 @@ export const adminUserConfig = {
       className: ''
     }],
     
-    onSubmit: (data, { showToast }) => {
-      showToast('Registro exitoso', 'success')
+    onSubmit: async (data, { showToast, resetForm }) => {
+      
+      try {
+        
+        await addUser(data);
+        
+        showToast('Usuario registrado', 'success');
+        
+        resetForm();
+        
+        await refreshUsers();
+        
+      } catch {
+        
+        showToast('Error al registrar', 'error');
+      }
     }
   },
   
@@ -113,25 +184,69 @@ export const adminUserConfig = {
         label: 'Usuario a editar',
         type: 'select',
         required: true,
+        
         options: [
-          { value: 'select', label: 'Selecciona un usuario'},
-          { value: 'user1', label: 'Cande' },
-          { value: 'user2', label: 'Iazmin' },
-          { value: 'user3', label: 'Memo' }
+          { value: 'select', label: 'Selecciona un usuario' },
+          
+          ...users.map(user => ({
+            value: user.id,
+            label: user.username
+          }))
         ],
-        autoComplete: 'off'
+        
+        validate: v =>
+          v == 'select' ? 'Elige un usuario' : '',
+        
+        autoComplete: 'off',
+        
+        onChange: async (value, ctx) => {
+          
+          if (value === 'select') {
+            
+            ctx.resetForm();
+            
+            return;
+          }
+          
+          try {
+            
+            const user = await getUserById(value);
+            
+            console.log(value);
+            
+            
+            ctx.setValues(prev => ({
+              ...prev,
+              
+              select_user: value,
+              userRole: user.user_role,
+              fullName: user.full_name,
+              username: user.username,
+              email: user.email,
+              bandRole: user.band_role,
+              
+              // nunca cargar contraseña
+              password: ''
+            }));
+            
+          } catch {
+            
+            ctx.showToast('Error al cargar usuario', 'error');
+          }
+        }
       },
       {
         id: 'admin-manage-user-role',
         name: 'userRole',
         label: 'Rol del usuario',
         type: 'select',
-        required: false,
+        required: true,
         options: [
           { value: 'none', label: 'Selecciona un rol'},
-          { value: 'role1', label: 'Usuario' },
-          { value: 'role2', label: 'Admin' }
+          { value: 'user', label: 'Usuario' },
+          { value: 'admin', label: 'Admin' }
         ],
+        validate: v => v == 'none' ? 'Elige un rol' : '',
         autoComplete: 'off'
       },
       {
@@ -146,14 +261,45 @@ export const adminUserConfig = {
         autoComplete: 'off'
       },
       {
-        id: 'admin-add-user-username',
+        id: 'admin-manage-user-username',
         name: 'username',
         label: 'Nombre de usuario',
         type: 'text',
         required: false,
         placeholder: 'Ej: juanperez',
         hint: 'Mínimo 4 caracteres, máximo 20',
-        validate: v => !v ? 'Este campo es obligatorio' : v.length < 4 ? 'Mínimo 4 caracteres' : v.length > 20 ? 'Máximo 20 caracteres' : '',
+        validate: async v => {
+          
+          if (!v) {
+            return 'Este campo es obligatorio';
+          }
+          
+          if (v.length < 4) {
+            return 'Mínimo 4 caracteres';
+          }
+          
+          if (v.length > 20) {
+            return 'Máximo 20 caracteres';
+          }
+          
+          // SOLO AQUÍ HACER AJAX
+          try {
+            
+            const exists = await usernameExists(v);
+            
+            if (exists) {
+              return 'El username ya existe';
+            }
+            
+          } catch (err) {
+            
+            console.error(err);
+            
+            return 'No se pudo validar username';
+          }
+          
+          return '';
+        },
         autoComplete: 'on'
       },
       
@@ -165,9 +311,34 @@ export const adminUserConfig = {
         required: false,
         placeholder: 'ejemplo@correo.com',
         hint: 'Ingresa un correo válido',
-        validate: v =>
-          !v ? '' :
-        !/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(v) ? 'Correo inválido' : '',
+        validate: async v => {
+          
+          if (!v) {
+            return 'Este campo es obligatorio';
+          }
+          
+          if (!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(v)) {
+            return 'Correo inválido';
+          }
+          
+          // SOLO SI EL FORMATO ES VÁLIDO
+          try {
+            
+            const exists = await emailExists(v);
+            
+            if (exists) {
+              return 'El correo ya está registrado';
+            }
+            
+          } catch (err) {
+            
+            console.error(err);
+            
+            return 'No se pudo validar correo';
+          }
+          
+          return '';
+        },
         autoComplete: 'off'
       },
       
@@ -208,14 +379,48 @@ export const adminUserConfig = {
         type: 'button',
         label: 'Eliminar',
         className: 'bg-[#dc3545]',
-        onClick: (data, ctx) => {
-          ctx.showToast('Usuario eliminado', 'warning')
+        onClick: async (data, ctx) => {
+          
+          try {
+            
+            await deleteUser(data.select_user);
+            
+            await refreshUsers();
+            
+            ctx.showToast('Usuario eliminado', 'warning');
+            
+            ctx.setValues({
+              select_user: 'select',
+              userRole: 'none',
+              fullName: '',
+              username: '',
+              email: '',
+              bandRole: 'ninguno',
+              password: ''
+            });
+            
+          } catch {
+            
+            ctx.showToast('Error al eliminar', 'error');
+          }
         }
       }
     ],
     
-    onSubmit: (data, { showToast }) => {
-      showToast('Guardado exitoso', 'success')
+    onSubmit: async (data, { showToast }) => {
+      
+      try {
+        
+        await updateUser(data.select_user, data);
+        
+        await refreshUsers();
+        
+        showToast('Usuario actualizado', 'success');
+        
+      } catch {
+        
+        showToast('Error al actualizar', 'error');
+      }
     }
   }
-}
+})  

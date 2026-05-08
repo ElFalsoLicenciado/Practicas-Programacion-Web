@@ -1,6 +1,8 @@
 const urlPattern = /^(https?:\/\/)?([\da-z.-]+)\.([a-z.]{2,6})([/\w .-]*)*\/?$/
 
-export const adminCourseConfig = {
+export const adminCourseConfig = ({ 
+    cursos, addCurso, updateCurso, deleteCurso, getCursoById, refreshCursos
+}) => ({
     addCourse: {
         initialValues: {
             title: '',
@@ -50,7 +52,8 @@ export const adminCourseConfig = {
                 required: false,
                 placeholder: 'Ej: URL de una imagen',
                 hint: 'URL válida de la imgaen (opcional)',
-                validate: v => (!urlPattern.test(v) && !v.startsWith('assets/')) ? 'URL no válida' : '',
+                validate: v => !v ? '' : 
+                (!urlPattern.test(v) && !v.startsWith('assets/'))  ? 'URL no válida' : '',
                 autoComplete: 'no'
             },
             {
@@ -78,8 +81,24 @@ export const adminCourseConfig = {
             label: 'Guardar curso',
             className: ''
         }],
-        onSubmit: (data, {showToast}) => {
-            showToast('Curso guardado', 'success')
+        onSubmit: async (data, { showToast, resetForm }) => {
+            
+            try {
+                
+                await addCurso(data);
+                
+                showToast('Curso guardado', 'success');
+                
+                resetForm();
+                
+                await refreshCursos();
+                
+            } catch (err) {
+                
+                console.error(err);
+                
+                showToast('Error al guardar curso', 'error');
+            }
         }
     },
     manageCourse: {
@@ -99,12 +118,49 @@ export const adminCourseConfig = {
                 type: 'select',
                 required: true,
                 options: [
-                    { value: 'select', label: 'Selecciona un curso'},
-                    { value: 'course1', label: 'Curso 1' },
-                    { value: 'course2', label: 'Curso 2' },
-                    { value: 'course3', label: 'Curso 3' }
+                    { value: 'select', label: 'Selecciona un curso' },
+                    
+                    ...cursos.map(course => ({
+                        value: course.id,
+                        label: course.title
+                    }))
                 ],
-                autoComplete: 'off'
+                validate: v =>
+                    v == 'select' ? 'Elige un curso' : '',
+                autoComplete: 'off',
+                onChange: async (value, ctx) => {
+                    
+                    if (value === 'select') {
+                        
+                        ctx.resetForm();
+                        
+                        return;
+                    }
+                    
+                    try {
+                        
+                        const course = await getCursoById(value);
+                        
+                        ctx.setValues(prev => ({
+                            ...prev,
+                            
+                            select_course: value,
+                            title: course.title,
+                            description: course.description,
+                            learnPoints: course.learnPoints?.length
+                            ? course.learnPoints
+                            : [''],
+                            image: course.image,
+                            price: course.price
+                        }));
+                        
+                    } catch (err) {
+                        
+                        console.error(err);
+                        
+                        ctx.showToast('Error al cargar curso', 'error');
+                    }
+                }
             },
             {
                 id: 'admin-manage-course-name',
@@ -130,7 +186,7 @@ export const adminCourseConfig = {
                 rows: 4
             },
             {
-                id: 'admin-add-course-learn',
+                id: 'admin-manage-course-learn',
                 name: 'learnPoints',
                 label: '¿Qué aprenderá el alumno?',
                 type: 'dynamic-list',
@@ -146,7 +202,8 @@ export const adminCourseConfig = {
                 required: false,
                 placeholder: 'Ej: URL de una imagen',
                 hint: 'URL válida de la imgaen (opcional)',
-                validate: v => !v ? '' : (!urlPattern.test(v)) ? 'URL no válida' : '',
+                validate: v => !v ? '' : 
+                (!urlPattern.test(v) && !v.startsWith('assets/'))  ? 'URL no válida' : '',
                 autoComplete: 'no'
             },
             {
@@ -178,11 +235,51 @@ export const adminCourseConfig = {
             {
                 type: 'button',
                 label: 'Eliminar',
-                className: 'bg-[#dc3545]'
+                className: 'bg-[#dc3545]',
+                onClick: async (data, ctx) => {
+                    
+                    try {
+                        
+                        await deleteCurso(data.select_course);
+                        
+                        await refreshCursos();
+                        
+                        ctx.showToast('Curso eliminado', 'warning');
+                        
+                        ctx.setValues({
+                            select_course: 'select',
+                            title: '',
+                            description: '',
+                            learnPoints: [''],
+                            image: '',
+                            price: ''
+                        });
+                        
+                    } catch (err) {
+                        
+                        console.error(err);
+                        
+                        ctx.showToast('Error al eliminar curso', 'error');
+                    }
+                }                
             }
         ],
-        onSubmit: (data, {showToast}) => {
-            showToast('Curso guardado', 'success')
+        onSubmit: async (data, { showToast }) => {
+            
+            try {
+                
+                await updateCurso(data.select_course, data);
+                
+                await refreshCursos();
+                
+                showToast('Curso actualizado', 'success');
+                
+            } catch (err) {
+                
+                console.error(err);
+                
+                showToast('Error al actualizar curso', 'error');
+            }
         }
     }
-}
+});
