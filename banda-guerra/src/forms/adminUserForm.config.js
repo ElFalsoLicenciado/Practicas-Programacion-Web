@@ -1,4 +1,6 @@
-export const adminUserConfig = ({ users, addUser, updateUser, deleteUser, getUserById, refreshUsers, usernameExists, emailExists}) => ({  
+import { data } from "react-router-dom";
+
+export const adminUserConfig = ({ users, addUser, updateUser, deleteUser, getUserById, refreshUsers, usernameExists, emailExists, currentUser }) => ({  
   addUser: {
     initialValues: {
       userRole: 'none',
@@ -175,6 +177,8 @@ export const adminUserConfig = ({ users, addUser, updateUser, deleteUser, getUse
       email: '',
       bandRole: 'ninguno',
       password: '',
+      originalUsername: '',
+      originalEmail: '',
     },
     
     fields: [
@@ -188,7 +192,9 @@ export const adminUserConfig = ({ users, addUser, updateUser, deleteUser, getUse
         options: [
           { value: 'select', label: 'Selecciona un usuario' },
           
-          ...users.map(user => ({
+          ...users
+          .filter(user => user.id !== currentUser?.id)
+          .map(user => ({
             value: user.id,
             label: user.username
           }))
@@ -222,10 +228,10 @@ export const adminUserConfig = ({ users, addUser, updateUser, deleteUser, getUse
               userRole: user.user_role,
               fullName: user.full_name,
               username: user.username,
+              originalUsername: user.username,
               email: user.email,
+              originalEmail: user.email,
               bandRole: user.band_role,
-              
-              // nunca cargar contraseña
               password: ''
             }));
             
@@ -282,6 +288,8 @@ export const adminUserConfig = ({ users, addUser, updateUser, deleteUser, getUse
             return 'Máximo 20 caracteres';
           }
           
+          if (v === data.originalUsername) return '';
+
           // SOLO AQUÍ HACER AJAX
           try {
             
@@ -313,15 +321,12 @@ export const adminUserConfig = ({ users, addUser, updateUser, deleteUser, getUse
         hint: 'Ingresa un correo válido',
         validate: async v => {
           
-          if (!v) {
-            return 'Este campo es obligatorio';
-          }
+          if (!v) return 'Este campo es obligatorio';
           
-          if (!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(v)) {
-            return 'Correo inválido';
-          }
+          if (!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(v)) return 'Correo inválido';
           
-          // SOLO SI EL FORMATO ES VÁLIDO
+          if (v === data.originalEmail) return '';
+
           try {
             
             const exists = await emailExists(v);
@@ -378,8 +383,20 @@ export const adminUserConfig = ({ users, addUser, updateUser, deleteUser, getUse
       {
         type: 'button',
         label: 'Eliminar',
+        hidden: (data) => String(data.select_user) === String(currentUser?.id),
         className: 'bg-[#dc3545]',
+        
         onClick: async (data, ctx) => {
+          
+          if (String(data.select_user) === String(currentUser?.id)) {
+            
+            ctx.showToast(
+              'No puedes eliminar tu propia cuenta',
+              'error'
+            );
+            
+            return;
+          }
           
           try {
             
@@ -387,7 +404,10 @@ export const adminUserConfig = ({ users, addUser, updateUser, deleteUser, getUse
             
             await refreshUsers();
             
-            ctx.showToast('Usuario eliminado', 'warning');
+            ctx.showToast(
+              'Usuario eliminado',
+              'warning'
+            );
             
             ctx.setValues({
               select_user: 'select',
@@ -401,7 +421,10 @@ export const adminUserConfig = ({ users, addUser, updateUser, deleteUser, getUse
             
           } catch {
             
-            ctx.showToast('Error al eliminar', 'error');
+            ctx.showToast(
+              'Error al eliminar',
+              'error'
+            );
           }
         }
       }
@@ -409,17 +432,37 @@ export const adminUserConfig = ({ users, addUser, updateUser, deleteUser, getUse
     
     onSubmit: async (data, { showToast }) => {
       
+      // NO EDITARSE A SI MISMO
+      if (data.select_user === currentUser?.id) {
+        
+        showToast(
+          'No puedes editar tu propia cuenta desde administración',
+          'error'
+        );
+        
+        return;
+      }
+      
       try {
         
-        await updateUser(data.select_user, data);
+        await updateUser(
+          data.select_user,
+          data
+        );
         
         await refreshUsers();
         
-        showToast('Usuario actualizado', 'success');
+        showToast(
+          'Usuario actualizado',
+          'success'
+        );
         
       } catch {
         
-        showToast('Error al actualizar', 'error');
+        showToast(
+          'Error al actualizar',
+          'error'
+        );
       }
     }
   }

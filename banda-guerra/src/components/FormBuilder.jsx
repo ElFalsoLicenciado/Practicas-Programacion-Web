@@ -1,4 +1,4 @@
-  import { useState, useRef } from "react";
+  import { useState, useRef, useEffect } from "react";
 
   export default function FormBuilder({ config, formContainer, formContent, formFooter, children }) {
 
@@ -7,6 +7,13 @@
     const [toast, setToast] = useState(null)  
     const timeoutRef = useRef({});
     
+    useEffect(() => {
+      return () => {
+        Object.values(timeoutRef.current)
+          .forEach(clearTimeout);
+      }
+    }, [])
+
     const handleChange = (e) => {
       const { name, value } = e.target
 
@@ -18,7 +25,7 @@
       if (field?.validate) {
 
         clearTimeout(timeoutRef.current[name]);
-        timeoutRef.current[name] =setTimeout(() => {
+        timeoutRef.current[name] = setTimeout(() => {
 
           const currentValue = value;
 
@@ -266,7 +273,8 @@
           <div className="form-actions grid gap-3 mt-6">
             {(config.actions || [
               { type: 'submit', label: config.submitText }
-            ]).map((btn, i) => (
+            ]).filter(btn => typeof btn.hidden === 'function' ? !btn.hidden(formData) : !btn.hidden)
+            .map((btn, i) => (
               <button
                 key={i}
                 type={btn.type || 'button'}

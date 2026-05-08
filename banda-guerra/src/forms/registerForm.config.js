@@ -1,4 +1,4 @@
-export const registerConfig = ({registerUser, usernameExists, emailExists}) => ({
+export const registerConfig = ({registerUser, usernameExists, emailExists, login}) => ({
   initialValues: {
     fullName: '',
     username: '',
@@ -162,11 +162,21 @@ export const registerConfig = ({registerUser, usernameExists, emailExists}) => (
         password: data.password
       };
       
-      await registerUser(cleanData);
+      const result = await registerUser(cleanData);
+
+      login({
+          id: result.id,
+          username: result.username,
+          role: result.role
+        });
       
       showToast('Registro exitoso', 'success');
       
       resetForm();
+
+      setTimeout(() => {
+          window.location.href = '/';
+        }, 500);
       
     } catch (err) {
       

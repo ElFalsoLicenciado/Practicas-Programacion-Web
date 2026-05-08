@@ -1,7 +1,17 @@
 import { Link, useNavigate } from "react-router-dom";
 
+import useAuth from '../hooks/useAuth'
+
 export default function Header() {
-    const navigate = useNavigate()
+    const navigate = useNavigate();
+
+    const {session, logout } = useAuth();
+
+    const handleLogout = () => {
+        logout();
+
+        navigate('/');
+    }
     return (
         <>
             {/* header-base */}
@@ -20,8 +30,28 @@ export default function Header() {
                 </div>
                 {/* header-links */}
                 <div className='flex justify-end w-full text-center align-middle'>
-                    <Link to={'/credentials'} state={{isLogin:true}} className='header-link'>Iniciar sesion</Link>
-                    <Link to={'/admin'} className='header-link'>Administracion</Link>
+                    {!session && (
+                        <Link to={'/credentials'} state={{isLogin:true}} className='header-link'>Iniciar sesion</Link>
+                    )}
+                    {session && (
+                        <div className='relative group flex items-center px-5 font-[Poppins] text-[clamp(0.95rem,2.5vw,1.2rem)] text-[#f5cbcc] hover:bg-black/25 hover:text-white transition-all cursor-pointer'>
+                            <div className='flex gap-2 items-center h-full'>
+                                <span>👤</span>
+                                <span>
+                                    {session.username}
+                                </span>
+                            </div>
+                            {/* DROPDOWN */}
+                            <div className='absolute top-full right-0 min-w- [180px] bg-white rounded-xl shadow-lg py-2 opacity-0 invisible translate-y-2 group-hover:opacity-100 group-hover:visible group-hover:translate-y-0 transition-all duration-200 z-50'>
+                                <button onClick={handleLogout} className='w-full text-left px-4 py-2 text-[#333] hover:bg-[#f5e6e6] hover:text-[#660708] transition-all'>
+                                    Cerrar sesión
+                                </button>
+                            </div>
+                        </div>
+                    )}
+                    {session?.role === 'admin' && (
+                        <Link to={'/admin'} className='header-link'>Administracion</Link>
+                    )}
                     <Link to={'/about-us'} className='header-link'>Acerca de nosotros</Link> 
                 </div>
             </div>

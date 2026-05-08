@@ -58,6 +58,7 @@ export const loginConfig = ({login}) => ({
       if (result.success) {
         
         login({
+          id: result.id,
           username: result.username,
           role: result.role
         });
@@ -66,6 +67,10 @@ export const loginConfig = ({login}) => ({
           'Inicio de sesión correcto',
           'success'
         );
+
+        setTimeout(() => {
+          window.location.href = '/';
+        }, 500);
         
       } else {
         

@@ -1,6 +1,7 @@
 import { useState } from "react"
 import Form from "../components/FormBuilder"
 import { adminCourseConfig, adminUserConfig } from "../forms";
+import useAuth from '../hooks/useAuth'
 import useUsers from "../services/useUsers";
 import useCursos from "../services/useCursos";
 
@@ -10,10 +11,11 @@ export default function AdminView() {
   const [ isAddCourse, setIsAddCourse ] = useState(true);
   const [ isAddUser, setIsAddUser ] = useState(true);
   
+  const { session } = useAuth();
   const { users, addUser, updateUser, deleteUser, getUserById, fetchUsers, usernameExists, emailExists } = useUsers();
   const { cursos, addCurso, updateCurso, deleteCurso, getCursoById, fetchCursos } = useCursos();
   const courseConfigs = adminCourseConfig({ cursos, addCurso, updateCurso, deleteCurso, getCursoById, refreshCursos: fetchCursos });
-  const userConfigs = adminUserConfig({users, addUser, updateUser, deleteUser, getUserById, refreshUsers: fetchUsers, usernameExists, emailExists });
+  const userConfigs = adminUserConfig({users, addUser, updateUser, deleteUser, getUserById, refreshUsers: fetchUsers, usernameExists, emailExists, currentUser: session });
 
 
   const currentKey = isCourse

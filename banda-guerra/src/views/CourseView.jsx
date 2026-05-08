@@ -1,24 +1,37 @@
-import { useParams } from "react-router-dom";
+import { useParams, useNavigate } from "react-router-dom";
 import { useEffect, useState } from "react";
 import useCursos from "../services/useCursos";
+import useAuth from "../hooks/useAuth";
 
 export default function CourseView() {
 
   const { id } = useParams();
-  const { getCursoById } = useCursos();
+  const { navigate } =useNavigate();
+  const { session } = useAuth();
+  const { getCursoById, joinCourse, isOnCourse } = useCursos();
+  
   const [curso, setCurso] = useState(null);
   const [inscrito, setInscrito] = useState(false);
 
   useEffect(() => {
     const loadCourse = async () => {
+      try {
+        const data = await getCursoById(id);
 
-      const data = await getCursoById(id);
+        setCurso(data);
+        if (session && session.role === 'user') {
+          const joined = await isOnCourse(session.id, id);
+          setInscrito(joined);
+        }
 
-      setCurso(data);
-    }
+      } catch (err) {
+        console.error(err);
+      }
+    };
 
     loadCourse();
-  }, [id])
+
+  }, [id, session, getCursoById, isOnCourse]);
   
   if (!curso) {
     return (
@@ -28,9 +41,46 @@ export default function CourseView() {
     );
   }
 
-  const handleInscribirse = () => {
-    setInscrito(true);
-  };
+  const handleInscribirse = async () => {
+
+  if (!session) {
+    alert('Debes iniciar sesión');
+
+    navigate('/credentials', {
+      state: {
+        isLogin: true
+      }
+    });
+
+    return;
+  }
+
+  if (session.role !== 'user') {
+    alert('Solo los usuarios pueden inscribirse');
+    return;
+  }
+
+  try {
+    const success =
+      await joinCourse(
+        session.id,
+        id
+      );
+
+    if (success) {
+
+      setInscrito(true);
+    }
+
+  } catch (err) {
+
+    console.error(err);
+
+    alert(
+      'Error al inscribirse'
+    );
+  }
+};
 
   return (
     <div className="max-w-6xl mx-auto px-5 py-10">
@@ -87,7 +137,7 @@ export default function CourseView() {
 
           <button
             onClick={handleInscribirse}
-            disabled={inscrito}
+            disabled={inscrito || !session || session.role !== 'user'}
             className={`
               w-full py-3 rounded-xl font-semibold text-white transition-all duration-300
               ${inscrito
@@ -95,7 +145,7 @@ export default function CourseView() {
                 : 'bg-[#833132] hover:bg-[#5f2324] hover:-translate-y-1 shadow-lg'}
             `}
           >
-            {inscrito ? '✔ Inscrito' : 'Inscribirse'}
+            { inscrito ? '✔ Inscrito' : !session ? 'Inicia sesión' : session.role !== 'user' ? 'Solo usuarios pueden inscribirse' : 'Inscribirse'}
           </button>
 
           {!inscrito && (

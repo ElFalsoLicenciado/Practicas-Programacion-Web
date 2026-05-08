@@ -15,7 +15,7 @@ export default function CredentialsView() {
   const { registerUser, usernameExists, emailExists } = useUsers();
 
   const loginFormConfig = loginConfig({login: auth.login})
-  const registerFormConfig = registerConfig({registerUser, usernameExists, emailExists});
+  const registerFormConfig = registerConfig({registerUser, usernameExists, emailExists, login: auth.login});
 
   return (
     <div>

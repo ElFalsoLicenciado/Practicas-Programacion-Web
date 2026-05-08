@@ -2,27 +2,24 @@ import { useEffect, useState } from "react";
 
 export default function useAuth() {
 
-    const [session, setSession] = useState(null);
-
-    useEffect(() => {
+    const [session, setSession] = useState(() => {
 
         const stored =
             localStorage.getItem('session');
 
-        if (stored) {
-            setSession(JSON.parse(stored));
-        }
+        return stored
+            ? JSON.parse(stored)
+            : null;
+    });
 
-    }, []);
-
-    const login = (userData) => {
+    const login = (user) => {
 
         localStorage.setItem(
             'session',
-            JSON.stringify(userData)
+            JSON.stringify(user)
         );
 
-        setSession(userData);
+        setSession(user);
     };
 
     const logout = () => {
@@ -32,18 +29,10 @@ export default function useAuth() {
         setSession(null);
     };
 
-    const hasRole = (...roles) => {
-
-        if (!session) return false;
-
-        return roles.includes(session.role);
-    };
-
     return {
         session,
         login,
         logout,
-        hasRole,
         isAuthenticated: !!session
     };
 }

@@ -5,6 +5,7 @@ import Credential from './views/CredentialsView'
 import Admin from './views/AdminView'
 import AboutUs from './views/AboutUsView'
 import Course from './views/CourseView'
+import ProtectedRoute from './components/ProtectedRoute'
 
 export default function Router() {
     return (
@@ -12,8 +13,14 @@ export default function Router() {
             <Routes>
                 <Route element={<AppLayout />}>
                     <Route path='/' element={<Home/>}/>
-                    <Route path='/credentials' element={<Credential/>}/>
-                    <Route path='/admin' element={<Admin/>}/>
+                    <Route path='/credentials' element={
+                        <ProtectedRoute requireAuth={false}>
+                            <Credential />
+                        </ProtectedRoute>}/>
+                    <Route path='/admin' element={
+                        <ProtectedRoute allowedRoles={['admin']}>
+                                <Admin/>
+                            </ProtectedRoute>}/>
                     <Route path='/about-us' element={<AboutUs/>}/>
                     <Route path='/course/:id' element={<Course/>}/>
                 </Route>
