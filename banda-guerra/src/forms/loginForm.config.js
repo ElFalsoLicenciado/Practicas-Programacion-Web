@@ -1,4 +1,4 @@
-export const loginConfig = {
+export const loginConfig = ({login}) => ({
   initialValues: {
     credential: '',
     password: ''
@@ -49,20 +49,40 @@ export const loginConfig = {
         }
       );
       
-      const result = await response.json();
+      if (!response.ok) {
+        throw new Error();
+      }
       
-      if (result === 1) {
+      const result = await response.json();
+
+      if (result.success) {
         
-        showToast('Inicio de sesión correcto', 'success');
+        login({
+          username: result.username,
+          role: result.role
+        });
+        
+        showToast(
+          'Inicio de sesión correcto',
+          'success'
+        );
         
       } else {
         
-        showToast('Credenciales incorrectas', 'error');
+        showToast(
+          'Credenciales incorrectas',
+          'error'
+        );
       }
       
-    } catch {
+    } catch (err) {
       
-      showToast('Error del servidor', 'error');
+      console.error(err);
+      
+      showToast(
+        'Error del servidor',
+        'error'
+      );
     }
   }
-}
+})

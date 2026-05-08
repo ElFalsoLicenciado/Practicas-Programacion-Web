@@ -3,15 +3,18 @@ import { useLocation } from "react-router-dom";
 import { loginConfig, registerConfig } from '../forms'
 import Form from "../components/FormBuilder";
 import useUsers from '../services/useUsers'
+import useAuth from "../hooks/useAuth";
 
 export default function CredentialsView() {
 
   const location = useLocation();
+  const auth = useAuth();
 
   const [isLogin, setIsLogin] = useState(location.state?.isLogin ?? true);
 
   const { registerUser, usernameExists, emailExists } = useUsers();
 
+  const loginFormConfig = loginConfig({login: auth.login})
   const registerFormConfig = registerConfig({registerUser, usernameExists, emailExists});
 
   return (
@@ -25,7 +28,7 @@ export default function CredentialsView() {
 
       <Form 
         key={isLogin ? 'log-in' : 'sign-in'} 
-        config={isLogin ? loginConfig : registerFormConfig} 
+        config={isLogin ? loginFormConfig : registerFormConfig} 
         formFooter={{text: isLogin ? '¿No tienes cuenta?' : '¿Ya tienes cuenta?', linkText: isLogin ? 'Regístrate aquí' : 'Inicia sesión aquí', onClick: (e) => {e.preventDefault(); setIsLogin(!isLogin) }}}/>
     </div>
   );
