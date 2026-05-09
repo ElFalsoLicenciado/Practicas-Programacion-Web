@@ -1,5 +1,3 @@
-import { data } from "react-router-dom";
-
 export const adminUserConfig = ({ users, addUser, updateUser, deleteUser, getUserById, refreshUsers, usernameExists, emailExists, currentUser }) => ({  
   addUser: {
     initialValues: {
@@ -274,11 +272,10 @@ export const adminUserConfig = ({ users, addUser, updateUser, deleteUser, getUse
         required: false,
         placeholder: 'Ej: juanperez',
         hint: 'Mínimo 4 caracteres, máximo 20',
-        validate: async v => {
+        
+        validate: async (v, formData) => {
           
-          if (!v) {
-            return 'Este campo es obligatorio';
-          }
+          if (!v) return '';
           
           if (v.length < 4) {
             return 'Mínimo 4 caracteres';
@@ -288,9 +285,11 @@ export const adminUserConfig = ({ users, addUser, updateUser, deleteUser, getUse
             return 'Máximo 20 caracteres';
           }
           
-          if (v === data.originalUsername) return '';
-
-          // SOLO AQUÍ HACER AJAX
+          // SI NO CAMBIÓ
+          if (v === formData.originalUsername) {
+            return '';
+          }
+          
           try {
             
             const exists = await usernameExists(v);
@@ -308,9 +307,9 @@ export const adminUserConfig = ({ users, addUser, updateUser, deleteUser, getUse
           
           return '';
         },
+        
         autoComplete: 'on'
       },
-      
       {
         id: 'admin-manage-user-mail',
         name: 'email',
@@ -319,14 +318,20 @@ export const adminUserConfig = ({ users, addUser, updateUser, deleteUser, getUse
         required: false,
         placeholder: 'ejemplo@correo.com',
         hint: 'Ingresa un correo válido',
-        validate: async v => {
+        
+        validate: async (v, formData) => {
           
-          if (!v) return 'Este campo es obligatorio';
+          if (!v) return '';
           
-          if (!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(v)) return 'Correo inválido';
+          if (!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(v)) {
+            return 'Correo inválido';
+          }
           
-          if (v === data.originalEmail) return '';
-
+          // SI NO CAMBIÓ
+          if (v === formData.originalEmail) {
+            return '';
+          }
+          
           try {
             
             const exists = await emailExists(v);
@@ -344,6 +349,7 @@ export const adminUserConfig = ({ users, addUser, updateUser, deleteUser, getUse
           
           return '';
         },
+        
         autoComplete: 'off'
       },
       

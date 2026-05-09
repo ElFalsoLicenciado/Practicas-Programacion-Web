@@ -39,11 +39,12 @@ export const loginConfig = ({login}) => ({
     try {
       
       const response = await fetch(
-        'http://localhost:8080/api/users/login',
+        '/api/users/login',
         {
           method: 'POST',
           headers: {
-            'Content-Type': 'application/json'
+            'Content-Type': 'application/json',
+            'Accept': 'application/json'
           },
           body: JSON.stringify(data)
         }

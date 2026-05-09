@@ -1,6 +1,6 @@
 import { useEffect, useState } from "react";
 
-const API = 'http://localhost:8080/api/courses';
+const API = '/api/courses';
 
 const useCursos = () => {
     
