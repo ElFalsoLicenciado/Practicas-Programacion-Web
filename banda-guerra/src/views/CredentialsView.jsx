@@ -8,14 +8,15 @@ import {useAuth} from '../context/AuthContext'
 export default function CredentialsView() {
 
   const location = useLocation();
-  const auth = useAuth();
 
   const [isLogin, setIsLogin] = useState(location.state?.isLogin ?? true);
 
-  const { registerUser, usernameExists, emailExists } = useUsers();
+  const { register, login } = useAuth();
 
-  const loginFormConfig = loginConfig({login: auth.login})
-  const registerFormConfig = registerConfig({registerUser, usernameExists, emailExists, login: auth.login});
+  const { usernameExists, emailExists } = useUsers();
+
+  const loginFormConfig = loginConfig({login})
+  const registerFormConfig = registerConfig({registerUser: register, usernameExists, emailExists, login});
 
   return (
     <div>

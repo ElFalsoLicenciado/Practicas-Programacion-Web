@@ -9,12 +9,7 @@ public class LoginResponse {
 
     public LoginResponse() {}
 
-    public LoginResponse(
-            boolean success,
-            String id,
-            String username,
-            String role
-    ) {
+    public LoginResponse(boolean success, String id, String username, String role) {
         this.success = success;
         this.id = id;
         this.username = username;

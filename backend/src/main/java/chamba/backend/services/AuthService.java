@@ -47,7 +47,7 @@ public class AuthService {
 
             return new LoginResponse(
                     true,
-                    null,
+                    claims.get("id", String.class),
                     claims.getSubject(),
                     claims.get("role", String.class)
             );
@@ -91,10 +91,7 @@ public class AuthService {
                 );
             }
 
-            String token = jwtUtil.generateToken(
-                    user.getUsername(),
-                    user.getUser_role()
-            );
+            String token = jwtUtil.generateToken(user.getId(), user.getUsername(), user.getUser_role());
 
             response.addCookie(CookieService.buildAuthCookie(token));
 

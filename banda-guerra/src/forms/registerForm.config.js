@@ -1,4 +1,4 @@
-export const registerConfig = ({registerUser, usernameExists, emailExists, login}) => ({
+export const registerConfig = ({registerUser: register, usernameExists, emailExists, login}) => ({
   initialValues: {
     fullName: '',
     username: '',
@@ -160,7 +160,7 @@ export const registerConfig = ({registerUser, usernameExists, emailExists, login
         password: data.password
       };
       
-      const result = await registerUser(cleanData);
+      const result = await register(cleanData);
 
       await login(
         cleanData.email,

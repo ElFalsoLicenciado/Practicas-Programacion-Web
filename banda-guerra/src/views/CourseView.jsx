@@ -31,7 +31,7 @@ export default function CourseView() {
 
     loadCourse();
 
-  }, [id, session, getCursoById, isOnCourse]);
+  }, [id, session]);
   
   if (!curso) {
     return (
