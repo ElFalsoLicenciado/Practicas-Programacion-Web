@@ -1,9 +1,10 @@
-import { useEffect, useState } from "react";
+import { createContext, useContext, useEffect, useState } from 'react';
+
 import { apiFetch } from '../api/api';
 
-const API = '/api/auth';
+const AuthContext = createContext();
 
-export default function useAuth() {
+export function AuthProvider({ children }) {
 
     const [session, setSession] = useState(null);
 
@@ -17,7 +18,9 @@ export default function useAuth() {
 
         try {
 
-            const response = apiFetch(`${API}/me`);
+            const response = await apiFetch(
+                '/api/auth/me'
+            );
 
             if (!response.ok) {
 
@@ -30,7 +33,7 @@ export default function useAuth() {
 
             setSession(data);
 
-        } catch (err) {
+        } catch {
 
             setSession(null);
 
@@ -46,9 +49,12 @@ export default function useAuth() {
     ) => {
 
         const response = await apiFetch(
-            `${API}/login`,
+            '/api/auth/login',
             {
                 method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json'
+                },
                 body: JSON.stringify({
                     credential,
                     password
@@ -65,12 +71,14 @@ export default function useAuth() {
         }
 
         setSession(data);
+
+        return data;
     };
 
     const logout = async () => {
 
         await apiFetch(
-            `${API}/logout`,
+            '/api/auth/logout',
             {
                 method: 'POST'
             }
@@ -79,11 +87,22 @@ export default function useAuth() {
         setSession(null);
     };
 
-    return {
-        session,
-        loading,
-        login,
-        logout,
-        isAuthenticated: !!session
-    };
+    return (
+        <AuthContext.Provider
+            value={{
+                session,
+                loading,
+                login,
+                logout,
+                isAuthenticated: !!session
+            }}
+        >
+            {children}
+        </AuthContext.Provider>
+    );
+}
+
+export function useAuth() {
+
+    return useContext(AuthContext);
 }

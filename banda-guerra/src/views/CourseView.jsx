@@ -1,12 +1,12 @@
 import { useParams, useNavigate } from "react-router-dom";
 import { useEffect, useState } from "react";
 import useCursos from "../services/useCursos";
-import useAuth from "../hooks/useAuth";
+import {useAuth} from '../context/AuthContext'
 
 export default function CourseView() {
 
   const { id } = useParams();
-  const { navigate } =useNavigate();
+  const navigate = useNavigate();
   const { session } = useAuth();
   const { getCursoById, joinCourse, isOnCourse } = useCursos();
   

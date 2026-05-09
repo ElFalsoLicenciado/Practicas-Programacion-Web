@@ -205,6 +205,8 @@ public class CourseService {
     public static boolean joinCourse(Connection conn, String user, String course) throws Exception {
         String sql = "{call super.join_course(?,?,?)}";
 
+        System.out.println("user: "+ user + "\ncurso: " + course);
+
         CallableStatement cs = conn.prepareCall(sql);
 
         cs.setString(1, user);

@@ -3,7 +3,7 @@ import { useLocation } from "react-router-dom";
 import { loginConfig, registerConfig } from '../forms'
 import Form from "../components/FormBuilder";
 import useUsers from '../services/useUsers'
-import useAuth from "../hooks/useAuth";
+import {useAuth} from '../context/AuthContext'
 
 export default function CredentialsView() {
 

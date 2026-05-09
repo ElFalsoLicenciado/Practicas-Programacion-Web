@@ -162,11 +162,10 @@ export const registerConfig = ({registerUser, usernameExists, emailExists, login
       
       const result = await registerUser(cleanData);
 
-      login({
-          id: result.id,
-          username: result.username,
-          role: result.role
-        });
+      await login(
+        cleanData.email,
+        cleanData.password
+      );
       
       showToast('Registro exitoso', 'success');
       

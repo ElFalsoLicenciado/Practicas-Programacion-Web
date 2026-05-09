@@ -1,7 +1,7 @@
 import { useState } from "react"
 import Form from "../components/FormBuilder"
 import { adminCourseConfig, adminUserConfig } from "../forms";
-import useAuth from '../hooks/useAuth'
+import {useAuth} from '../context/AuthContext'
 import useUsers from "../services/useUsers";
 import useCursos from "../services/useCursos";
 
