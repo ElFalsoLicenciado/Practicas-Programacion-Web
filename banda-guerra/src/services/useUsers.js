@@ -1,4 +1,5 @@
 import { useEffect, useState } from "react";
+import { apiFetch } from '../api/api';
 
 const API = "/api/users";
 
@@ -15,7 +16,7 @@ export default function useUsers() {
         
         try {
             
-            const response = await fetch(API);
+            const response = await apiFetch(API);
             
             if (!response.ok) {
                 throw new Error("Error al obtener usuarios");
@@ -37,7 +38,7 @@ export default function useUsers() {
     
     const getUserById = async (id) => {
         
-        const response = await fetch(`${API}/${id}`);
+        const response = await apiFetch(`${API}/${id}`);
         
         if (!response.ok) {
             throw new Error("Error al obtener usuario");
@@ -48,7 +49,7 @@ export default function useUsers() {
     
     const addUser = async (user) => {
         
-        const response = await fetch(`${API}/admin/add`, {
+        const response = await apiFetch(`${API}/admin/add`, {
             method: "POST",
             headers: {
                 "Content-Type": "application/json"
@@ -65,7 +66,7 @@ export default function useUsers() {
     
     const registerUser = async (user) => {
         
-        const response = await fetch(`${API}/register`, {
+        const response = await apiFetch(`${API}/register`, {
             method: "POST",
             headers: {
                 "Content-Type": "application/json"
@@ -82,7 +83,7 @@ export default function useUsers() {
     
     const updateUser = async (id, user) => {
         
-        const response = await fetch(`${API}/${id}`, {
+        const response = await apiFetch(`${API}/${id}`, {
             method: "PUT",
             headers: {
                 "Content-Type": "application/json"
@@ -99,7 +100,7 @@ export default function useUsers() {
     
     const deleteUser = async (id) => {
         
-        const response = await fetch(`${API}/${id}`, {
+        const response = await apiFetch(`${API}/${id}`, {
             method: "DELETE"
         });
         
@@ -112,7 +113,7 @@ export default function useUsers() {
     
     const usernameExists = async (username) => {
         
-        const response = await fetch(
+        const response = await apiFetch(
             `${API}/exists/username/${encodeURIComponent(username)}`
         );
         
@@ -125,7 +126,7 @@ export default function useUsers() {
     
     const emailExists = async (email) => {
         
-        const response = await fetch(
+        const response = await apiFetch(
             `${API}/exists/email/${encodeURIComponent(email)}`
         );
         

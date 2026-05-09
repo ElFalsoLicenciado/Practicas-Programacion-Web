@@ -1,4 +1,5 @@
 import { useEffect, useState } from "react";
+import { apiFetch } from '../api/api';
 
 const API = '/api/courses';
 
@@ -15,7 +16,7 @@ const useCursos = () => {
         
         try {
             
-            const response = await fetch(API);
+            const response = await apiFetch(API);
             
             if (!response.ok) {
                 throw new Error('Error al cargar cursos');
@@ -37,7 +38,7 @@ const useCursos = () => {
     
     const getCursoById = async (id) => {
         
-        const response = await fetch(`${API}/${id}`);
+        const response = await apiFetch(`${API}/${id}`);
         
         if (!response.ok) {
             throw new Error('Curso no encontrado');
@@ -48,11 +49,8 @@ const useCursos = () => {
     
     const addCurso = async (curso) => {
         
-        const response = await fetch(`${API}/admin/add`, {
+        const response = await apiFetch(`${API}/admin/add`, {
             method: 'POST',
-            headers: {
-                'Content-Type': 'application/json'
-            },
             body: JSON.stringify(curso)
         });
         
@@ -65,11 +63,8 @@ const useCursos = () => {
     
     const updateCurso = async (id, curso) => {
         
-        const response = await fetch(`${API}/${id}`, {
+        const response = await apiFetch(`${API}/${id}`, {
             method: 'PUT',
-            headers: {
-                'Content-Type': 'application/json'
-            },
             body: JSON.stringify(curso)
         });
         
@@ -82,7 +77,7 @@ const useCursos = () => {
     
     const deleteCurso = async (id) => {
         
-        const response = await fetch(`${API}/${id}`, {
+        const response = await apiFetch(`${API}/${id}`, {
             method: 'DELETE'
         });
         
@@ -95,7 +90,7 @@ const useCursos = () => {
     
     const joinCourse = async (userId, courseId) => {
         
-        const response = await fetch(
+        const response = await apiFetch(
             `${API}/${courseId}/join/${userId}`,
             {
                 method: 'POST'
@@ -116,7 +111,7 @@ const useCursos = () => {
         courseId
     ) => {
         
-        const response = await fetch(
+        const response = await apiFetch(
             `${API}/${courseId}/joined/${userId}`
         );
         

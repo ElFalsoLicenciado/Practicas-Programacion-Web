@@ -38,55 +38,26 @@ export const loginConfig = ({login}) => ({
     
     try {
       
-      const response = await fetch(
-        '/api/users/login',
-        {
-          method: 'POST',
-          headers: {
-            'Content-Type': 'application/json',
-            'Accept': 'application/json'
-          },
-          body: JSON.stringify(data)
-        }
+      await login(
+        data.credential,
+        data.password
       );
       
-      if (!response.ok) {
-        throw new Error();
-      }
+      showToast(
+        'Inicio de sesión correcto',
+        'success'
+      );
       
-      const result = await response.json();
-
-      if (result.success) {
-        
-        login({
-          id: result.id,
-          username: result.username,
-          role: result.role
-        });
-        
-        showToast(
-          'Inicio de sesión correcto',
-          'success'
-        );
-
-        setTimeout(() => {
-          window.location.href = '/';
-        }, 500);
-        
-      } else {
-        
-        showToast(
-          'Credenciales incorrectas',
-          'error'
-        );
-      }
+      setTimeout(() => {
+        window.location.href = '/';
+      }, 500);
       
     } catch (err) {
       
       console.error(err);
       
       showToast(
-        'Error del servidor',
+        'Credenciales incorrectas',
         'error'
       );
     }

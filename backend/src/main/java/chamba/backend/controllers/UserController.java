@@ -22,37 +22,7 @@ public class UserController {
         this.dataSource = dataSource;
     }
 
-    @PostMapping("/register")
-    public AuthResponse register(@RequestBody RegisterRequest req) throws Exception {
 
-        try (Connection conn = dataSource.getConnection()) {
-
-            return UserService.registerUser(
-                    conn,
-                    req.getFullName(),
-                    req.getUsername(),
-                    req.getEmail(),
-                    req.getBandRole(),
-                    req.getPassword()
-            );
-        }
-    }
-
-    @PostMapping("/login")
-    public LoginResponse login(@RequestBody LoginRequest req ) throws Exception {
-
-        try (Connection conn = dataSource.getConnection()) {
-
-            User user = UserService.logInUser(conn, req.getCredential(), req.getPassword() );
-
-            if (user == null) {
-
-                return new LoginResponse(false, null, null, null);
-            }
-
-            return new LoginResponse(true, user.getId(), user.getUsername(), user.getUser_role());
-        }
-    }
 
     @PostMapping("/admin/add")
     public int addUser(@RequestBody AdminUserRequest req) throws Exception {
