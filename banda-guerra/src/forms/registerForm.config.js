@@ -19,8 +19,7 @@ export const registerConfig = ({registerUser, usernameExists, emailExists, login
       hint: 'Mínimo 3 caracteres, máximo 100',
       validate: v => !v ? 'Este campo es obligatorio' : v.length < 3 ? 'Mínimo 3 caracteres' : v.length > 100 ? 'Máximo 100 caracteres' : '',
       autoComplete: 'on'
-    },
-    
+    },    
     {
       id: 'sign-in-username',
       name: 'username',
@@ -43,7 +42,6 @@ export const registerConfig = ({registerUser, usernameExists, emailExists, login
           return 'Máximo 20 caracteres';
         }
         
-        // SOLO AQUÍ HACER AJAX
         try {
           
           const exists = await usernameExists(v);
