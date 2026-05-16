@@ -83,7 +83,7 @@ public class UserService {
         cs.setString(4, email);
         cs.setString(5, band_role);
         cs.setString(6, password);
-        cs.registerOutParameter(7, Types.NUMERIC);
+        cs.registerOutParameter(7, Types.INTEGER);
 
         cs.execute();
 
@@ -112,7 +112,7 @@ public class UserService {
         cs.setString(5, email);
         cs.setString(6, band_role);
         cs.setString(7, password);
-        cs.registerOutParameter(8, Types.NUMERIC);
+        cs.registerOutParameter(8, Types.INTEGER);
 
         cs.execute();
 
@@ -140,7 +140,7 @@ public class UserService {
         cs.setString(5, email);
         cs.setString(6, band_role);
         cs.setString(7, password);
-        cs.registerOutParameter(8, Types.NUMERIC);
+        cs.registerOutParameter(8, Types.INTEGER);
 
         cs.execute();
 
@@ -159,7 +159,7 @@ public class UserService {
         CallableStatement cs = conn.prepareCall(sql);
 
         cs.setString(1, id);
-        cs.registerOutParameter(2, Types.NUMERIC);
+        cs.registerOutParameter(2, Types.INTEGER);
 
         cs.execute();
 
@@ -230,7 +230,7 @@ public class UserService {
         CallableStatement cs = conn.prepareCall(sql);
 
         cs.setString(1, username);
-        cs.registerOutParameter(2, Types.NUMERIC);
+        cs.registerOutParameter(2, Types.INTEGER);
 
         cs.execute();
 
@@ -244,7 +244,7 @@ public class UserService {
         CallableStatement cs = conn.prepareCall(sql);
 
         cs.setString(1, email);
-        cs.registerOutParameter(2, Types.NUMERIC);
+        cs.registerOutParameter(2, Types.INTEGER);
 
         cs.execute();
 

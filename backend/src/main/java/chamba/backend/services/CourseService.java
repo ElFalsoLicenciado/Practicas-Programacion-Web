@@ -13,7 +13,7 @@ public class CourseService {
     public static String addCourse( Connection conn, String title, String desc, int price, String image ) throws Exception {
         String courseId = UUID.randomUUID().toString().substring(0, 32);
 
-        String sql = "{call super.ADD_COURSE(?,?,?,?,?,?)}";
+        String sql = "call super.add_course(?,?,?,?,?,?)";
 
         CallableStatement cs = conn.prepareCall(sql);
 
@@ -23,7 +23,7 @@ public class CourseService {
         cs.setInt(4, price);
         cs.setString(5, image);
 
-        cs.registerOutParameter(6, Types.NUMERIC);
+        cs.registerOutParameter(6, Types.INTEGER);
 
         cs.execute();
 
@@ -39,7 +39,7 @@ public class CourseService {
     }
 
     public static void addCoursePoint(Connection conn, String course, String point) throws Exception {
-        String sql = "{call super.ADD_COURSE_POINT(?,?)}";
+        String sql = "call super.add_course_point(?,?)";
 
         CallableStatement cs = conn.prepareCall(sql);
 
@@ -54,12 +54,12 @@ public class CourseService {
     public static int deleteCourse(Connection conn, String id) throws Exception {
         int response;
 
-        String sql = "{call super.DELETE_COURSE(?,?)}";
+        String sql = "call super.delete_course(?,?)";
 
         CallableStatement cs = conn.prepareCall(sql);
 
         cs.setString(1, id);
-        cs.registerOutParameter(2, Types.NUMERIC);
+        cs.registerOutParameter(2, Types.INTEGER);
 
         cs.execute();
 
@@ -71,7 +71,7 @@ public class CourseService {
     }
 
     public static void deleteCoursePoints(Connection conn, String id) throws Exception{
-        String sql = "{call super.delete_course_points(?)}";
+        String sql = "call super.delete_course_points(?,?)";
 
         CallableStatement cs = conn.prepareCall(sql);
 
@@ -85,7 +85,7 @@ public class CourseService {
     public static int updateCourse(Connection conn, String id, String title, String desc, int price, String image) throws Exception {
         int response;
 
-        String sql = "{call super.UPDATE_COURSE(?,?,?,?,?,?)}";
+        String sql = "call super.update_course(?,?,?,?,?,?)";
 
         CallableStatement cs = conn.prepareCall(sql);
 
@@ -94,7 +94,7 @@ public class CourseService {
         cs.setString(3, desc);
         cs.setInt(4, price);
         cs.setString(5, image);
-        cs.registerOutParameter(6, Types.NUMERIC);
+        cs.registerOutParameter(6, Types.INTEGER);
 
         cs.execute();
 
@@ -104,7 +104,6 @@ public class CourseService {
 
         return response;
     }
-
 
     public static ArrayList<Course> getCourses(Connection conn) throws Exception {
 
@@ -153,14 +152,14 @@ public class CourseService {
     public static Course getCourseById(Connection conn, String id) throws Exception {
         Course course;
 
-        String sql = "{call super.GET_COURSE_BY_ID(?,?,?,?,?)}";
+        String sql = "call super.get_course_by_id(?,?,?,?,?)";
 
         CallableStatement cs = conn.prepareCall(sql);
 
         cs.setString(1, id);
         cs.registerOutParameter(2, Types.VARCHAR);
         cs.registerOutParameter(3, Types.VARCHAR);
-        cs.registerOutParameter(4, Types.NUMERIC);
+        cs.registerOutParameter(4, Types.INTEGER);
         cs.registerOutParameter(5, Types.VARCHAR);
 
         cs.execute();
@@ -203,14 +202,14 @@ public class CourseService {
     }
 
     public static boolean joinCourse(Connection conn, String user, String course) throws Exception {
-        String sql = "{call super.join_course(?,?,?)}";
+        String sql = "call super.join_course(?,?,?)";
 
 
         CallableStatement cs = conn.prepareCall(sql);
 
         cs.setString(1, user);
         cs.setString(2, course);
-        cs.registerOutParameter(3, Types.NUMERIC);
+        cs.registerOutParameter(3, Types.INTEGER);
 
         cs.execute();
 
@@ -222,13 +221,13 @@ public class CourseService {
     }
 
     public static boolean isOnCourse(Connection conn, String user, String course) throws Exception {
-        String sql = "{call super.IS_USER_ON_COURSE(?,?,?)}";
+        String sql = "call super.is_user_on_course(?,?,?)";
 
         CallableStatement cs = conn.prepareCall(sql);
 
         cs.setString(1, user);
         cs.setString(2, course);
-        cs.registerOutParameter(3, Types.NUMERIC);
+        cs.registerOutParameter(3, Types.INTEGER);
 
         cs.execute();
 
