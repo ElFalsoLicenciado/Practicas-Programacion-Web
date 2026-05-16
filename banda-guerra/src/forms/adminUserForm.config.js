@@ -45,26 +45,19 @@ export const adminUserConfig = ({ users, addUser, updateUser, deleteUser, getUse
         hint: 'Mínimo 4 caracteres, máximo 20',
         validate: async v => {
           
-          if (!v) {
-            return 'Este campo es obligatorio';
-          }
+          if (!v) return 'Este campo es obligatorio';
           
-          if (v.length < 4) {
-            return 'Mínimo 4 caracteres';
-          }
           
-          if (v.length > 20) {
-            return 'Máximo 20 caracteres';
-          }
+          if (v.length < 4) return 'Mínimo 4 caracteres';
           
-          // SOLO AQUÍ HACER AJAX
+          
+          if (v.length > 20) return 'Máximo 20 caracteres';
+          
           try {
             
             const exists = await usernameExists(v);
             
-            if (exists) {
-              return 'El username ya existe';
-            }
+            if (exists) return 'El username ya existe';
             
           } catch (err) {
             
@@ -87,22 +80,16 @@ export const adminUserConfig = ({ users, addUser, updateUser, deleteUser, getUse
         hint: 'Ingresa un correo válido',
         validate: async v => {
           
-          if (!v) {
-            return 'Este campo es obligatorio';
-          }
+          if (!v) return 'Este campo es obligatorio';
           
-          if (!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(v)) {
-            return 'Correo inválido';
-          }
+          if (!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(v)) return 'Correo inválido';
           
-          // SOLO SI EL FORMATO ES VÁLIDO
+          
           try {
             
             const exists = await emailExists(v);
             
-            if (exists) {
-              return 'El correo ya está registrado';
-            }
+            if (exists) return 'El correo ya está registrado';
             
           } catch (err) {
             
@@ -277,26 +264,17 @@ export const adminUserConfig = ({ users, addUser, updateUser, deleteUser, getUse
           
           if (!v) return '';
           
-          if (v.length < 4) {
-            return 'Mínimo 4 caracteres';
-          }
+          if (v.length < 4) return 'Mínimo 4 caracteres';
           
-          if (v.length > 20) {
-            return 'Máximo 20 caracteres';
-          }
+          if (v.length > 20) return 'Máximo 20 caracteres';
           
-          // SI NO CAMBIÓ
-          if (v === formData.originalUsername) {
-            return '';
-          }
+          if (v === formData.originalUsername) return '';
           
           try {
             
             const exists = await usernameExists(v);
             
-            if (exists) {
-              return 'El username ya existe';
-            }
+            if (exists) return 'El username ya existe';
             
           } catch (err) {
             
@@ -323,22 +301,15 @@ export const adminUserConfig = ({ users, addUser, updateUser, deleteUser, getUse
           
           if (!v) return '';
           
-          if (!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(v)) {
-            return 'Correo inválido';
-          }
+          if (!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(v)) return 'Correo inválido';
           
-          // SI NO CAMBIÓ
-          if (v === formData.originalEmail) {
-            return '';
-          }
+          if (v === formData.originalEmail) return '';
           
           try {
             
             const exists = await emailExists(v);
             
-            if (exists) {
-              return 'El correo ya está registrado';
-            }
+            if (exists) return 'El correo ya está registrado';
             
           } catch (err) {
             

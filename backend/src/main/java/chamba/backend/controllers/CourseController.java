@@ -30,9 +30,6 @@ public class CourseController {
         }
     }
 
-    // =========================
-    // GET BY ID
-    // =========================
 
     @GetMapping("/{id}")
     public Course getCourse(@PathVariable String id) throws Exception {
@@ -43,9 +40,6 @@ public class CourseController {
         }
     }
 
-    // =========================
-    // ADD COURSE
-    // =========================
 
     @PostMapping("/admin/add")
     public void addCourse(@RequestBody CourseRequest req) throws Exception {
