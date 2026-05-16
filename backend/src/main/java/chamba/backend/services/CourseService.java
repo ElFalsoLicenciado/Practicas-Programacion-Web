@@ -110,7 +110,7 @@ public class CourseService {
 
         Map<String, Course> coursesMap = new LinkedHashMap<>();
 
-        String sql = "SELECT c.id, c.title, c.description, c.price, c.image, p.point FROM super.v_courses_data c LEFT JOIN super.v_course_points p ON c.id = p.course_id ORDER BY c.title, p.point_id";
+        String sql = "SELECT c.id, c.title, c.description, c.price, c.image, p.point FROM super.coursesdata c LEFT JOIN super.coursepoints p ON c.id = p.course_id ORDER BY c.title, p.point_id";
 
         try (
                 Statement stm = conn.createStatement();
@@ -184,7 +184,7 @@ public class CourseService {
         ArrayList<String> points = new ArrayList<>();
 
         String sql =
-                "SELECT point FROM super.v_course_points WHERE course_id = ? ORDER BY course_id, point_id";
+                "SELECT point FROM super.coursepoints WHERE course_id = ? ORDER BY course_id, point_id";
 
         try (
                 PreparedStatement ps = conn.prepareStatement(sql)
@@ -205,7 +205,6 @@ public class CourseService {
     public static boolean joinCourse(Connection conn, String user, String course) throws Exception {
         String sql = "{call super.join_course(?,?,?)}";
 
-        System.out.println("user: "+ user + "\ncurso: " + course);
 
         CallableStatement cs = conn.prepareCall(sql);
 

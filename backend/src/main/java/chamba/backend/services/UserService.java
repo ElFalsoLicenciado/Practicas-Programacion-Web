@@ -12,7 +12,7 @@ import java.util.UUID;
 public class UserService {
 
     public static User logInUser(Connection conn, String credential, String password) throws Exception {
-        String sql = "{call super.log_in_user(?,?)}";
+        String sql = "call super.log_in_user(?,?)";
 
         CallableStatement cs = conn.prepareCall(sql);
 
@@ -40,7 +40,7 @@ public class UserService {
     private static User getUserByCredential(Connection conn, String credential ) throws Exception {
 
         String sql =
-                "{call SUPER.GET_USER_BY_CREDENTIAL(?,?,?,?)}";
+                "call SUPER.get_user_by_credential(?,?,?,?)";
 
         CallableStatement cs =
                 conn.prepareCall(sql);
@@ -71,7 +71,7 @@ public class UserService {
 
         String id = UUID.randomUUID().toString().substring(0, 32);
 
-        String sql = "{ call super.register_user(?,?,?,?,?,?,?)}";
+        String sql = "call super.register_user(?,?,?,?,?,?,?)";
 
         CallableStatement cs = conn.prepareCall(sql);
 
@@ -99,7 +99,7 @@ public class UserService {
     public static int addUser(Connection conn, String role, String name, String username, String email, String band_role, String password) throws Exception {
         int response;
 
-        String sql = "{ call super.add_user(?,?,?,?,?,?,?,?)}";
+        String sql = "call super.add_user(?,?,?,?,?,?,?,?)";
 
         CallableStatement cs = conn.prepareCall(sql);
 
@@ -126,7 +126,7 @@ public class UserService {
     public static int updateUser(Connection conn, String id, String role, String name, String username, String email, String band_role, String password) throws Exception {
         int response;
 
-        String sql = "{ call super.update_user(?,?,?,?,?,?,?,?)}";
+        String sql = "call super.update_user(?,?,?,?,?,?,?,?)";
 
         CallableStatement cs = conn.prepareCall(sql);
 
@@ -154,7 +154,7 @@ public class UserService {
     public static int deleteUser(Connection conn, String id) throws Exception {
         int response;
 
-        String sql = "{ call super.delete_user(?,?)}";
+        String sql = "call super.delete_user(?,?)";
 
         CallableStatement cs = conn.prepareCall(sql);
 
@@ -173,9 +173,7 @@ public class UserService {
     public static User getUserById(Connection conn, String id) throws Exception {
         User user;
 
-//        Connection conn = DBConnection.open();
-
-        String sql = "{call super.get_user_by_id(?,?,?,?,?,?)}";
+        String sql = "call super.get_user_by_id(?,?,?,?,?,?)";
 
         CallableStatement cs = conn.prepareCall(sql);
 
@@ -205,7 +203,7 @@ public class UserService {
     public static ArrayList<UsersDisplay> displayUsers(Connection conn) throws Exception {
         ArrayList<UsersDisplay> users = new ArrayList<>();
 
-        String sql = "SELECT * FROM super.v_users_display ORDER BY username";
+        String sql = "SELECT * FROM super.usersdisplay ORDER BY username";
 
         Statement stm = conn.createStatement();
 
@@ -227,7 +225,7 @@ public class UserService {
 
     public static boolean usernameExists(Connection conn, String username) throws Exception {
 
-        String sql = "{call SUPER.CHECK_USERNAME_COUNT(?,?)}";
+        String sql = "call SUPER.check_username_count(?,?)";
 
         CallableStatement cs = conn.prepareCall(sql);
 
@@ -241,7 +239,7 @@ public class UserService {
 
     public static boolean emailExists(Connection conn, String email) throws Exception {
 
-        String sql = "{call SUPER.CHECK_EMAIL_COUNT(?,?)}";
+        String sql = "call SUPER.check_email_count(?,?)";
 
         CallableStatement cs = conn.prepareCall(sql);
 
@@ -254,7 +252,7 @@ public class UserService {
     }
 
     public static String getUserRole(Connection conn, String id) throws Exception {
-        String sql = "{call SUPER.GET_USER_ROLE(?,?)}";
+        String sql = "call SUPER.get_user_role(?,?)";
 
         System.out.println(id);
 
