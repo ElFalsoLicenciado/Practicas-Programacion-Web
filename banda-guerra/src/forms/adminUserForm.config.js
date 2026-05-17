@@ -202,10 +202,7 @@ export const adminUserConfig = ({ users, addUser, updateUser, deleteUser, getUse
           try {
             
             const user = await getUserById(value);
-            
-            console.log(value);
-            
-            
+                        
             ctx.setValues(prev => ({
               ...prev,
               
