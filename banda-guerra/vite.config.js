@@ -13,6 +13,8 @@ export default defineConfig({
     basicSsl()
   ],
   server: {
+    host: '0.0.0.0',
+    port: 5173,
     https: true,
     // Esto le indica a Vite: «Si detectas una solicitud que comience por /api, envíala al servidor Spring Boot por mí».
     proxy: { 

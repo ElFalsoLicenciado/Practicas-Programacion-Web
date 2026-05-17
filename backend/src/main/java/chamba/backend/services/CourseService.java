@@ -71,7 +71,7 @@ public class CourseService {
     }
 
     public static void deleteCoursePoints(Connection conn, String id) throws Exception{
-        String sql = "call super.delete_course_points(?,?)";
+        String sql = "call super.delete_course_points(?)";
 
         CallableStatement cs = conn.prepareCall(sql);
 
